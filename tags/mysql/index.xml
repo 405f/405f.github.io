@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mysql on </title>
+    <link>https://dtest11.github.io/tags/mysql/</link>
+    <description>Recent content in mysql on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 28 Feb 2020 16:37:53 +0000</lastBuildDate><atom:link href="https://dtest11.github.io/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>mysql- 索引</title>
+      <link>https://dtest11.github.io/mysql/mysql-index/</link>
+      <pubDate>Fri, 28 Feb 2020 16:37:53 +0000</pubDate>
+      
+      <guid>https://dtest11.github.io/mysql/mysql-index/</guid>
+      <description>&lt;p&gt;总结一下mysql 索引的相关内容，复盘重新学习下。&lt;/p&gt;
+&lt;h2 id=&#34;for-what&#34;&gt;for what&lt;/h2&gt;
+&lt;p&gt;索引是 为了在大量数据中快速查找数据而出现的，&lt;/p&gt;
+&lt;h2 id=&#34;索引实现方式&#34;&gt;索引实现方式&lt;/h2&gt;
+&lt;p&gt;索引的底层实现有各种各样的方式，最常见的有 &lt;strong&gt;哈希表&lt;/strong&gt;，&lt;strong&gt;有序数组&lt;/strong&gt;，和&lt;strong&gt;搜索树&lt;/strong&gt;.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;哈系表： 这个无需多说，就是输入之后经过hash 然后得到位置，然后从该位置去寻找数据， 这个肯定会出现冲突，他只适合等值查找的， 不能查找某个范围区间的。&lt;/li&gt;
+&lt;li&gt;有序数组： 这个可以精确查找，和范围查找都是可以的。但是在数据更新的过程中，必须要循环遍历数组，插入数据的时候，后半部分都要整体的移动，效率是很低的。因此这个方式，只适合数据静态数据，数据不会变动。&lt;/li&gt;
+&lt;li&gt;搜索树： 我们知道二叉树的数据性质是 left &amp;lt;head &amp;lt;  right ， 而在实际的数据库实现中可能使用的是N叉树。&lt;/li&gt;
+&lt;/ol&gt;</description>
+    </item>
+    
+    <item>
+      <title>db-index</title>
+      <link>https://dtest11.github.io/mysql/db-index/</link>
+      <pubDate>Mon, 06 Jan 2020 23:22:35 +0000</pubDate>
+      
+      <guid>https://dtest11.github.io/mysql/db-index/</guid>
+      <description>一个事务引发的血案 真的是理论永远是理论,只有实践了才知道, 最近在写用户注册的服务,由于用户注册的过程中需要在多张表里面插入数据, 因此我用了事务来做这个,ACID 还是知道的, 但是,坑人的是,这些表的主键都是从一个种子表中取得的, 因此,坑就出现了,在事务中,需要多次从种子表中去获取主键(select update 操作) 导致在多个事物中,会争夺对种子表的锁, 死锁就这样产生了, 最后的解决办法,就是提前申请好种子,将申请种子的这个过成放在食物的外面执行,不过我还是觉得用数据库的来做种子还是有问题了,这个可以直接做个服务, 像雪花算法,都是可以在并发情况下生种子的,
+索引的问题 最近写的接口还是有点慢的,感觉自己对索引这部分的知识还是掌握的不够透彻, 重新再做个总结
+为什么我使用了索引，查询还是慢？ 今天看到篇文章不错,做个读后记录
+索引的分类 索引有 聚簇索引,联合索引, 主键索引
+ 唯一索引 (在一个字段或者在多个字段上做索引, 这个字段是不会重复的) 主键索引 (这个也是属于唯一索引,primariykey) 聚集索引 / 非聚集索引(该索引的顺序决定了表中数据的物理存储顺序) 组合索引  查看执行计划 sql 语句我们可用通过查看执行计划,来看查询的具体实现过程, 是使用了索引还是全表扫描
+TODO </description>
+    </item>
+    
+  </channel>
+</rss>

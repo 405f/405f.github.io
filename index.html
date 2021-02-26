@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title></title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="">
+    <meta name="generator" content="Hugo 0.79.0" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+
+  
+  
+    <link rel="stylesheet" href="/ananke/dist/main.css_5c99d70a7725bacd4c701e995b969fea.css" >
+  
+
+
+
+
+    
+      
+
+    
+
+    
+    
+      <link href="/index.xml" rel="alternate" type="application/rss+xml" title="" />
+      <link href="/index.xml" rel="feed" type="application/rss+xml" title="" />
+      
+    
+    
+    <meta property="og:title" content="" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://dtest11.github.io/" />
+<meta property="og:updated_time" content="2020-06-02T21:25:54+00:00" />
+<meta itemprop="name" content="">
+<meta itemprop="description" content="">
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content=""/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+
+  <header>
+    <div class="pb3-m pb6-l bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv3 ph3 ph4-ns">
+        <h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title">
+          
+        </h1>
+        
+      </div>
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+
+  <article class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy mid-gray">
+    
+  </article>
+  
+  
+  
+  
+  
+  
+  
+    
+    
+
+    <div class="pa3 pa4-ns w-100 w-70-ns center">
+      
+       
+          <h1 class="flex-none">
+            Recent Golangs
+          </h1>
+        
+
+      
+
+      <section class="w-100 mw8">
+        
+        
+          <div class="relative w-100 mb4">
+            
+<article class="bb b--black-10">
+  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
+    <div class="flex flex-column flex-row-ns">
+      
+      <div class="blah w-100">
+        <h1 class="f3 fw1 athelas mt0 lh-title">
+          <a href="https://dtest11.github.io/golang/go-1-14-release-not/" class="color-inherit dim link">
+            go-1.14-release-note
+            </a>
+        </h1>
+        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
+          <h2 id="official-href">official href</h2>
+<p>1.14 Release Note</p>
+<p>. <a href="https://blog.golang.org/go1.14">https://blog.golang.org/go1.14</a></p>
+<p>. <a href="https://golang.org/doc/go1.14">https://golang.org/doc/go1.14</a></p>
+<h2 id="重点变更">重点变更</h2>
+<p>. Module support in the go command is now ready for production use. We encourage all users to migrate to go modules for dependency management.</p>
+<p>. Embedding interfaces with overlapping method sets</p>
+<p>. Improved defer performance</p>
+<p>. Goroutines are asynchronously preemptible</p>
+<p>. The page allocator is more efficient</p>
+<p>. Internal timers are more efficient</p>
+        </div>
+          <a href="https://dtest11.github.io/golang/go-1-14-release-not/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+          </div>
+        
+          <div class="relative w-100 mb4">
+            
+<article class="bb b--black-10">
+  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
+    <div class="flex flex-column flex-row-ns">
+      
+      <div class="blah w-100">
+        <h1 class="f3 fw1 athelas mt0 lh-title">
+          <a href="https://dtest11.github.io/golang/map/" class="color-inherit dim link">
+            字典的实现
+            </a>
+        </h1>
+        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
+          字典 字典的是具有O(1)的时间复杂度
+哈希函数 实现字典通常使用哈系表，哈系表最重要的问题是解决哈系冲突，解决哈系冲突我们最常用的就是2个方法
+开放定址法 对与哈系函数 f(x) = index,查找数列中该index 是否已经有存放的元素，如果有元素的话，那么走到下一个位置index+1, 重复如此的步骤，直到找到空闲的位置
+拉链法 对于拉链法，数据结构是 列表+ 链表 ，来实现的， 实现过程具体如下：
+对于哈希函数 f（x) = index , 对于列表的index 位置， index 存放的是链表， 从链表的开始位置遍历，如果这个key 存在，那么就更新这个value, 如果没有那么就最后追加到链表的末尾，
+字典实现过程中一般会碰到的问题  字典的具体实现方法（hash table?) 解决哈系函数的方法 （拉链法， 开放定址法） 字典的扩容 方式（当字典的容量不够的时候，如何扩容）  针对以上的问题研究下go 的字典实现方法 go 源码中对于map 的定义 / A header for a Go map. type hmap struct { // Note: the format of the hmap is also encoded in cmd/compile/internal/gc/reflect.go. 	// Make sure this stays in sync with the compiler&#39;s definition.
+        </div>
+          <a href="https://dtest11.github.io/golang/map/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+          </div>
+        
+          <div class="relative w-100 mb4">
+            
+<article class="bb b--black-10">
+  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
+    <div class="flex flex-column flex-row-ns">
+      
+      <div class="blah w-100">
+        <h1 class="f3 fw1 athelas mt0 lh-title">
+          <a href="https://dtest11.github.io/golang/golang_sleep-deadlock/" class="color-inherit dim link">
+            asleep-deadlock!
+            </a>
+        </h1>
+        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
+          写goroutines 偶尔会碰到
+fatal error: all goroutines are asleep - deadlock! deaklock 的定义 A deadlock happens when a group of goroutines are waiting for each other and none of them is able to proceed.  首先channel 是用来在groutines中用来传递信息的，那么在单个grountine中讨论channel 是没有意义的  channel 的定义 我们声明一个chnnel如如下的方式
+messages :=make(chan string) 对于channel 我们分为有缓冲的，没有缓冲的， 单向(只读，只写)
+message := make(chan string) // 无缓冲 message :=make(chan string, 10) // 有10 个缓冲的通道 message :=make( chan &lt;-int) // 只能写 message := make( &lt;-chan int) //只能读取的channel  有缓冲的通道， 我们可以往里面写入数据，不会造成阻塞， 或者死锁  package main import &#34;fmt&#34; func main() { messages := make(chan string, 10) messages &lt;- &#34;hello world&#34; messages &lt;- &#34;hello world again&#34; messages &lt;- &#34;hello world next time&#34; fmt.
+        </div>
+          <a href="https://dtest11.github.io/golang/golang_sleep-deadlock/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+          </div>
+        
+      </section>
+
+      
+      <section class="w-100">
+        <h1 class="f3">More</h1>
+        
+        
+          <h2 class="f5 fw4 mb4 dib mr3">
+            <a href="https://dtest11.github.io/golang/grpc-server/" class="link black dim">
+              grpc-server
+            </a>
+          </h2>
+        
+          <h2 class="f5 fw4 mb4 dib mr3">
+            <a href="https://dtest11.github.io/golang/grpc-proto/" class="link black dim">
+              grpc 编码格式分析-ProtoBuffer
+            </a>
+          </h2>
+        
+          <h2 class="f5 fw4 mb4 dib mr3">
+            <a href="https://dtest11.github.io/golang/defer/" class="link black dim">
+              golang defer 的一些总结
+            </a>
+          </h2>
+        
+          <h2 class="f5 fw4 mb4 dib mr3">
+            <a href="https://dtest11.github.io/golang/golang-concurrency/" class="link black dim">
+              Go中并发控制
+            </a>
+          </h2>
+        
+
+        
+        
+          <a href="https://dtest11.github.io/golang/" class="link db f6 pa2 br3 bg-mid-gray white dim w4 tc">All Golangs</a>
+        
+        </section>
+      
+
+      </div>
+  
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://dtest11.github.io/" >
+    &copy; 
+  </a>
+    <div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>
