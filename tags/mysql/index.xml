@@ -6,11 +6,7 @@
     <description>Recent content in mysql on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 28 Feb 2020 16:37:53 +0000</lastBuildDate>
-    
-	<atom:link href="https://dtest11.github.io/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Fri, 28 Feb 2020 16:37:53 +0000</lastBuildDate><atom:link href="https://dtest11.github.io/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>mysql- 索引</title>
       <link>https://dtest11.github.io/mysql/mysql-index/</link>
@@ -20,7 +16,7 @@
       <description>&lt;p&gt;总结一下mysql 索引的相关内容，复盘重新学习下。&lt;/p&gt;
 &lt;h2 id=&#34;for-what&#34;&gt;for what&lt;/h2&gt;
 &lt;p&gt;索引是 为了在大量数据中快速查找数据而出现的，&lt;/p&gt;
-&lt;h2 id=&#34;heading&#34;&gt;索引实现方式&lt;/h2&gt;
+&lt;h2 id=&#34;索引实现方式&#34;&gt;索引实现方式&lt;/h2&gt;
 &lt;p&gt;索引的底层实现有各种各样的方式，最常见的有 &lt;strong&gt;哈希表&lt;/strong&gt;，&lt;strong&gt;有序数组&lt;/strong&gt;，和&lt;strong&gt;搜索树&lt;/strong&gt;.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;哈系表： 这个无需多说，就是输入之后经过hash 然后得到位置，然后从该位置去寻找数据， 这个肯定会出现冲突，他只适合等值查找的， 不能查找某个范围区间的。&lt;/li&gt;

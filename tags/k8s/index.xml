@@ -6,11 +6,7 @@
     <description>Recent content in k8s on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 27 Feb 2020 21:54:39 +0000</lastBuildDate>
-    
-	<atom:link href="https://dtest11.github.io/tags/k8s/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 27 Feb 2020 21:54:39 +0000</lastBuildDate><atom:link href="https://dtest11.github.io/tags/k8s/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>k8s-fronted-backend</title>
       <link>https://dtest11.github.io/k8s/k8s-fronted-backend/</link>
@@ -63,7 +59,7 @@ NAMESPACE NAME READY STATUS RESTARTS AGE ingress-nginx nginx-ingress-controller-
       
       <guid>https://dtest11.github.io/k8s/debug-k8s/</guid>
       <description>查看pod 状态 kubectl -n kube-ops describe pod runner-svzx4ujw-project-1-concurrent-0qd6hq 删除pod kubectl -n kube-ops delete pods runner-svzx4ujw-project-1-concurrent-0qd6hq &amp;ndash;grace-period=0 &amp;ndash;force
-查看pod 中的container kubectl get pods &amp;ndash;all-namespaces -o=jsonpath=&amp;rsquo;{range .items[]}{&amp;quot;\n&amp;rdquo;}{.metadata.name}{&amp;quot;:\t&amp;rdquo;}{range .spec.containers[]}{.image}{&amp;quot;, &amp;ldquo;}{end}{end}&amp;rsquo; |
+查看pod 中的container kubectl get pods &amp;ndash;all-namespaces -o=jsonpath=&#39;{range .items[]}{&amp;quot;\n&amp;quot;}{.metadata.name}{&amp;quot;:\t&amp;quot;}{range .spec.containers[]}{.image}{&amp;quot;, &amp;ldquo;}{end}{end}&#39; |
 sort
 查看pod 中container 的日志 kubectl logs &amp;lt;pod_name&amp;gt; -c &amp;lt;container_name&amp;gt;</description>
     </item>
