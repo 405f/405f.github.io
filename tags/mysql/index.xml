@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>mysql on Txt site</title>
-    <link>https://dtest11.github.io/tags/mysql/</link>
-    <description>Recent content in mysql on Txt site</description>
+    <title>mysql on txt site</title>
+    <link>localhost/tags/mysql/</link>
+    <description>Recent content in mysql on txt site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
     <lastBuildDate>Fri, 28 Feb 2020 16:37:53 +0000</lastBuildDate>
     
-	<atom:link href="https://dtest11.github.io/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="localhost/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>mysql- 索引</title>
-      <link>https://dtest11.github.io/mysql/mysql-index/</link>
+      <link>localhost/mysql/mysql-index/</link>
       <pubDate>Fri, 28 Feb 2020 16:37:53 +0000</pubDate>
       
-      <guid>https://dtest11.github.io/mysql/mysql-index/</guid>
+      <guid>localhost/mysql/mysql-index/</guid>
       <description>&lt;p&gt;总结一下mysql 索引的相关内容，复盘重新学习下。&lt;/p&gt;
 &lt;h2 id=&#34;for-what&#34;&gt;for what&lt;/h2&gt;
 &lt;p&gt;索引是 为了在大量数据中快速查找数据而出现的，&lt;/p&gt;
@@ -31,10 +32,10 @@
     
     <item>
       <title>db-index</title>
-      <link>https://dtest11.github.io/mysql/db-index/</link>
+      <link>localhost/mysql/db-index/</link>
       <pubDate>Mon, 06 Jan 2020 23:22:35 +0000</pubDate>
       
-      <guid>https://dtest11.github.io/mysql/db-index/</guid>
+      <guid>localhost/mysql/db-index/</guid>
       <description>一个事务引发的血案 真的是理论永远是理论,只有实践了才知道, 最近在写用户注册的服务,由于用户注册的过程中需要在多张表里面插入数据, 因此我用了事务来做这个,ACID 还是知道的, 但是,坑人的是,这些表的主键都是从一个种子表中取得的, 因此,坑就出现了,在事务中,需要多次从种子表中去获取主键(select update 操作) 导致在多个事物中,会争夺对种子表的锁, 死锁就这样产生了, 最后的解决办法,就是提前申请好种子,将申请种子的这个过成放在食物的外面执行,不过我还是觉得用数据库的来做种子还是有问题了,这个可以直接做个服务, 像雪花算法,都是可以在并发情况下生种子的,
 索引的问题 最近写的接口还是有点慢的,感觉自己对索引这部分的知识还是掌握的不够透彻, 重新再做个总结
 为什么我使用了索引，查询还是慢？ 今天看到篇文章不错,做个读后记录

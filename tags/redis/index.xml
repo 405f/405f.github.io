@@ -1,31 +1,32 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>redis on Txt site</title>
-    <link>https://dtest11.github.io/tags/redis/</link>
-    <description>Recent content in redis on Txt site</description>
+    <title>redis on txt site</title>
+    <link>localhost/tags/redis/</link>
+    <description>Recent content in redis on txt site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
     <lastBuildDate>Tue, 02 Jun 2020 21:25:54 +0000</lastBuildDate>
     
-	<atom:link href="https://dtest11.github.io/tags/redis/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="localhost/tags/redis/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>堆排序</title>
-      <link>https://dtest11.github.io/redis/sort-heap/</link>
+      <link>localhost/redis/sort-heap/</link>
       <pubDate>Tue, 02 Jun 2020 21:25:54 +0000</pubDate>
       
-      <guid>https://dtest11.github.io/redis/sort-heap/</guid>
+      <guid>localhost/redis/sort-heap/</guid>
       <description>package heap import &amp;#34;fmt&amp;#34; func swap(A []int, i, j int) { A[i], A[j] = A[j], A[i] } //// heapify 最大堆的性质, 建立一个最大堆 //// A[left] &amp;lt;A[i] &amp;amp;&amp;amp; A[right] &amp;lt; A[i] //通过下标进行最大值比较过程 func heapify(arr []int, heapSize, i int) { left := 2*i + 1 right := 2*i + 2 largest := i if left &amp;lt; heapSize &amp;amp;&amp;amp; arr[left] &amp;gt; arr[largest] { largest = left } if right &amp;lt; heapSize &amp;amp;&amp;amp; arr[right] &amp;gt; arr[largest] { largest = right } if largest !</description>
     </item>
     
     <item>
       <title>redis-skiplist</title>
-      <link>https://dtest11.github.io/redis/redis-skiplist/</link>
+      <link>localhost/redis/redis-skiplist/</link>
       <pubDate>Mon, 06 Jan 2020 22:37:02 +0000</pubDate>
       
-      <guid>https://dtest11.github.io/redis/redis-skiplist/</guid>
+      <guid>localhost/redis/redis-skiplist/</guid>
       <description>AVL 平衡树 定义 左右子树的高度差不超过1
 特性 左右子树的值有如下的特性, 因此 AVL 树在查询和排序方面有优越性,时间复杂度是 logn
  left &amp;lt; head &amp;lt;right 一些问题, 由于AVL 为了保持, 上面的特性, 因此AVL 树在Insert , Delete 过程中涉及到了,节点的位置调整, 这个也就是左旋,右旋,(我没有弄懂这个,写不出来)
@@ -37,10 +38,10 @@ https://redisbook.readthedocs.io/en/latest/internal-datastruct/skiplist.html</de
     
     <item>
       <title>redis-分布式锁</title>
-      <link>https://dtest11.github.io/redis/redis-lock/</link>
+      <link>localhost/redis/redis-lock/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://dtest11.github.io/redis/redis-lock/</guid>
+      <guid>localhost/redis/redis-lock/</guid>
       <description>&lt;p&gt;一个简单的需求， 高并发的时候用户不能重复注册， 因为后台API， 是多个节点部署的， 我们并不是单台机器，那么怎么保证用户频繁的提交注册请求不会导致业务逻辑重复执行，（这里我们不讨论数据库设计的时候是有唯一的主键的，例如手机号码）其实很简单，我们提供一个中心化的服务，在API执行的时候先从这个服务去检查下自己需不需要执行，那么其实这个问题最后就变成了一个锁的问题。由于我们的服务是多个实例，分布部署的，是分布式，那么这个锁也就是分布式锁。&lt;/p&gt;</description>
     </item>
     
