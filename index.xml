@@ -2,49 +2,49 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>My Blog</title>
-    <link>https://example.org/</link>
+    <link>https://dtest11.github.io/</link>
     <description>Recent content on My Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 02 Jun 2020 21:25:54 +0000</lastBuildDate>
     
-	<atom:link href="https://example.org/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://dtest11.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>堆排序</title>
-      <link>https://example.org/redis/sort-heap/</link>
+      <link>https://dtest11.github.io/redis/sort-heap/</link>
       <pubDate>Tue, 02 Jun 2020 21:25:54 +0000</pubDate>
       
-      <guid>https://example.org/redis/sort-heap/</guid>
+      <guid>https://dtest11.github.io/redis/sort-heap/</guid>
       <description>package heap import &amp;#34;fmt&amp;#34; func swap(A []int, i, j int) { A[i], A[j] = A[j], A[i] } //// heapify 最大堆的性质, 建立一个最大堆 //// A[left] &amp;lt;A[i] &amp;amp;&amp;amp; A[right] &amp;lt; A[i] //通过下标进行最大值比较过程 func heapify(arr []int, heapSize, i int) { left := 2*i + 1 right := 2*i + 2 largest := i if left &amp;lt; heapSize &amp;amp;&amp;amp; arr[left] &amp;gt; arr[largest] { largest = left } if right &amp;lt; heapSize &amp;amp;&amp;amp; arr[right] &amp;gt; arr[largest] { largest = right } if largest !</description>
     </item>
     
     <item>
       <title>cri-Container Runtime Interface</title>
-      <link>https://example.org/posts/cri/</link>
+      <link>https://dtest11.github.io/posts/cri/</link>
       <pubDate>Mon, 09 Mar 2020 12:42:40 +0000</pubDate>
       
-      <guid>https://example.org/posts/cri/</guid>
+      <guid>https://dtest11.github.io/posts/cri/</guid>
       <description>引用： [https://kubernetes.io/blog/2016/12/container-runtime-interface-cri-in-kubernetes/](Introducing Container Runtime Interface (CRI) in Kubernetes)</description>
     </item>
     
     <item>
       <title>opentracing---分布式链路追踪</title>
-      <link>https://example.org/posts/opentracing/</link>
+      <link>https://dtest11.github.io/posts/opentracing/</link>
       <pubDate>Sun, 01 Mar 2020 11:59:55 +0000</pubDate>
       
-      <guid>https://example.org/posts/opentracing/</guid>
+      <guid>https://dtest11.github.io/posts/opentracing/</guid>
       <description>&lt;h2 id=&#34;heading&#34;&gt;分布式链路追踪&lt;/h2&gt;
 &lt;p&gt;追踪程序的调用链，统计调用过程中的一些基本信息，如 SQL 执行时间， http 响应时间&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>mysql- 索引</title>
-      <link>https://example.org/mysql/mysql-index/</link>
+      <link>https://dtest11.github.io/mysql/mysql-index/</link>
       <pubDate>Fri, 28 Feb 2020 16:37:53 +0000</pubDate>
       
-      <guid>https://example.org/mysql/mysql-index/</guid>
+      <guid>https://dtest11.github.io/mysql/mysql-index/</guid>
       <description>&lt;p&gt;总结一下mysql 索引的相关内容，复盘重新学习下。&lt;/p&gt;
 &lt;h2 id=&#34;for-what&#34;&gt;for what&lt;/h2&gt;
 &lt;p&gt;索引是 为了在大量数据中快速查找数据而出现的，&lt;/p&gt;
@@ -59,10 +59,10 @@
     
     <item>
       <title>go-1.14-release-note</title>
-      <link>https://example.org/golang/go-1-14-release-not/</link>
+      <link>https://dtest11.github.io/golang/go-1-14-release-not/</link>
       <pubDate>Fri, 28 Feb 2020 10:42:55 +0000</pubDate>
       
-      <guid>https://example.org/golang/go-1-14-release-not/</guid>
+      <guid>https://dtest11.github.io/golang/go-1-14-release-not/</guid>
       <description>&lt;h2 id=&#34;official-href&#34;&gt;official href&lt;/h2&gt;
 &lt;p&gt;1.14 Release Note&lt;/p&gt;
 &lt;p&gt;. &lt;a href=&#34;https://blog.golang.org/go1.14&#34;&gt;https://blog.golang.org/go1.14&lt;/a&gt;&lt;/p&gt;
@@ -78,10 +78,10 @@
     
     <item>
       <title>k8s-fronted-backend</title>
-      <link>https://example.org/k8s/k8s-fronted-backend/</link>
+      <link>https://dtest11.github.io/k8s/k8s-fronted-backend/</link>
       <pubDate>Thu, 27 Feb 2020 21:54:39 +0000</pubDate>
       
-      <guid>https://example.org/k8s/k8s-fronted-backend/</guid>
+      <guid>https://dtest11.github.io/k8s/k8s-fronted-backend/</guid>
       <description>TODO 微软镜像加速下载 https://github.com/Azure/container-service-for-azure-china/blob/master/aks/README.md
 dockerhub.azk8s.cn/google-samples/hello-go-gke:1.0 gcr.azk8s.cn//:gcr.azk8s.cn/google-samples/hello-go-gke:1.0
 部署后端服务 . deployment
@@ -91,10 +91,10 @@ dockerhub.azk8s.cn/google-samples/hello-go-gke:1.0 gcr.azk8s.cn//:gcr.azk8s.cn/g
     
     <item>
       <title>k8s ingress controller 实践</title>
-      <link>https://example.org/k8s/k8s-ingress-controller/</link>
+      <link>https://dtest11.github.io/k8s/k8s-ingress-controller/</link>
       <pubDate>Thu, 27 Feb 2020 17:02:29 +0000</pubDate>
       
-      <guid>https://example.org/k8s/k8s-ingress-controller/</guid>
+      <guid>https://dtest11.github.io/k8s/k8s-ingress-controller/</guid>
       <description>k8s 集群的环境是1.7， 三台aliyun ECS 首先部署了ingress controller 使用kubernate-ingress-nginx https://github.com/kubernetes/ingress-nginx,在这个repo 中我们看到这个目录中ingress-nginx/deploy/static/ 已经有一部分的yaml 文件， 我们首先部署一个Deployment（nginx-ingress-controller）,https://github.com/kubernetes/ingress-nginx/blob/master/deploy/static/mandatory.yaml
 执行部署命令 kubectl create -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/mandatory.yaml, 命令完成之后再次查看下是否成功
 kubectl get pods --all-namespaces -l app.kubernetes.io/name=ingress-nginx 输出
@@ -104,10 +104,10 @@ NAMESPACE NAME READY STATUS RESTARTS AGE ingress-nginx nginx-ingress-controller-
     
     <item>
       <title>字典的实现</title>
-      <link>https://example.org/golang/map/</link>
+      <link>https://dtest11.github.io/golang/map/</link>
       <pubDate>Tue, 18 Feb 2020 12:10:51 +0000</pubDate>
       
-      <guid>https://example.org/golang/map/</guid>
+      <guid>https://dtest11.github.io/golang/map/</guid>
       <description>字典 字典的是具有O(1)的时间复杂度
 哈希函数 实现字典通常使用哈系表，哈系表最重要的问题是解决哈系冲突，解决哈系冲突我们最常用的就是2个方法
 开放定址法 对与哈系函数 f(x) = index,查找数列中该index 是否已经有存放的元素，如果有元素的话，那么走到下一个位置index+1, 重复如此的步骤，直到找到空闲的位置
@@ -118,10 +118,10 @@ NAMESPACE NAME READY STATUS RESTARTS AGE ingress-nginx nginx-ingress-controller-
     
     <item>
       <title>asleep-deadlock!</title>
-      <link>https://example.org/golang/golang_sleep-deadlock/</link>
+      <link>https://dtest11.github.io/golang/golang_sleep-deadlock/</link>
       <pubDate>Sun, 09 Feb 2020 12:07:24 +0000</pubDate>
       
-      <guid>https://example.org/golang/golang_sleep-deadlock/</guid>
+      <guid>https://dtest11.github.io/golang/golang_sleep-deadlock/</guid>
       <description>写goroutines 偶尔会碰到
 fatal error: all goroutines are asleep - deadlock! deaklock 的定义 A deadlock happens when a group of goroutines are waiting for each other and none of them is able to proceed.  首先channel 是用来在groutines中用来传递信息的，那么在单个grountine中讨论channel 是没有意义的  channel 的定义 我们声明一个chnnel如如下的方式
 messages :=make(chan string) 对于channel 我们分为有缓冲的，没有缓冲的， 单向(只读，只写)
@@ -130,20 +130,20 @@ message := make(chan string) // 无缓冲 message :=make(chan string, 10) // 有
     
     <item>
       <title>grpc-server</title>
-      <link>https://example.org/golang/grpc-server/</link>
+      <link>https://dtest11.github.io/golang/grpc-server/</link>
       <pubDate>Sat, 08 Feb 2020 16:40:52 +0000</pubDate>
       
-      <guid>https://example.org/golang/grpc-server/</guid>
+      <guid>https://dtest11.github.io/golang/grpc-server/</guid>
       <description>grpc server 的源码分析 grpc 的server 是处理http 链接的入口， client 传递的数据最终都是被传递到了server 端
 func main() { lis, err := net.Listen(&amp;#34;tcp&amp;#34;, port) if err != nil { log.Fatalf(&amp;#34;failed to listen: %v&amp;#34;, err) } s := grpc.NewServer() pb.RegisterGreeterServer(s, &amp;amp;server{}) if err := s.Serve(lis); err != nil { log.Fatalf(&amp;#34;failed to serve: %v&amp;#34;, err) } } 先创建一个server对象， 并对其添加控制， 如最大接受的消息长度 然后注册protocal buffer 的定义文件</description>
     </item>
     
     <item>
       <title>grpc 编码格式分析-ProtoBuffer</title>
-      <link>https://example.org/golang/grpc-proto/</link>
+      <link>https://dtest11.github.io/golang/grpc-proto/</link>
       <pubDate>Fri, 07 Feb 2020 16:16:25 +0000</pubDate>
       
-      <guid>https://example.org/golang/grpc-proto/</guid>
+      <guid>https://dtest11.github.io/golang/grpc-proto/</guid>
       <description>grpc ProtoBuffer 性能高的原因 代码里的对象基本分两类，一类的长度是固定的，比如 int32 占用 32 比特，double 占用 64 比特；另一类的长度是变化的，比如字符串。所以，在设计编码的时候， 首先就得区分这两种情况。最简单的办法就是用一个字节表示类型，紧接着传输数据，如下图所示：
 type data +--------+--------+~~+--------+ |xxxxxxxx|xxxxxxxx| |xxxxxxxx| +--------+--------+~~+--------+ 7 0 7 0 7 0 一个字节有 256 种取值。我们可以为每一种类型分配一个编号。解码的时候先读出第一个字节，根据不同的类型再读取对应长度的数据。对于定长类型的数据， 解码到此就完成了。对于变长类型数据，我们还需要确认数据的长度。如何传输这个长度呢？以 string 为例。先传一个字节表示长度，再传真正的字符串，如下图所示：
 type=string length data +--------+--------+~~+--------+ |xxxxxxxx|xxxxxxxx| |xxxxxxxx| +--------+--------+~~+--------+ 7 0 7 0 7 0 一个字节能表示的最大值是 255，所以字符串的长度不能超过 255 字节。这肯定是不行的。怎么办？如果我们使用两个字节，则最大能表示的长度就会扩展到 65535 字节。 这对于一般的使用场景也就够用了。但如果要传输更长的字符串呢？再加字节吗
@@ -154,20 +154,20 @@ Base 128 Varints  引用 https://zhuanlan.</description>
     
     <item>
       <title>golang defer 的一些总结</title>
-      <link>https://example.org/golang/defer/</link>
+      <link>https://dtest11.github.io/golang/defer/</link>
       <pubDate>Sun, 02 Feb 2020 17:05:44 +0000</pubDate>
       
-      <guid>https://example.org/golang/defer/</guid>
+      <guid>https://dtest11.github.io/golang/defer/</guid>
       <description>defer 和return return 中返回的值 是不受defer 中的逻辑影响的，具体看个例子, return 是先执行的
 package main import &amp;#34;fmt&amp;#34; func record() int { var counter = 10 // counter = 10  defer func() { counter += 10 fmt.Println(&amp;#34;defer中执行counter=&amp;#34;, counter) // 这里的counter 不影响return 返回的 	}() return counter // counter = 10 } func main() { res := record() fmt.Println(&amp;#34;最后返回的结果：&amp;#34;, res) } /**** defer中执行counter= 20 最后返回的结果： 10 */ defer 中传递参数 package main import &amp;#34;fmt&amp;#34; func add(a, b int) int { sum := a + b fmt.</description>
     </item>
     
     <item>
       <title>Go中并发控制</title>
-      <link>https://example.org/golang/golang-concurrency/</link>
+      <link>https://dtest11.github.io/golang/golang-concurrency/</link>
       <pubDate>Wed, 15 Jan 2020 13:55:29 +0000</pubDate>
       
-      <guid>https://example.org/golang/golang-concurrency/</guid>
+      <guid>https://dtest11.github.io/golang/golang-concurrency/</guid>
       <description>goroutines https://seancarpenter.io/posts/concurrency_in_go/
 https://www.cnblogs.com/sunsky303/p/11077634.html
 package main import ( &amp;#34;fmt&amp;#34; &amp;#34;time&amp;#34; ) func doWork(work int) { time.Sleep(5 * time.Second) fmt.Printf(&amp;#34;Work done %d \n&amp;#34;, work) } func main() { go doWork(1) go doWork(2) doWork(3) time.Sleep(10 * time.Second) } 上面的代码输出完全是随机的,3,2,1 的次序 随机的
@@ -179,10 +179,10 @@ channel 的类别
     
     <item>
       <title>db-index</title>
-      <link>https://example.org/mysql/db-index/</link>
+      <link>https://dtest11.github.io/mysql/db-index/</link>
       <pubDate>Mon, 06 Jan 2020 23:22:35 +0000</pubDate>
       
-      <guid>https://example.org/mysql/db-index/</guid>
+      <guid>https://dtest11.github.io/mysql/db-index/</guid>
       <description>一个事务引发的血案 真的是理论永远是理论,只有实践了才知道, 最近在写用户注册的服务,由于用户注册的过程中需要在多张表里面插入数据, 因此我用了事务来做这个,ACID 还是知道的, 但是,坑人的是,这些表的主键都是从一个种子表中取得的, 因此,坑就出现了,在事务中,需要多次从种子表中去获取主键(select update 操作) 导致在多个事物中,会争夺对种子表的锁, 死锁就这样产生了, 最后的解决办法,就是提前申请好种子,将申请种子的这个过成放在食物的外面执行,不过我还是觉得用数据库的来做种子还是有问题了,这个可以直接做个服务, 像雪花算法,都是可以在并发情况下生种子的,
 索引的问题 最近写的接口还是有点慢的,感觉自己对索引这部分的知识还是掌握的不够透彻, 重新再做个总结
 为什么我使用了索引，查询还是慢？ 今天看到篇文章不错,做个读后记录
@@ -193,10 +193,10 @@ TODO </description>
     
     <item>
       <title>redis-skiplist</title>
-      <link>https://example.org/redis/redis-skiplist/</link>
+      <link>https://dtest11.github.io/redis/redis-skiplist/</link>
       <pubDate>Mon, 06 Jan 2020 22:37:02 +0000</pubDate>
       
-      <guid>https://example.org/redis/redis-skiplist/</guid>
+      <guid>https://dtest11.github.io/redis/redis-skiplist/</guid>
       <description>AVL 平衡树 定义 左右子树的高度差不超过1
 特性 左右子树的值有如下的特性, 因此 AVL 树在查询和排序方面有优越性,时间复杂度是 logn
  left &amp;lt; head &amp;lt;right 一些问题, 由于AVL 为了保持, 上面的特性, 因此AVL 树在Insert , Delete 过程中涉及到了,节点的位置调整, 这个也就是左旋,右旋,(我没有弄懂这个,写不出来)
@@ -208,10 +208,10 @@ https://redisbook.readthedocs.io/en/latest/internal-datastruct/skiplist.html</de
     
     <item>
       <title>golang-errors</title>
-      <link>https://example.org/golang/golang-errors/</link>
+      <link>https://dtest11.github.io/golang/golang-errors/</link>
       <pubDate>Mon, 06 Jan 2020 21:22:07 +0000</pubDate>
       
-      <guid>https://example.org/golang/golang-errors/</guid>
+      <guid>https://dtest11.github.io/golang/golang-errors/</guid>
       <description>error 只是一个接口的实现 我们之前在定义一个错误的时候只需要 实现如下的一个函数签名, 就可以认为这个结构体是一个error 类型的
 type error interface { Error() string } 如这里的T1 就是一个error
 type T1 struct { Desc string } func (t1 T1) Error() string { return fmt.Sprintf(&amp;#34;T1 error :%s&amp;#34;, t1.Desc) } 1.3 之前的我们 catch错误 在以前我们经常用nil 去比较代码是否发生错误, 如下面的例子
@@ -221,38 +221,38 @@ var ErrNotFound = errors.New(&amp;#34;not found&amp;#34;) if err == ErrNotFound 
     
     <item>
       <title>docker-operate</title>
-      <link>https://example.org/k8s/docker-operate/</link>
+      <link>https://dtest11.github.io/k8s/docker-operate/</link>
       <pubDate>Sat, 04 Jan 2020 14:53:27 +0000</pubDate>
       
-      <guid>https://example.org/k8s/docker-operate/</guid>
+      <guid>https://dtest11.github.io/k8s/docker-operate/</guid>
       <description>停止所有的container docker stop $(docker ps -q) 清除 所有的docker container docker rm $(docker ps -a -q) 清除 所有的磁盘挂载 docker volume prune </description>
     </item>
     
     <item>
       <title>rancher-k8s-deploy</title>
-      <link>https://example.org/k8s/rancher-k8s-deploy/</link>
+      <link>https://dtest11.github.io/k8s/rancher-k8s-deploy/</link>
       <pubDate>Fri, 03 Jan 2020 23:01:27 +0000</pubDate>
       
-      <guid>https://example.org/k8s/rancher-k8s-deploy/</guid>
+      <guid>https://dtest11.github.io/k8s/rancher-k8s-deploy/</guid>
       <description>Rancher install 如果之前安装过,需要清理 /opt/rancher 文件夹
  docker run -d -p 80:80 -p 443:443 \ --restart=unless-stopped \ -v /opt/rancher:/var/lib/rancher \ rancher/rancher:latest 选择 </description>
     </item>
     
     <item>
       <title>gitlab-deploy.md</title>
-      <link>https://example.org/golang/gitlab-deploy-md/</link>
+      <link>https://dtest11.github.io/golang/gitlab-deploy-md/</link>
       <pubDate>Fri, 03 Jan 2020 22:49:16 +0000</pubDate>
       
-      <guid>https://example.org/golang/gitlab-deploy-md/</guid>
+      <guid>https://dtest11.github.io/golang/gitlab-deploy-md/</guid>
       <description>gitlab 部署 sudo docker run --detach \ --hostname 47.110.136.181 \ --publish 443:443 --publish 80:80 --publish 23:22 \ --name gitlab \ --restart always \ --volume /srv/gitlab/config:/etc/gitlab \ --volume /srv/gitlab/logs:/var/log/gitlab \ --volume /srv/gitlab/data:/var/opt/gitlab \ gitlab/gitlab-ce:latest 部署太慢可以先拉去镜像 dockerhub.azk8s.cn/library/gitlab/gitlab-ce</description>
     </item>
     
     <item>
       <title>debug-k8s</title>
-      <link>https://example.org/k8s/debug-k8s/</link>
+      <link>https://dtest11.github.io/k8s/debug-k8s/</link>
       <pubDate>Fri, 03 Jan 2020 22:40:01 +0000</pubDate>
       
-      <guid>https://example.org/k8s/debug-k8s/</guid>
+      <guid>https://dtest11.github.io/k8s/debug-k8s/</guid>
       <description>查看pod 状态 kubectl -n kube-ops describe pod runner-svzx4ujw-project-1-concurrent-0qd6hq 删除pod kubectl -n kube-ops delete pods runner-svzx4ujw-project-1-concurrent-0qd6hq &amp;ndash;grace-period=0 &amp;ndash;force
 查看pod 中的container kubectl get pods &amp;ndash;all-namespaces -o=jsonpath=&amp;rsquo;{range .items[]}{&amp;quot;\n&amp;rdquo;}{.metadata.name}{&amp;quot;:\t&amp;rdquo;}{range .spec.containers[]}{.image}{&amp;quot;, &amp;ldquo;}{end}{end}&amp;rsquo; |
 sort
@@ -261,10 +261,10 @@ sort
     
     <item>
       <title>go-Benchmark</title>
-      <link>https://example.org/golang/go-benchmark/</link>
+      <link>https://dtest11.github.io/golang/go-benchmark/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://example.org/golang/go-benchmark/</guid>
+      <guid>https://dtest11.github.io/golang/go-benchmark/</guid>
       <description>&lt;h3 id=&#34;benchmark&#34;&gt;如何写benchmark&lt;/h3&gt;
 &lt;p&gt;我们有函数如下：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;package&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;writeT&lt;/span&gt;
@@ -281,19 +281,19 @@ sort
     
     <item>
       <title>go-sync-map</title>
-      <link>https://example.org/golang/golang_sync_map/</link>
+      <link>https://dtest11.github.io/golang/golang_sync_map/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://example.org/golang/golang_sync_map/</guid>
+      <guid>https://dtest11.github.io/golang/golang_sync_map/</guid>
       <description>sync map Map is like a Go map[interface{}]interface{} but is safe for concurrent use by multiple goroutines without additional locking or coordination. Loads, stores, and deletes run in amortized constant time. The Map type is specialized. Most code should use a plain Go map instead, with separate locking or coordination, for better type safety and to make it easier to maintain other invariants along with the map content. The Map type is optimized for two common use cases: (1) when the entry for a given key is only ever written once but read many times, as in caches that only grow (2) when multiple goroutines read, write, and overwrite entries for disjoint sets of keys.</description>
     </item>
     
     <item>
       <title>redis-分布式锁</title>
-      <link>https://example.org/redis/redis-lock/</link>
+      <link>https://dtest11.github.io/redis/redis-lock/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://example.org/redis/redis-lock/</guid>
+      <guid>https://dtest11.github.io/redis/redis-lock/</guid>
       <description>&lt;p&gt;一个简单的需求， 高并发的时候用户不能重复注册， 因为后台API， 是多个节点部署的， 我们并不是单台机器，那么怎么保证用户频繁的提交注册请求不会导致业务逻辑重复执行，（这里我们不讨论数据库设计的时候是有唯一的主键的，例如手机号码）其实很简单，我们提供一个中心化的服务，在API执行的时候先从这个服务去检查下自己需不需要执行，那么其实这个问题最后就变成了一个锁的问题。由于我们的服务是多个实例，分布部署的，是分布式，那么这个锁也就是分布式锁。&lt;/p&gt;</description>
     </item>
     
