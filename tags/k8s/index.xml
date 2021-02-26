@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>k8s on txt site</title>
-    <link>localhost/tags/k8s/</link>
+    <link>https://dtest11.github.io/tags/k8s/</link>
     <description>Recent content in k8s on txt site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
     <lastBuildDate>Thu, 27 Feb 2020 21:54:39 +0000</lastBuildDate>
     
-	<atom:link href="localhost/tags/k8s/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://dtest11.github.io/tags/k8s/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>k8s-fronted-backend</title>
-      <link>localhost/k8s/k8s-fronted-backend/</link>
+      <link>https://dtest11.github.io/k8s/k8s-fronted-backend/</link>
       <pubDate>Thu, 27 Feb 2020 21:54:39 +0000</pubDate>
       
-      <guid>localhost/k8s/k8s-fronted-backend/</guid>
+      <guid>https://dtest11.github.io/k8s/k8s-fronted-backend/</guid>
       <description>TODO 微软镜像加速下载 https://github.com/Azure/container-service-for-azure-china/blob/master/aks/README.md
 dockerhub.azk8s.cn/google-samples/hello-go-gke:1.0 gcr.azk8s.cn//:gcr.azk8s.cn/google-samples/hello-go-gke:1.0
 部署后端服务 . deployment
@@ -27,10 +27,10 @@ dockerhub.azk8s.cn/google-samples/hello-go-gke:1.0 gcr.azk8s.cn//:gcr.azk8s.cn/g
     
     <item>
       <title>k8s ingress controller 实践</title>
-      <link>localhost/k8s/k8s-ingress-controller/</link>
+      <link>https://dtest11.github.io/k8s/k8s-ingress-controller/</link>
       <pubDate>Thu, 27 Feb 2020 17:02:29 +0000</pubDate>
       
-      <guid>localhost/k8s/k8s-ingress-controller/</guid>
+      <guid>https://dtest11.github.io/k8s/k8s-ingress-controller/</guid>
       <description>k8s 集群的环境是1.7， 三台aliyun ECS 首先部署了ingress controller 使用kubernate-ingress-nginx https://github.com/kubernetes/ingress-nginx,在这个repo 中我们看到这个目录中ingress-nginx/deploy/static/ 已经有一部分的yaml 文件， 我们首先部署一个Deployment（nginx-ingress-controller）,https://github.com/kubernetes/ingress-nginx/blob/master/deploy/static/mandatory.yaml
 执行部署命令 kubectl create -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/mandatory.yaml, 命令完成之后再次查看下是否成功
 kubectl get pods --all-namespaces -l app.kubernetes.io/name=ingress-nginx 输出
@@ -40,29 +40,29 @@ NAMESPACE NAME READY STATUS RESTARTS AGE ingress-nginx nginx-ingress-controller-
     
     <item>
       <title>docker-operate</title>
-      <link>localhost/k8s/docker-operate/</link>
+      <link>https://dtest11.github.io/k8s/docker-operate/</link>
       <pubDate>Sat, 04 Jan 2020 14:53:27 +0000</pubDate>
       
-      <guid>localhost/k8s/docker-operate/</guid>
+      <guid>https://dtest11.github.io/k8s/docker-operate/</guid>
       <description>停止所有的container docker stop $(docker ps -q) 清除 所有的docker container docker rm $(docker ps -a -q) 清除 所有的磁盘挂载 docker volume prune </description>
     </item>
     
     <item>
       <title>rancher-k8s-deploy</title>
-      <link>localhost/k8s/rancher-k8s-deploy/</link>
+      <link>https://dtest11.github.io/k8s/rancher-k8s-deploy/</link>
       <pubDate>Fri, 03 Jan 2020 23:01:27 +0000</pubDate>
       
-      <guid>localhost/k8s/rancher-k8s-deploy/</guid>
+      <guid>https://dtest11.github.io/k8s/rancher-k8s-deploy/</guid>
       <description>Rancher install 如果之前安装过,需要清理 /opt/rancher 文件夹
  docker run -d -p 80:80 -p 443:443 \ --restart=unless-stopped \ -v /opt/rancher:/var/lib/rancher \ rancher/rancher:latest 选择 </description>
     </item>
     
     <item>
       <title>debug-k8s</title>
-      <link>localhost/k8s/debug-k8s/</link>
+      <link>https://dtest11.github.io/k8s/debug-k8s/</link>
       <pubDate>Fri, 03 Jan 2020 22:40:01 +0000</pubDate>
       
-      <guid>localhost/k8s/debug-k8s/</guid>
+      <guid>https://dtest11.github.io/k8s/debug-k8s/</guid>
       <description>查看pod 状态 kubectl -n kube-ops describe pod runner-svzx4ujw-project-1-concurrent-0qd6hq 删除pod kubectl -n kube-ops delete pods runner-svzx4ujw-project-1-concurrent-0qd6hq &amp;ndash;grace-period=0 &amp;ndash;force
 查看pod 中的container kubectl get pods &amp;ndash;all-namespaces -o=jsonpath=&amp;rsquo;{range .items[]}{&amp;quot;\n&amp;rdquo;}{.metadata.name}{&amp;quot;:\t&amp;rdquo;}{range .spec.containers[]}{.image}{&amp;quot;, &amp;ldquo;}{end}{end}&amp;rsquo; |
 sort

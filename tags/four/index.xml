@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>four on txt site</title>
-    <link>localhost/tags/four/</link>
+    <link>https://dtest11.github.io/tags/four/</link>
     <description>Recent content in four on txt site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
     <lastBuildDate>Mon, 09 Mar 2020 12:42:40 +0000</lastBuildDate>
     
-	<atom:link href="localhost/tags/four/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://dtest11.github.io/tags/four/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>cri-Container Runtime Interface</title>
-      <link>localhost/posts/cri/</link>
+      <link>https://dtest11.github.io/posts/cri/</link>
       <pubDate>Mon, 09 Mar 2020 12:42:40 +0000</pubDate>
       
-      <guid>localhost/posts/cri/</guid>
+      <guid>https://dtest11.github.io/posts/cri/</guid>
       <description>引用： [https://kubernetes.io/blog/2016/12/container-runtime-interface-cri-in-kubernetes/](Introducing Container Runtime Interface (CRI) in Kubernetes)</description>
     </item>
     

@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Golangs on txt site</title>
-    <link>localhost/golang/</link>
+    <link>https://dtest11.github.io/golang/</link>
     <description>Recent content in Golangs on txt site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
     <lastBuildDate>Fri, 28 Feb 2020 10:42:55 +0000</lastBuildDate>
     
-	<atom:link href="localhost/golang/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://dtest11.github.io/golang/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>go-1.14-release-note</title>
-      <link>localhost/golang/go-1-14-release-not/</link>
+      <link>https://dtest11.github.io/golang/go-1-14-release-not/</link>
       <pubDate>Fri, 28 Feb 2020 10:42:55 +0000</pubDate>
       
-      <guid>localhost/golang/go-1-14-release-not/</guid>
+      <guid>https://dtest11.github.io/golang/go-1-14-release-not/</guid>
       <description>&lt;h2 id=&#34;official-href&#34;&gt;official href&lt;/h2&gt;
 &lt;p&gt;1.14 Release Note&lt;/p&gt;
 &lt;p&gt;. &lt;a href=&#34;https://blog.golang.org/go1.14&#34;&gt;https://blog.golang.org/go1.14&lt;/a&gt;&lt;/p&gt;
@@ -33,10 +33,10 @@
     
     <item>
       <title>字典的实现</title>
-      <link>localhost/golang/map/</link>
+      <link>https://dtest11.github.io/golang/map/</link>
       <pubDate>Tue, 18 Feb 2020 12:10:51 +0000</pubDate>
       
-      <guid>localhost/golang/map/</guid>
+      <guid>https://dtest11.github.io/golang/map/</guid>
       <description>字典 字典的是具有O(1)的时间复杂度
 哈希函数 实现字典通常使用哈系表，哈系表最重要的问题是解决哈系冲突，解决哈系冲突我们最常用的就是2个方法
 开放定址法 对与哈系函数 f(x) = index,查找数列中该index 是否已经有存放的元素，如果有元素的话，那么走到下一个位置index+1, 重复如此的步骤，直到找到空闲的位置
@@ -47,10 +47,10 @@
     
     <item>
       <title>asleep-deadlock!</title>
-      <link>localhost/golang/golang_sleep-deadlock/</link>
+      <link>https://dtest11.github.io/golang/golang_sleep-deadlock/</link>
       <pubDate>Sun, 09 Feb 2020 12:07:24 +0000</pubDate>
       
-      <guid>localhost/golang/golang_sleep-deadlock/</guid>
+      <guid>https://dtest11.github.io/golang/golang_sleep-deadlock/</guid>
       <description>写goroutines 偶尔会碰到
 fatal error: all goroutines are asleep - deadlock! deaklock 的定义 A deadlock happens when a group of goroutines are waiting for each other and none of them is able to proceed.  首先channel 是用来在groutines中用来传递信息的，那么在单个grountine中讨论channel 是没有意义的  channel 的定义 我们声明一个chnnel如如下的方式
 messages :=make(chan string) 对于channel 我们分为有缓冲的，没有缓冲的， 单向(只读，只写)
@@ -59,20 +59,20 @@ message := make(chan string) // 无缓冲 message :=make(chan string, 10) // 有
     
     <item>
       <title>grpc-server</title>
-      <link>localhost/golang/grpc-server/</link>
+      <link>https://dtest11.github.io/golang/grpc-server/</link>
       <pubDate>Sat, 08 Feb 2020 16:40:52 +0000</pubDate>
       
-      <guid>localhost/golang/grpc-server/</guid>
+      <guid>https://dtest11.github.io/golang/grpc-server/</guid>
       <description>grpc server 的源码分析 grpc 的server 是处理http 链接的入口， client 传递的数据最终都是被传递到了server 端
 func main() { lis, err := net.Listen(&amp;#34;tcp&amp;#34;, port) if err != nil { log.Fatalf(&amp;#34;failed to listen: %v&amp;#34;, err) } s := grpc.NewServer() pb.RegisterGreeterServer(s, &amp;amp;server{}) if err := s.Serve(lis); err != nil { log.Fatalf(&amp;#34;failed to serve: %v&amp;#34;, err) } } 先创建一个server对象， 并对其添加控制， 如最大接受的消息长度 然后注册protocal buffer 的定义文件</description>
     </item>
     
     <item>
       <title>grpc 编码格式分析-ProtoBuffer</title>
-      <link>localhost/golang/grpc-proto/</link>
+      <link>https://dtest11.github.io/golang/grpc-proto/</link>
       <pubDate>Fri, 07 Feb 2020 16:16:25 +0000</pubDate>
       
-      <guid>localhost/golang/grpc-proto/</guid>
+      <guid>https://dtest11.github.io/golang/grpc-proto/</guid>
       <description>grpc ProtoBuffer 性能高的原因 代码里的对象基本分两类，一类的长度是固定的，比如 int32 占用 32 比特，double 占用 64 比特；另一类的长度是变化的，比如字符串。所以，在设计编码的时候， 首先就得区分这两种情况。最简单的办法就是用一个字节表示类型，紧接着传输数据，如下图所示：
 type data +--------+--------+~~+--------+ |xxxxxxxx|xxxxxxxx| |xxxxxxxx| +--------+--------+~~+--------+ 7 0 7 0 7 0 一个字节有 256 种取值。我们可以为每一种类型分配一个编号。解码的时候先读出第一个字节，根据不同的类型再读取对应长度的数据。对于定长类型的数据， 解码到此就完成了。对于变长类型数据，我们还需要确认数据的长度。如何传输这个长度呢？以 string 为例。先传一个字节表示长度，再传真正的字符串，如下图所示：
 type=string length data +--------+--------+~~+--------+ |xxxxxxxx|xxxxxxxx| |xxxxxxxx| +--------+--------+~~+--------+ 7 0 7 0 7 0 一个字节能表示的最大值是 255，所以字符串的长度不能超过 255 字节。这肯定是不行的。怎么办？如果我们使用两个字节，则最大能表示的长度就会扩展到 65535 字节。 这对于一般的使用场景也就够用了。但如果要传输更长的字符串呢？再加字节吗
@@ -83,20 +83,20 @@ Base 128 Varints  引用 https://zhuanlan.</description>
     
     <item>
       <title>golang defer 的一些总结</title>
-      <link>localhost/golang/defer/</link>
+      <link>https://dtest11.github.io/golang/defer/</link>
       <pubDate>Sun, 02 Feb 2020 17:05:44 +0000</pubDate>
       
-      <guid>localhost/golang/defer/</guid>
+      <guid>https://dtest11.github.io/golang/defer/</guid>
       <description>defer 和return return 中返回的值 是不受defer 中的逻辑影响的，具体看个例子, return 是先执行的
 package main import &amp;#34;fmt&amp;#34; func record() int { var counter = 10 // counter = 10  defer func() { counter += 10 fmt.Println(&amp;#34;defer中执行counter=&amp;#34;, counter) // 这里的counter 不影响return 返回的 	}() return counter // counter = 10 } func main() { res := record() fmt.Println(&amp;#34;最后返回的结果：&amp;#34;, res) } /**** defer中执行counter= 20 最后返回的结果： 10 */ defer 中传递参数 package main import &amp;#34;fmt&amp;#34; func add(a, b int) int { sum := a + b fmt.</description>
     </item>
     
     <item>
       <title>Go中并发控制</title>
-      <link>localhost/golang/golang-concurrency/</link>
+      <link>https://dtest11.github.io/golang/golang-concurrency/</link>
       <pubDate>Wed, 15 Jan 2020 13:55:29 +0000</pubDate>
       
-      <guid>localhost/golang/golang-concurrency/</guid>
+      <guid>https://dtest11.github.io/golang/golang-concurrency/</guid>
       <description>goroutines https://seancarpenter.io/posts/concurrency_in_go/
 https://www.cnblogs.com/sunsky303/p/11077634.html
 package main import ( &amp;#34;fmt&amp;#34; &amp;#34;time&amp;#34; ) func doWork(work int) { time.Sleep(5 * time.Second) fmt.Printf(&amp;#34;Work done %d \n&amp;#34;, work) } func main() { go doWork(1) go doWork(2) doWork(3) time.Sleep(10 * time.Second) } 上面的代码输出完全是随机的,3,2,1 的次序 随机的
@@ -108,10 +108,10 @@ channel 的类别
     
     <item>
       <title>golang-errors</title>
-      <link>localhost/golang/golang-errors/</link>
+      <link>https://dtest11.github.io/golang/golang-errors/</link>
       <pubDate>Mon, 06 Jan 2020 21:22:07 +0000</pubDate>
       
-      <guid>localhost/golang/golang-errors/</guid>
+      <guid>https://dtest11.github.io/golang/golang-errors/</guid>
       <description>error 只是一个接口的实现 我们之前在定义一个错误的时候只需要 实现如下的一个函数签名, 就可以认为这个结构体是一个error 类型的
 type error interface { Error() string } 如这里的T1 就是一个error
 type T1 struct { Desc string } func (t1 T1) Error() string { return fmt.Sprintf(&amp;#34;T1 error :%s&amp;#34;, t1.Desc) } 1.3 之前的我们 catch错误 在以前我们经常用nil 去比较代码是否发生错误, 如下面的例子
@@ -121,19 +121,19 @@ var ErrNotFound = errors.New(&amp;#34;not found&amp;#34;) if err == ErrNotFound 
     
     <item>
       <title>gitlab-deploy.md</title>
-      <link>localhost/golang/gitlab-deploy-md/</link>
+      <link>https://dtest11.github.io/golang/gitlab-deploy-md/</link>
       <pubDate>Fri, 03 Jan 2020 22:49:16 +0000</pubDate>
       
-      <guid>localhost/golang/gitlab-deploy-md/</guid>
+      <guid>https://dtest11.github.io/golang/gitlab-deploy-md/</guid>
       <description>gitlab 部署 sudo docker run --detach \ --hostname 47.110.136.181 \ --publish 443:443 --publish 80:80 --publish 23:22 \ --name gitlab \ --restart always \ --volume /srv/gitlab/config:/etc/gitlab \ --volume /srv/gitlab/logs:/var/log/gitlab \ --volume /srv/gitlab/data:/var/opt/gitlab \ gitlab/gitlab-ce:latest 部署太慢可以先拉去镜像 dockerhub.azk8s.cn/library/gitlab/gitlab-ce</description>
     </item>
     
     <item>
       <title>go-Benchmark</title>
-      <link>localhost/golang/go-benchmark/</link>
+      <link>https://dtest11.github.io/golang/go-benchmark/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>localhost/golang/go-benchmark/</guid>
+      <guid>https://dtest11.github.io/golang/go-benchmark/</guid>
       <description>&lt;h3 id=&#34;benchmark&#34;&gt;如何写benchmark&lt;/h3&gt;
 &lt;p&gt;我们有函数如下：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;package&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;writeT&lt;/span&gt;
@@ -150,10 +150,10 @@ var ErrNotFound = errors.New(&amp;#34;not found&amp;#34;) if err == ErrNotFound 
     
     <item>
       <title>go-sync-map</title>
-      <link>localhost/golang/golang_sync_map/</link>
+      <link>https://dtest11.github.io/golang/golang_sync_map/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>localhost/golang/golang_sync_map/</guid>
+      <guid>https://dtest11.github.io/golang/golang_sync_map/</guid>
       <description>sync map Map is like a Go map[interface{}]interface{} but is safe for concurrent use by multiple goroutines without additional locking or coordination. Loads, stores, and deletes run in amortized constant time. The Map type is specialized. Most code should use a plain Go map instead, with separate locking or coordination, for better type safety and to make it easier to maintain other invariants along with the map content. The Map type is optimized for two common use cases: (1) when the entry for a given key is only ever written once but read many times, as in caches that only grow (2) when multiple goroutines read, write, and overwrite entries for disjoint sets of keys.</description>
     </item>
     
