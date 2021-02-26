@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>k8s | </title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="">
+    <meta name="generator" content="Hugo 0.61.0" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+
+  
+  
+    <link rel="stylesheet" href="/ananke/dist/main.css_5c99d70a7725bacd4c701e995b969fea.css" >
+  
+
+
+
+
+    
+      
+
+    
+
+    
+    
+      <link href="/tags/k8s/index.xml" rel="alternate" type="application/rss+xml" title="" />
+      <link href="/tags/k8s/index.xml" rel="feed" type="application/rss+xml" title="" />
+      
+    
+    
+    <meta property="og:title" content="k8s" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://dtest11.github.io/tags/k8s/" />
+<meta property="og:updated_time" content="2020-02-27T21:54:39+00:00" />
+<meta itemprop="name" content="k8s">
+<meta itemprop="description" content=""><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="k8s"/>
+<meta name="twitter:description" content=""/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+
+  <header>
+    <div class="pb3-m pb6-l bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv3 ph3 ph4-ns">
+        <h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title">
+          k8s
+        </h1>
+        
+      </div>
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+  <article class="cf pa3 pa4-m pa4-l">
+    <div class="measure-wide-l center f4 lh-copy nested-copy-line-height nested-links nested-img mid-gray">
+      <p>Below you will find pages that utilize the taxonomy term “k8s”</p>
+    </div>
+  </article>
+  <div class="mw8 center">    
+    <section class="flex-ns flex-wrap justify-around mt5">
+      
+        <div class="relative w-100  mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">K8s</span>
+    <h1 class="f3 near-black">
+      <a href="https://dtest11.github.io/k8s/k8s-fronted-backend/" class="link black dim">
+        k8s-fronted-backend
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      TODO 微软镜像加速下载 https://github.com/Azure/container-service-for-azure-china/blob/master/aks/README.md
+dockerhub.azk8s.cn/google-samples/hello-go-gke:1.0 gcr.azk8s.cn//:gcr.azk8s.cn/google-samples/hello-go-gke:1.0
+部署后端服务 . deployment
+## service/access/hello.yaml  apiVersion: apps/v1 kind: Deployment metadata: name: hello namespace: backend spec: selector: matchLabels: app: hello tier: backend track: stable replicas: 2 template: metadata: labels: app: hello tier: backend track: stable spec: containers: - name: hello image: &#34;nginx&#34; ports: - name: http containerPort: 80 . service
+## service/access/hello-service.yaml  apiVersion: v1 kind: Service metadata: name: hello namespace: backend spec: selector: app: hello tier: backend ports: - protocol: TCP port: 80 targetPort: http 
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="relative w-100  mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">K8s</span>
+    <h1 class="f3 near-black">
+      <a href="https://dtest11.github.io/k8s/k8s-ingress-controller/" class="link black dim">
+        k8s ingress controller 实践
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      k8s 集群的环境是1.7， 三台aliyun ECS 首先部署了ingress controller 使用kubernate-ingress-nginx https://github.com/kubernetes/ingress-nginx,在这个repo 中我们看到这个目录中ingress-nginx/deploy/static/ 已经有一部分的yaml 文件， 我们首先部署一个Deployment（nginx-ingress-controller）,https://github.com/kubernetes/ingress-nginx/blob/master/deploy/static/mandatory.yaml
+执行部署命令 kubectl create -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/mandatory.yaml, 命令完成之后再次查看下是否成功
+kubectl get pods --all-namespaces -l app.kubernetes.io/name=ingress-nginx 输出
+NAMESPACE NAME READY STATUS RESTARTS AGE ingress-nginx nginx-ingress-controller-7f74f657bd-s6gft 1/1 Running 0 107s 部署ingress-nginx-controller service 通过上面的2个步骤，只是将ingress-nginx-controller 部署到了k8s 集群中， 并没有暴露出来， 接下来我们使用service 暴露出，
+### service-nodeport.yaml apiVersion: v1 kind: Service metadata: name: ingress-nginx namespace: ingress-nginx labels: app.kubernetes.io/name: ingress-nginx app.kubernetes.io/part-of: ingress-nginx spec: type: NodePort ports: - name: http port: 80 targetPort: 80 protocol: TCP - name: https port: 443 targetPort: 443 protocol: TCP selector: app.
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="relative w-100  mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">K8s</span>
+    <h1 class="f3 near-black">
+      <a href="https://dtest11.github.io/k8s/docker-operate/" class="link black dim">
+        docker-operate
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      停止所有的container docker stop $(docker ps -q) 清除 所有的docker container docker rm $(docker ps -a -q) 清除 所有的磁盘挂载 docker volume prune 
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="relative w-100  mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">K8s</span>
+    <h1 class="f3 near-black">
+      <a href="https://dtest11.github.io/k8s/rancher-k8s-deploy/" class="link black dim">
+        rancher-k8s-deploy
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Rancher install 如果之前安装过,需要清理 /opt/rancher 文件夹
+ docker run -d -p 80:80 -p 443:443 \ --restart=unless-stopped \ -v /opt/rancher:/var/lib/rancher \ rancher/rancher:latest 选择 
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="relative w-100  mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">K8s</span>
+    <h1 class="f3 near-black">
+      <a href="https://dtest11.github.io/k8s/debug-k8s/" class="link black dim">
+        debug-k8s
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      查看pod 状态 kubectl -n kube-ops describe pod runner-svzx4ujw-project-1-concurrent-0qd6hq 删除pod kubectl -n kube-ops delete pods runner-svzx4ujw-project-1-concurrent-0qd6hq &ndash;grace-period=0 &ndash;force
+查看pod 中的container kubectl get pods &ndash;all-namespaces -o=jsonpath=&rsquo;{range .items[]}{&quot;\n&rdquo;}{.metadata.name}{&quot;:\t&rdquo;}{range .spec.containers[]}{.image}{&quot;, &ldquo;}{end}{end}&rsquo; |
+sort
+查看pod 中container 的日志 kubectl logs &lt;pod_name&gt; -c &lt;container_name&gt;
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+    </section>
+  </div>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://dtest11.github.io/" >
+    &copy; 
+  </a>
+    <div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>
