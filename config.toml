@@ -1,4 +1,26 @@
 baseURL = "https://dtest11.github.io/"
 languageCode = "en-us"
-title = ""
-theme = "ananke"
+title = "hello"
+theme = "vitae"
+
+[menu]
+  [[menu.main]]
+    identifier = "go"
+    name       = "GO"
+    url        = "https://dtest11.github.io/golang/"
+  [[menu.main]]
+    identifier = "k8s"
+    name       = "k8s"
+    url        = "https://dtest11.github.io/k8s/"
+  [[menu.main]]
+    identifier = "mysql"
+    name       = "mysql"
+    url        = "https://dtest11.github.io/mysql/"
+  [[menu.main]]
+    identifier = "redis"
+    name       = "redis"
+    url        = "https://dtest11.github.io/redis/"
+  [[menu.main]]
+    identifier = "git"
+    name       = "git"
+    url        = "https://github.com/dtest11/dtest11.github.io/"
