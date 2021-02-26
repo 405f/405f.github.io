@@ -22,5 +22,5 @@ theme = "vitae"
     url        = "https://dtest11.github.io/redis/"
   [[menu.main]]
     identifier = "git"
-    name       = "git"
+    name       = "Check on github"
     url        = "https://github.com/dtest11/dtest11.github.io/"
