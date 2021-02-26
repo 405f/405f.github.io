@@ -2,85 +2,85 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on txt site</title>
-    <link>https://dtest11.github.io/tags/</link>
+    <link>https://example.org/tags/</link>
     <description>Recent content in Tags on txt site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
     <lastBuildDate>Tue, 02 Jun 2020 21:25:54 +0000</lastBuildDate>
     
-	<atom:link href="https://dtest11.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://example.org/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>redis</title>
-      <link>https://dtest11.github.io/tags/redis/</link>
+      <link>https://example.org/tags/redis/</link>
       <pubDate>Tue, 02 Jun 2020 21:25:54 +0000</pubDate>
       
-      <guid>https://dtest11.github.io/tags/redis/</guid>
+      <guid>https://example.org/tags/redis/</guid>
       <description></description>
     </item>
     
     <item>
       <title>four</title>
-      <link>https://dtest11.github.io/tags/four/</link>
+      <link>https://example.org/tags/four/</link>
       <pubDate>Mon, 09 Mar 2020 12:42:40 +0000</pubDate>
       
-      <guid>https://dtest11.github.io/tags/four/</guid>
+      <guid>https://example.org/tags/four/</guid>
       <description></description>
     </item>
     
     <item>
       <title>three</title>
-      <link>https://dtest11.github.io/tags/three/</link>
+      <link>https://example.org/tags/three/</link>
       <pubDate>Mon, 09 Mar 2020 12:42:40 +0000</pubDate>
       
-      <guid>https://dtest11.github.io/tags/three/</guid>
+      <guid>https://example.org/tags/three/</guid>
       <description></description>
     </item>
     
     <item>
       <title>two</title>
-      <link>https://dtest11.github.io/tags/two/</link>
+      <link>https://example.org/tags/two/</link>
       <pubDate>Mon, 09 Mar 2020 12:42:40 +0000</pubDate>
       
-      <guid>https://dtest11.github.io/tags/two/</guid>
+      <guid>https://example.org/tags/two/</guid>
       <description></description>
     </item>
     
     <item>
       <title>opentracing</title>
-      <link>https://dtest11.github.io/tags/opentracing/</link>
+      <link>https://example.org/tags/opentracing/</link>
       <pubDate>Sun, 01 Mar 2020 11:59:55 +0000</pubDate>
       
-      <guid>https://dtest11.github.io/tags/opentracing/</guid>
+      <guid>https://example.org/tags/opentracing/</guid>
       <description></description>
     </item>
     
     <item>
       <title>mysql</title>
-      <link>https://dtest11.github.io/tags/mysql/</link>
+      <link>https://example.org/tags/mysql/</link>
       <pubDate>Fri, 28 Feb 2020 16:37:53 +0000</pubDate>
       
-      <guid>https://dtest11.github.io/tags/mysql/</guid>
+      <guid>https://example.org/tags/mysql/</guid>
       <description></description>
     </item>
     
     <item>
       <title>golang</title>
-      <link>https://dtest11.github.io/tags/golang/</link>
+      <link>https://example.org/tags/golang/</link>
       <pubDate>Fri, 28 Feb 2020 10:42:55 +0000</pubDate>
       
-      <guid>https://dtest11.github.io/tags/golang/</guid>
+      <guid>https://example.org/tags/golang/</guid>
       <description></description>
     </item>
     
     <item>
       <title>k8s</title>
-      <link>https://dtest11.github.io/tags/k8s/</link>
+      <link>https://example.org/tags/k8s/</link>
       <pubDate>Thu, 27 Feb 2020 21:54:39 +0000</pubDate>
       
-      <guid>https://dtest11.github.io/tags/k8s/</guid>
+      <guid>https://example.org/tags/k8s/</guid>
       <description></description>
     </item>
     

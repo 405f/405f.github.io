@@ -3,198 +3,198 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://dtest11.github.io/redis/</loc>
+    <loc>https://example.org/redis/</loc>
     <lastmod>2020-06-02T21:25:54+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://dtest11.github.io/tags/redis/</loc>
+    <loc>https://example.org/tags/redis/</loc>
     <lastmod>2020-06-02T21:25:54+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://dtest11.github.io/tags/</loc>
+    <loc>https://example.org/tags/</loc>
     <lastmod>2020-06-02T21:25:54+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://dtest11.github.io/</loc>
+    <loc>https://example.org/</loc>
     <lastmod>2020-06-02T21:25:54+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://dtest11.github.io/redis/sort-heap/</loc>
+    <loc>https://example.org/redis/sort-heap/</loc>
     <lastmod>2020-06-02T21:25:54+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://dtest11.github.io/posts/cri/</loc>
+    <loc>https://example.org/posts/cri/</loc>
     <lastmod>2020-03-09T12:42:40+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://dtest11.github.io/tags/four/</loc>
+    <loc>https://example.org/tags/four/</loc>
     <lastmod>2020-03-09T12:42:40+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://dtest11.github.io/posts/</loc>
+    <loc>https://example.org/posts/</loc>
     <lastmod>2020-03-09T12:42:40+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://dtest11.github.io/tags/three/</loc>
+    <loc>https://example.org/tags/three/</loc>
     <lastmod>2020-03-09T12:42:40+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://dtest11.github.io/tags/two/</loc>
+    <loc>https://example.org/tags/two/</loc>
     <lastmod>2020-03-09T12:42:40+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://dtest11.github.io/tags/opentracing/</loc>
+    <loc>https://example.org/tags/opentracing/</loc>
     <lastmod>2020-03-01T11:59:55+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://dtest11.github.io/posts/opentracing/</loc>
+    <loc>https://example.org/posts/opentracing/</loc>
     <lastmod>2020-03-01T11:59:55+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://dtest11.github.io/tags/mysql/</loc>
+    <loc>https://example.org/tags/mysql/</loc>
     <lastmod>2020-02-28T16:37:53+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://dtest11.github.io/mysql/mysql-index/</loc>
+    <loc>https://example.org/mysql/mysql-index/</loc>
     <lastmod>2020-02-28T16:37:53+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://dtest11.github.io/mysql/</loc>
+    <loc>https://example.org/mysql/</loc>
     <lastmod>2020-02-28T16:37:53+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://dtest11.github.io/golang/go-1-14-release-not/</loc>
+    <loc>https://example.org/golang/go-1-14-release-not/</loc>
     <lastmod>2020-02-28T10:42:55+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://dtest11.github.io/tags/golang/</loc>
+    <loc>https://example.org/tags/golang/</loc>
     <lastmod>2020-02-28T10:42:55+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://dtest11.github.io/golang/</loc>
+    <loc>https://example.org/golang/</loc>
     <lastmod>2020-02-28T10:42:55+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://dtest11.github.io/k8s/</loc>
+    <loc>https://example.org/k8s/</loc>
     <lastmod>2020-02-27T21:54:39+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://dtest11.github.io/tags/k8s/</loc>
+    <loc>https://example.org/tags/k8s/</loc>
     <lastmod>2020-02-27T21:54:39+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://dtest11.github.io/k8s/k8s-fronted-backend/</loc>
+    <loc>https://example.org/k8s/k8s-fronted-backend/</loc>
     <lastmod>2020-02-27T21:54:39+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://dtest11.github.io/k8s/k8s-ingress-controller/</loc>
+    <loc>https://example.org/k8s/k8s-ingress-controller/</loc>
     <lastmod>2020-02-27T17:02:29+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://dtest11.github.io/golang/map/</loc>
+    <loc>https://example.org/golang/map/</loc>
     <lastmod>2020-02-18T12:10:51+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://dtest11.github.io/golang/golang_sleep-deadlock/</loc>
+    <loc>https://example.org/golang/golang_sleep-deadlock/</loc>
     <lastmod>2020-02-09T12:07:24+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://dtest11.github.io/golang/grpc-server/</loc>
+    <loc>https://example.org/golang/grpc-server/</loc>
     <lastmod>2020-02-08T16:40:52+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://dtest11.github.io/golang/grpc-proto/</loc>
+    <loc>https://example.org/golang/grpc-proto/</loc>
     <lastmod>2020-02-07T16:16:25+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://dtest11.github.io/golang/defer/</loc>
+    <loc>https://example.org/golang/defer/</loc>
     <lastmod>2020-02-02T17:05:44+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://dtest11.github.io/golang/golang-concurrency/</loc>
+    <loc>https://example.org/golang/golang-concurrency/</loc>
     <lastmod>2020-01-15T13:55:29+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://dtest11.github.io/mysql/db-index/</loc>
+    <loc>https://example.org/mysql/db-index/</loc>
     <lastmod>2020-01-06T23:22:35+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://dtest11.github.io/redis/redis-skiplist/</loc>
+    <loc>https://example.org/redis/redis-skiplist/</loc>
     <lastmod>2020-01-06T22:37:02+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://dtest11.github.io/golang/golang-errors/</loc>
+    <loc>https://example.org/golang/golang-errors/</loc>
     <lastmod>2020-01-06T21:22:07+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://dtest11.github.io/k8s/docker-operate/</loc>
+    <loc>https://example.org/k8s/docker-operate/</loc>
     <lastmod>2020-01-04T14:53:27+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://dtest11.github.io/k8s/rancher-k8s-deploy/</loc>
+    <loc>https://example.org/k8s/rancher-k8s-deploy/</loc>
     <lastmod>2020-01-03T23:01:27+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://dtest11.github.io/golang/gitlab-deploy-md/</loc>
+    <loc>https://example.org/golang/gitlab-deploy-md/</loc>
     <lastmod>2020-01-03T22:49:16+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://dtest11.github.io/k8s/debug-k8s/</loc>
+    <loc>https://example.org/k8s/debug-k8s/</loc>
     <lastmod>2020-01-03T22:40:01+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://dtest11.github.io/blog/</loc>
+    <loc>https://example.org/blog/</loc>
   </url>
   
   <url>
-    <loc>https://dtest11.github.io/golang/go-benchmark/</loc>
+    <loc>https://example.org/golang/go-benchmark/</loc>
   </url>
   
   <url>
-    <loc>https://dtest11.github.io/golang/golang_sync_map/</loc>
+    <loc>https://example.org/golang/golang_sync_map/</loc>
   </url>
   
   <url>
-    <loc>https://dtest11.github.io/redis/redis-lock/</loc>
+    <loc>https://example.org/redis/redis-lock/</loc>
   </url>
   
   <url>
-    <loc>https://dtest11.github.io/series/</loc>
+    <loc>https://example.org/series/</loc>
   </url>
   
 </urlset>
