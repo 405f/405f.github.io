@@ -24,3 +24,8 @@ theme = "vitae"
     identifier = "git"
     name       = "Check on github"
     url        = "https://github.com/dtest11/dtest11.github.io/"
+
+  [[menu.main]]
+    identifier = "posts"
+    name       = "posts"
+    url        = "https://github.com/dtest11/posts/"
