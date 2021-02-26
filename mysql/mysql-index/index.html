@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>mysql- 索引 | </title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="总结一下mysql 索引的相关内容，复盘重新学习下。
+for what
+索引是 为了在大量数据中快速查找数据而出现的，
+索引实现方式
+索引的底层实现有各种各样的方式，最常见的有 哈希表，有序数组，和搜索树.
+
+哈系表： 这个无需多说，就是输入之后经过hash 然后得到位置，然后从该位置去寻找数据， 这个肯定会出现冲突，他只适合等值查找的， 不能查找某个范围区间的。
+有序数组： 这个可以精确查找，和范围查找都是可以的。但是在数据更新的过程中，必须要循环遍历数组，插入数据的时候，后半部分都要整体的移动，效率是很低的。因此这个方式，只适合数据静态数据，数据不会变动。
+搜索树： 我们知道二叉树的数据性质是 left &lt;head &lt;  right ， 而在实际的数据库实现中可能使用的是N叉树。
+">
+    <meta name="generator" content="Hugo 0.61.0" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+
+  
+  
+    <link rel="stylesheet" href="/ananke/dist/main.css_5c99d70a7725bacd4c701e995b969fea.css" >
+  
+
+
+
+
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="mysql- 索引" />
+<meta property="og:description" content="总结一下mysql 索引的相关内容，复盘重新学习下。
+for what
+索引是 为了在大量数据中快速查找数据而出现的，
+索引实现方式
+索引的底层实现有各种各样的方式，最常见的有 哈希表，有序数组，和搜索树.
+
+哈系表： 这个无需多说，就是输入之后经过hash 然后得到位置，然后从该位置去寻找数据， 这个肯定会出现冲突，他只适合等值查找的， 不能查找某个范围区间的。
+有序数组： 这个可以精确查找，和范围查找都是可以的。但是在数据更新的过程中，必须要循环遍历数组，插入数据的时候，后半部分都要整体的移动，效率是很低的。因此这个方式，只适合数据静态数据，数据不会变动。
+搜索树： 我们知道二叉树的数据性质是 left &lt;head &lt;  right ， 而在实际的数据库实现中可能使用的是N叉树。
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://dtest11.github.io/mysql/mysql-index/" />
+<meta property="article:published_time" content="2020-02-28T16:37:53+00:00" />
+<meta property="article:modified_time" content="2020-02-28T16:37:53+00:00" />
+<meta itemprop="name" content="mysql- 索引">
+<meta itemprop="description" content="总结一下mysql 索引的相关内容，复盘重新学习下。
+for what
+索引是 为了在大量数据中快速查找数据而出现的，
+索引实现方式
+索引的底层实现有各种各样的方式，最常见的有 哈希表，有序数组，和搜索树.
+
+哈系表： 这个无需多说，就是输入之后经过hash 然后得到位置，然后从该位置去寻找数据， 这个肯定会出现冲突，他只适合等值查找的， 不能查找某个范围区间的。
+有序数组： 这个可以精确查找，和范围查找都是可以的。但是在数据更新的过程中，必须要循环遍历数组，插入数据的时候，后半部分都要整体的移动，效率是很低的。因此这个方式，只适合数据静态数据，数据不会变动。
+搜索树： 我们知道二叉树的数据性质是 left &lt;head &lt;  right ， 而在实际的数据库实现中可能使用的是N叉树。
+">
+<meta itemprop="datePublished" content="2020-02-28T16:37:53&#43;00:00" />
+<meta itemprop="dateModified" content="2020-02-28T16:37:53&#43;00:00" />
+<meta itemprop="wordCount" content="222">
+
+
+
+<meta itemprop="keywords" content="mysql," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="mysql- 索引"/>
+<meta name="twitter:description" content="总结一下mysql 索引的相关内容，复盘重新学习下。
+for what
+索引是 为了在大量数据中快速查找数据而出现的，
+索引实现方式
+索引的底层实现有各种各样的方式，最常见的有 哈希表，有序数组，和搜索树.
+
+哈系表： 这个无需多说，就是输入之后经过hash 然后得到位置，然后从该位置去寻找数据， 这个肯定会出现冲突，他只适合等值查找的， 不能查找某个范围区间的。
+有序数组： 这个可以精确查找，和范围查找都是可以的。但是在数据更新的过程中，必须要循环遍历数组，插入数据的时候，后半部分都要整体的移动，效率是很低的。因此这个方式，只适合数据静态数据，数据不会变动。
+搜索树： 我们知道二叉树的数据性质是 left &lt;head &lt;  right ， 而在实际的数据库实现中可能使用的是N叉树。
+"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        MYSQLS
+      </aside>
+      
+
+
+
+
+  <div id="sharing" class="mt3">
+
+    
+    <a href="https://www.facebook.com/sharer.php?u=https://dtest11.github.io/mysql/mysql-index/" class="facebook no-underline" aria-label="share on Facebook">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+
+    </a>
+
+    
+    
+    <a href="https://twitter.com/share?url=https://dtest11.github.io/mysql/mysql-index/&amp;text=mysql-%20%e7%b4%a2%e5%bc%95" class="twitter no-underline" aria-label="share on Twitter">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+    </a>
+
+    
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://dtest11.github.io/mysql/mysql-index/&amp;title=mysql-%20%e7%b4%a2%e5%bc%95" class="linkedin no-underline" aria-label="share on LinkedIn">
+      <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+    </a>
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">mysql- 索引</h1>
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2020-02-28T16:37:53Z">February 28, 2020</time>
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p>总结一下mysql 索引的相关内容，复盘重新学习下。</p>
+<h2 id="for-what">for what</h2>
+<p>索引是 为了在大量数据中快速查找数据而出现的，</p>
+<h2 id="heading">索引实现方式</h2>
+<p>索引的底层实现有各种各样的方式，最常见的有 <strong>哈希表</strong>，<strong>有序数组</strong>，和<strong>搜索树</strong>.</p>
+<ol>
+<li>哈系表： 这个无需多说，就是输入之后经过hash 然后得到位置，然后从该位置去寻找数据， 这个肯定会出现冲突，他只适合等值查找的， 不能查找某个范围区间的。</li>
+<li>有序数组： 这个可以精确查找，和范围查找都是可以的。但是在数据更新的过程中，必须要循环遍历数组，插入数据的时候，后半部分都要整体的移动，效率是很低的。因此这个方式，只适合数据静态数据，数据不会变动。</li>
+<li>搜索树： 我们知道二叉树的数据性质是 left &lt;head &lt;  right ， 而在实际的数据库实现中可能使用的是N叉树。</li>
+</ol>
+<h2 id="innodb-">Innodb 的索引模型</h2>
+<p>如下语句：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql">mysql<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">create</span> <span style="color:#66d9ef">table</span> T(
+id int <span style="color:#66d9ef">primary</span> <span style="color:#66d9ef">key</span>, 
+k int <span style="color:#66d9ef">not</span> <span style="color:#66d9ef">null</span>, 
+name varchar(<span style="color:#ae81ff">16</span>),
+<span style="color:#66d9ef">index</span> (k))engine<span style="color:#f92672">=</span>InnoDB;
+
+</code></pre></div><p>表中 R1~R5 的 (ID,k) 值分别为 (100,1)、(200,2)、(300,3)、(500,5) 和 (600,6)，两棵树的示例示意图如下。
+<img src="https://static001.geekbang.org/resource/image/dc/8d/dcda101051f28502bd5c4402b292e38d.png" alt="Alt text"></p>
+<ol>
+<li>primary key: 为主键索引</li>
+<li>index（k) : 普通索引</li>
+</ol>
+<p>从图中不难看出，根据叶子节点的内容，索引类型分为主键索引和非主键索引。主键索引的叶子节点存的是整行数据。在 InnoDB 里，主键索引也被称为聚簇索引（clustered index）。非主键索引的叶子节点内容是主键的值。在 InnoDB 里，非主键索引也被称为二级索引（secondary index）</p>
+<h2 id="heading-1">主键索引和普通索引</h2>
+<ol>
+<li>
+<h3 id="heading-2">查询的区别</h3>
+</li>
+</ol>
+<p>普通索引查询有 <strong>回表</strong> 的操作，需要查询2次</p>
+<p>. 如果语句是 select * from T where ID=500，即主键查询方式，则只需要搜索 ID 这棵 B+ 树；
+. 如果语句是 select * from T where k=5，即普通索引查询方式，则需要先搜索 k 索引树，得到 ID 的值为 500，再到 ID 索引树搜索一次。这个过程称为回表。</p>
+<ol start="2">
+<li>
+<h3 id="heading-3">索引维护</h3>
+</li>
+</ol>
+<p>索引的 <strong>分裂</strong>， <strong>合并</strong></p>
+<p>B+ 树为了维护索引有序性，在插入新值的时候需要做必要的维护。以上面这个图为例，如果插入新的行 ID 值为 700，则只需要在 R5 的记录后面插入一个新记录。如果新插入的 ID 值为 400，就相对麻烦了，需要逻辑上挪动后面的数据，空出位置。而更糟的情况是，如果 R5 所在的数据页已经满了，根据 B+ 树的算法，这时候需要申请一个新的数据页，然后挪动部分数据过去。这个过程称为页分裂。在这种情况下，性能自然会受影响。除了性能外，页分裂操作还影响数据页的利用率。原本放在一个页的数据，现在分到两个页中，整体空间利用率降低大约 50%。
+当然有分裂就有合并。当相邻两个页由于删除了数据，利用率很低之后，会将数据页做合并。合并的过程，可以认为是分裂过程的逆过程。</p>
+<ol start="3">
+<li>
+<h3 id="heading-4">为什么会有主键索引</h3>
+</li>
+</ol>
+<p>1.：索引维护的性能
+如果使用自定义的字段做主键，那么可能无法保证有序，那么数据库在索引维护的过程中会有页的分裂和合并这个过程耗费的时间是不必要的
+2.  ： 存储
+如果使用内置的primary key 那么只需要存储一个Int 大小的空间，但是如果是自定义的数据，那么可能是一个string , 也可能是一个varchar 耗费存储空间是不一样的</p>
+<h2 id="heading-5">覆盖索引</h2>
+<p>在下面这个表T ，执行 select * from T where k between 3 and 5，需要执行几次树的搜索操作，会扫描多少行？</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql">
+mysql<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">create</span> <span style="color:#66d9ef">table</span> T (
+ID int <span style="color:#66d9ef">primary</span> <span style="color:#66d9ef">key</span>,
+k int <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#ae81ff">0</span>, 
+s varchar(<span style="color:#ae81ff">16</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#e6db74">&#39;</span><span style="color:#e6db74">&#39;</span>,
+<span style="color:#66d9ef">index</span> k(k))
+engine<span style="color:#f92672">=</span>InnoDB;
+
+<span style="color:#66d9ef">insert</span> <span style="color:#66d9ef">into</span> T <span style="color:#66d9ef">values</span>(<span style="color:#ae81ff">100</span>,<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;</span><span style="color:#e6db74">aa</span><span style="color:#e6db74">&#39;</span>),(<span style="color:#ae81ff">200</span>,<span style="color:#ae81ff">2</span>,<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">bb</span><span style="color:#e6db74">&#39;</span>),(<span style="color:#ae81ff">300</span>,<span style="color:#ae81ff">3</span>,<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">cc</span><span style="color:#e6db74">&#39;</span>),(<span style="color:#ae81ff">500</span>,<span style="color:#ae81ff">5</span>,<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">ee</span><span style="color:#e6db74">&#39;</span>),(<span style="color:#ae81ff">600</span>,<span style="color:#ae81ff">6</span>,<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">ff</span><span style="color:#e6db74">&#39;</span>),(<span style="color:#ae81ff">700</span>,<span style="color:#ae81ff">7</span>,<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">gg</span><span style="color:#e6db74">&#39;</span>);
+
+</code></pre></div><p><img src="https://static001.geekbang.org/resource/image/dc/8d/dcda101051f28502bd5c4402b292e38d.png" alt="1212"></p>
+<p>现在，我们一起来看看这条 SQL 查询语句的执行流程：</p>
+<ul>
+<li>在 k 索引树上找到 k=3 的记录，取得 ID = 300；</li>
+<li>再到 ID 索引树查到 ID=300 对应的 R3；</li>
+<li>在 k 索引树取下一个值 k=5，取得 ID=500；</li>
+<li>再回到 ID 索引树查到 ID=500 对应的 R4；</li>
+<li>在 k 索引树取下一个值 k=6，不满足条件，循环结束</li>
+</ul>
+<p>在这个过程中，回到主键索引树搜索的过程，我们称为回表, 由于是 select * 那么不能不回表， 那么有什么办法不回表呢？ 那么就可以用覆盖索引，简单来讲就是：
+将select 结果中需要返回的字段，跟where 中的字段做一个联合索引，那么查询过程在 普通索引中的节点中就可以查询到需要的值了。</p>
+<h2 id="heading-6">最左前缀原则</h2>
+<p>最左前缀可以是联合索引的最左 N 个字段，也可以是字符串索引的最左 M 个字符。</p>
+<h4 id="heading-7">引用</h4>
+<ul>
+<li><a href="https://time.geekbang.org/column/intro/139">https://time.geekbang.org/column/intro/139</a></li>
+</ul><ul class="pa0">
+  
+   <li class="list">
+     <a href="/tags/mysql" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">mysql</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Related</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/mysql/db-index/">db-index</a>
+        </li>
+	    
+    </ul>
+</div>
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://dtest11.github.io/" >
+    &copy; 
+  </a>
+    <div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>
