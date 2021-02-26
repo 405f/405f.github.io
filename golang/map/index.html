@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>字典的实现 | </title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="字典 字典的是具有O(1)的时间复杂度
+哈希函数 实现字典通常使用哈系表，哈系表最重要的问题是解决哈系冲突，解决哈系冲突我们最常用的就是2个方法
+开放定址法 对与哈系函数 f(x) = index,查找数列中该index 是否已经有存放的元素，如果有元素的话，那么走到下一个位置index&#43;1, 重复如此的步骤，直到找到空闲的位置
+拉链法 对于拉链法，数据结构是 列表&#43; 链表 ，来实现的， 实现过程具体如下：
+对于哈希函数 f（x) = index , 对于列表的index 位置， index 存放的是链表， 从链表的开始位置遍历，如果这个key 存在，那么就更新这个value, 如果没有那么就最后追加到链表的末尾，
+字典实现过程中一般会碰到的问题  字典的具体实现方法（hash table?) 解决哈系函数的方法 （拉链法， 开放定址法） 字典的扩容 方式（当字典的容量不够的时候，如何扩容）  针对以上的问题研究下go 的字典实现方法 go 源码中对于map 的定义 / A header for a Go map. type hmap struct { // Note: the format of the hmap is also encoded in cmd/compile/internal/gc/reflect.go. 	// Make sure this stays in sync with the compiler&#39;s definition.">
+    <meta name="generator" content="Hugo 0.61.0" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+
+  
+  
+    <link rel="stylesheet" href="/ananke/dist/main.css_5c99d70a7725bacd4c701e995b969fea.css" >
+  
+
+
+
+
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="字典的实现" />
+<meta property="og:description" content="字典 字典的是具有O(1)的时间复杂度
+哈希函数 实现字典通常使用哈系表，哈系表最重要的问题是解决哈系冲突，解决哈系冲突我们最常用的就是2个方法
+开放定址法 对与哈系函数 f(x) = index,查找数列中该index 是否已经有存放的元素，如果有元素的话，那么走到下一个位置index&#43;1, 重复如此的步骤，直到找到空闲的位置
+拉链法 对于拉链法，数据结构是 列表&#43; 链表 ，来实现的， 实现过程具体如下：
+对于哈希函数 f（x) = index , 对于列表的index 位置， index 存放的是链表， 从链表的开始位置遍历，如果这个key 存在，那么就更新这个value, 如果没有那么就最后追加到链表的末尾，
+字典实现过程中一般会碰到的问题  字典的具体实现方法（hash table?) 解决哈系函数的方法 （拉链法， 开放定址法） 字典的扩容 方式（当字典的容量不够的时候，如何扩容）  针对以上的问题研究下go 的字典实现方法 go 源码中对于map 的定义 / A header for a Go map. type hmap struct { // Note: the format of the hmap is also encoded in cmd/compile/internal/gc/reflect.go. 	// Make sure this stays in sync with the compiler&#39;s definition." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://dtest11.github.io/golang/map/" />
+<meta property="article:published_time" content="2020-02-18T12:10:51+00:00" />
+<meta property="article:modified_time" content="2020-02-18T12:10:51+00:00" />
+<meta itemprop="name" content="字典的实现">
+<meta itemprop="description" content="字典 字典的是具有O(1)的时间复杂度
+哈希函数 实现字典通常使用哈系表，哈系表最重要的问题是解决哈系冲突，解决哈系冲突我们最常用的就是2个方法
+开放定址法 对与哈系函数 f(x) = index,查找数列中该index 是否已经有存放的元素，如果有元素的话，那么走到下一个位置index&#43;1, 重复如此的步骤，直到找到空闲的位置
+拉链法 对于拉链法，数据结构是 列表&#43; 链表 ，来实现的， 实现过程具体如下：
+对于哈希函数 f（x) = index , 对于列表的index 位置， index 存放的是链表， 从链表的开始位置遍历，如果这个key 存在，那么就更新这个value, 如果没有那么就最后追加到链表的末尾，
+字典实现过程中一般会碰到的问题  字典的具体实现方法（hash table?) 解决哈系函数的方法 （拉链法， 开放定址法） 字典的扩容 方式（当字典的容量不够的时候，如何扩容）  针对以上的问题研究下go 的字典实现方法 go 源码中对于map 的定义 / A header for a Go map. type hmap struct { // Note: the format of the hmap is also encoded in cmd/compile/internal/gc/reflect.go. 	// Make sure this stays in sync with the compiler&#39;s definition.">
+<meta itemprop="datePublished" content="2020-02-18T12:10:51&#43;00:00" />
+<meta itemprop="dateModified" content="2020-02-18T12:10:51&#43;00:00" />
+<meta itemprop="wordCount" content="1232">
+
+
+
+<meta itemprop="keywords" content="golang," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="字典的实现"/>
+<meta name="twitter:description" content="字典 字典的是具有O(1)的时间复杂度
+哈希函数 实现字典通常使用哈系表，哈系表最重要的问题是解决哈系冲突，解决哈系冲突我们最常用的就是2个方法
+开放定址法 对与哈系函数 f(x) = index,查找数列中该index 是否已经有存放的元素，如果有元素的话，那么走到下一个位置index&#43;1, 重复如此的步骤，直到找到空闲的位置
+拉链法 对于拉链法，数据结构是 列表&#43; 链表 ，来实现的， 实现过程具体如下：
+对于哈希函数 f（x) = index , 对于列表的index 位置， index 存放的是链表， 从链表的开始位置遍历，如果这个key 存在，那么就更新这个value, 如果没有那么就最后追加到链表的末尾，
+字典实现过程中一般会碰到的问题  字典的具体实现方法（hash table?) 解决哈系函数的方法 （拉链法， 开放定址法） 字典的扩容 方式（当字典的容量不够的时候，如何扩容）  针对以上的问题研究下go 的字典实现方法 go 源码中对于map 的定义 / A header for a Go map. type hmap struct { // Note: the format of the hmap is also encoded in cmd/compile/internal/gc/reflect.go. 	// Make sure this stays in sync with the compiler&#39;s definition."/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        GOLANGS
+      </aside>
+      
+
+
+
+
+  <div id="sharing" class="mt3">
+
+    
+    <a href="https://www.facebook.com/sharer.php?u=https://dtest11.github.io/golang/map/" class="facebook no-underline" aria-label="share on Facebook">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+
+    </a>
+
+    
+    
+    <a href="https://twitter.com/share?url=https://dtest11.github.io/golang/map/&amp;text=%e5%ad%97%e5%85%b8%e7%9a%84%e5%ae%9e%e7%8e%b0" class="twitter no-underline" aria-label="share on Twitter">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+    </a>
+
+    
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://dtest11.github.io/golang/map/&amp;title=%e5%ad%97%e5%85%b8%e7%9a%84%e5%ae%9e%e7%8e%b0" class="linkedin no-underline" aria-label="share on LinkedIn">
+      <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+    </a>
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">字典的实现</h1>
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2020-02-18T12:10:51Z">February 18, 2020</time>
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><h3 id="heading">字典</h3>
+<p>字典的是具有O(1)的时间复杂度</p>
+<h3 id="heading-1">哈希函数</h3>
+<p>实现字典通常使用哈系表，哈系表最重要的问题是解决哈系冲突，解决哈系冲突我们最常用的就是2个方法</p>
+<h3 id="heading-2">开放定址法</h3>
+<p>对与哈系函数 f(x) = index,查找数列中该index 是否已经有存放的元素，如果有元素的话，那么走到下一个位置index+1, 重复如此的步骤，直到找到空闲的位置</p>
+<h3 id="heading-3">拉链法</h3>
+<p>对于拉链法，数据结构是 列表+ 链表 ，来实现的， 实现过程具体如下：</p>
+<p>对于哈希函数 f（x) = index , 对于列表的index 位置， index 存放的是链表， 从链表的开始位置遍历，如果这个key 存在，那么就更新这个value, 如果没有那么就最后追加到链表的末尾，</p>
+<h3 id="heading-4">字典实现过程中一般会碰到的问题</h3>
+<ol>
+<li>字典的具体实现方法（hash table?)</li>
+<li>解决哈系函数的方法 （拉链法， 开放定址法）</li>
+<li>字典的扩容 方式（当字典的容量不够的时候，如何扩容）</li>
+</ol>
+<h3 id="go-">针对以上的问题研究下go 的字典实现方法</h3>
+<h4 id="go-map-">go 源码中对于map 的定义</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">
+<span style="color:#f92672">/</span> <span style="color:#a6e22e">A</span> <span style="color:#a6e22e">header</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">Go</span> <span style="color:#66d9ef">map</span>.
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">hmap</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#75715e">// Note: the format of the hmap is also encoded in cmd/compile/internal/gc/reflect.go.
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">// Make sure this stays in sync with the compiler&#39;s definition.
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">count</span>     <span style="color:#66d9ef">int</span> <span style="color:#75715e">// 全部的字典元素数量
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">flags</span>     <span style="color:#66d9ef">uint8</span>
+	<span style="color:#a6e22e">B</span>         <span style="color:#66d9ef">uint8</span>  <span style="color:#75715e">// log_2 of # of buckets (can hold up to loadFactor * 2^B items)，表示当前哈希表持有的 buckets 数量
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">noverflow</span> <span style="color:#66d9ef">uint16</span> <span style="color:#75715e">// approximate number of overflow buckets; see incrnoverflow for details
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">hash0</span>     <span style="color:#66d9ef">uint32</span> <span style="color:#75715e">// hash种子
+</span><span style="color:#75715e"></span>
+	<span style="color:#a6e22e">buckets</span>    <span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span> <span style="color:#75715e">// array of 2^B Buckets. may be nil if count==0. 存放元素的桶
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">oldbuckets</span> <span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span> <span style="color:#75715e">// previous bucket array of half the size, non-nil only when growing，扩容过程中的旧桶
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">nevacuate</span>  <span style="color:#66d9ef">uintptr</span>        <span style="color:#75715e">// progress counter for evacuation (buckets less than this have been evacuated)
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">extra</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">mapextra</span> <span style="color:#75715e">// optional fields
+</span><span style="color:#75715e"></span>}
+
+</code></pre></div><!-- raw HTML omitted -->
+<p>.  字典的初始化</p>
+<p>go中 对于make(map[key]val, hint) 类型的语句 会在编译的过程中转换成makemap,具体的执行过程，可以看到</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">makemap</span>(<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">maptype</span>, <span style="color:#a6e22e">hint</span> <span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">h</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">hmap</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">hmap</span> {
+	<span style="color:#a6e22e">mem</span>, <span style="color:#a6e22e">overflow</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">MulUintptr</span>(uintptr(<span style="color:#a6e22e">hint</span>), <span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">bucket</span>.<span style="color:#a6e22e">size</span>)
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">overflow</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">mem</span> &gt; <span style="color:#a6e22e">maxAlloc</span> {
+		<span style="color:#a6e22e">hint</span> = <span style="color:#ae81ff">0</span>
+	}
+
+	<span style="color:#75715e">// initialize Hmap
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">h</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> {
+		<span style="color:#a6e22e">h</span> = new(<span style="color:#a6e22e">hmap</span>) <span style="color:#75715e">// 初始化一个hmap结构
+</span><span style="color:#75715e"></span>	}
+	<span style="color:#a6e22e">h</span>.<span style="color:#a6e22e">hash0</span> = <span style="color:#a6e22e">fastrand</span>()  <span style="color:#75715e">// 添加哈希种子
+</span><span style="color:#75715e"></span>
+	<span style="color:#75715e">// Find the size parameter B which will hold the requested # of elements.
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">// For hint &lt; 0 overLoadFactor returns false since hint &lt; bucketCnt.
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">B</span> <span style="color:#f92672">:=</span> uint8(<span style="color:#ae81ff">0</span>)
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">overLoadFactor</span>(<span style="color:#a6e22e">hint</span>, <span style="color:#a6e22e">B</span>) {
+		<span style="color:#a6e22e">B</span><span style="color:#f92672">++</span>
+	}
+	<span style="color:#a6e22e">h</span>.<span style="color:#a6e22e">B</span> = <span style="color:#a6e22e">B</span>
+
+	<span style="color:#75715e">// allocate initial hash table
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">// if B == 0, the buckets field is allocated lazily later (in mapassign)
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">// If hint is large zeroing this memory could take a while.
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">h</span>.<span style="color:#a6e22e">B</span> <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> {
+		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">nextOverflow</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">bmap</span>
+		<span style="color:#a6e22e">h</span>.<span style="color:#a6e22e">buckets</span>, <span style="color:#a6e22e">nextOverflow</span> = <span style="color:#a6e22e">makeBucketArray</span>(<span style="color:#a6e22e">t</span>, <span style="color:#a6e22e">h</span>.<span style="color:#a6e22e">B</span>, <span style="color:#66d9ef">nil</span>) <span style="color:#75715e">// 分配字典的桶， bucket
+</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">nextOverflow</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+			<span style="color:#a6e22e">h</span>.<span style="color:#a6e22e">extra</span> = new(<span style="color:#a6e22e">mapextra</span>)
+			<span style="color:#a6e22e">h</span>.<span style="color:#a6e22e">extra</span>.<span style="color:#a6e22e">nextOverflow</span> = <span style="color:#a6e22e">nextOverflow</span>
+		}
+	}
+
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">h</span>
+}
+
+
+</code></pre></div><p>.  makeBucketArray</p>
+<p>分配 存储 数据的桶，</p>
+<ol>
+<li>
+<p>如果桶的数量 小于2*3=8 的话，那么直接根据传递的bucket的数量创建桶，</p>
+</li>
+<li>
+<p>如果大于2<em>3 = 8 ，那么要创建 2</em>(b-4)个溢出桶，来避免频繁的分配数据</p>
+</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">makeBucketArray</span>(<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">maptype</span>, <span style="color:#a6e22e">b</span> <span style="color:#66d9ef">uint8</span>, <span style="color:#a6e22e">dirtyalloc</span> <span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span>) (<span style="color:#a6e22e">buckets</span> <span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span>, <span style="color:#a6e22e">nextOverflow</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">bmap</span>) {
+	<span style="color:#a6e22e">base</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">bucketShift</span>(<span style="color:#a6e22e">b</span>)
+	<span style="color:#a6e22e">nbuckets</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">base</span>
+	<span style="color:#75715e">// For small b, overflow buckets are unlikely.
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">// Avoid the overhead of the calculation.
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">b</span> <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">4</span> {
+		<span style="color:#75715e">// Add on the estimated number of overflow buckets
+</span><span style="color:#75715e"></span>		<span style="color:#75715e">// required to insert the median number of elements
+</span><span style="color:#75715e"></span>		<span style="color:#75715e">// used with this value of b.
+</span><span style="color:#75715e"></span>		<span style="color:#a6e22e">nbuckets</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">bucketShift</span>(<span style="color:#a6e22e">b</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">4</span>)
+		<span style="color:#a6e22e">sz</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">bucket</span>.<span style="color:#a6e22e">size</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">nbuckets</span>
+		<span style="color:#a6e22e">up</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">roundupsize</span>(<span style="color:#a6e22e">sz</span>)
+		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">up</span> <span style="color:#f92672">!=</span> <span style="color:#a6e22e">sz</span> {
+			<span style="color:#a6e22e">nbuckets</span> = <span style="color:#a6e22e">up</span> <span style="color:#f92672">/</span> <span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">bucket</span>.<span style="color:#a6e22e">size</span>
+		}
+	}
+
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">dirtyalloc</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> {
+		<span style="color:#a6e22e">buckets</span> = <span style="color:#a6e22e">newarray</span>(<span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">bucket</span>, int(<span style="color:#a6e22e">nbuckets</span>))
+	} <span style="color:#66d9ef">else</span> {
+		<span style="color:#75715e">// dirtyalloc was previously generated by
+</span><span style="color:#75715e"></span>		<span style="color:#75715e">// the above newarray(t.bucket, int(nbuckets))
+</span><span style="color:#75715e"></span>		<span style="color:#75715e">// but may not be empty.
+</span><span style="color:#75715e"></span>		<span style="color:#a6e22e">buckets</span> = <span style="color:#a6e22e">dirtyalloc</span>
+		<span style="color:#a6e22e">size</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">bucket</span>.<span style="color:#a6e22e">size</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">nbuckets</span>
+		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">bucket</span>.<span style="color:#a6e22e">ptrdata</span> <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> {
+			<span style="color:#a6e22e">memclrHasPointers</span>(<span style="color:#a6e22e">buckets</span>, <span style="color:#a6e22e">size</span>)
+		} <span style="color:#66d9ef">else</span> {
+			<span style="color:#a6e22e">memclrNoHeapPointers</span>(<span style="color:#a6e22e">buckets</span>, <span style="color:#a6e22e">size</span>)
+		}
+	}
+
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">base</span> <span style="color:#f92672">!=</span> <span style="color:#a6e22e">nbuckets</span> {
+		<span style="color:#75715e">// We preallocated some overflow buckets.
+</span><span style="color:#75715e"></span>		<span style="color:#75715e">// To keep the overhead of tracking these overflow buckets to a minimum,
+</span><span style="color:#75715e"></span>		<span style="color:#75715e">// we use the convention that if a preallocated overflow bucket&#39;s overflow
+</span><span style="color:#75715e"></span>		<span style="color:#75715e">// pointer is nil, then there are more available by bumping the pointer.
+</span><span style="color:#75715e"></span>		<span style="color:#75715e">// We need a safe non-nil pointer for the last overflow bucket; just use buckets.
+</span><span style="color:#75715e"></span>		<span style="color:#a6e22e">nextOverflow</span> = (<span style="color:#f92672">*</span><span style="color:#a6e22e">bmap</span>)(<span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">buckets</span>, <span style="color:#a6e22e">base</span><span style="color:#f92672">*</span>uintptr(<span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">bucketsize</span>)))
+		<span style="color:#a6e22e">last</span> <span style="color:#f92672">:=</span> (<span style="color:#f92672">*</span><span style="color:#a6e22e">bmap</span>)(<span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">buckets</span>, (<span style="color:#a6e22e">nbuckets</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">*</span>uintptr(<span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">bucketsize</span>)))
+		<span style="color:#a6e22e">last</span>.<span style="color:#a6e22e">setoverflow</span>(<span style="color:#a6e22e">t</span>, (<span style="color:#f92672">*</span><span style="color:#a6e22e">bmap</span>)(<span style="color:#a6e22e">buckets</span>))
+	}
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">buckets</span>, <span style="color:#a6e22e">nextOverflow</span>
+}
+
+</code></pre></div><h4 id="get-set-">字典的get ,set 操作</h4>
+<p>example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">
+<span style="color:#a6e22e">data</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">int</span>]<span style="color:#66d9ef">int</span>,<span style="color:#ae81ff">10</span>)
+
+<span style="color:#75715e">// set 
+</span><span style="color:#75715e"></span>
+<span style="color:#a6e22e">data</span>[<span style="color:#ae81ff">0</span>]=<span style="color:#ae81ff">0</span>
+<span style="color:#a6e22e">data</span>[<span style="color:#ae81ff">1</span>] =<span style="color:#ae81ff">1</span>
+
+<span style="color:#75715e">// get
+</span><span style="color:#75715e"></span>
+<span style="color:#a6e22e">val</span>, <span style="color:#a6e22e">ok</span> <span style="color:#f92672">:=</span><span style="color:#a6e22e">data</span>[<span style="color:#ae81ff">0</span>]
+<span style="color:#a6e22e">val1</span> <span style="color:#f92672">:=</span><span style="color:#a6e22e">data</span>[<span style="color:#ae81ff">0</span>]
+
+
+</code></pre></div><p>对于 val1, val 这种读取的方法 最终会被执行到mapassign，mapassign1 具体的执行过程是大致一样的，只是最后的返回值，是根据是否存在key ，增加返回一个bool值。</p>
+<p>函数会先通过哈希表设置的哈希函数、种子获取当前键对应的哈希，再通过 bucketMask 和 add 函数拿到该键值对所在的桶序号和哈希最上面的 8 位数字。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">
+<span style="color:#75715e">// 字典设置 set 
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">mapassign</span>(<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">maptype</span>, <span style="color:#a6e22e">h</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">hmap</span>, <span style="color:#a6e22e">key</span> <span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span>) <span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span> {
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">h</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> {
+		panic(<span style="color:#a6e22e">plainError</span>(<span style="color:#e6db74">&#34;assignment to entry in nil map&#34;</span>))
+	}
+	<span style="color:#f92672">...</span>
+	
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">h</span>.<span style="color:#a6e22e">flags</span><span style="color:#f92672">&amp;</span><span style="color:#a6e22e">hashWriting</span> <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> {
+		<span style="color:#a6e22e">throw</span>(<span style="color:#e6db74">&#34;concurrent map writes&#34;</span>)
+	}
+	<span style="color:#a6e22e">alg</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">key</span>.<span style="color:#a6e22e">alg</span>
+	<span style="color:#a6e22e">hash</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">alg</span>.<span style="color:#a6e22e">hash</span>(<span style="color:#a6e22e">key</span>, uintptr(<span style="color:#a6e22e">h</span>.<span style="color:#a6e22e">hash0</span>))<span style="color:#75715e">// 获取key 对应的hash ,uintptr
+</span><span style="color:#75715e"></span>
+	<span style="color:#75715e">// Set hashWriting after calling alg.hash, since alg.hash may panic,
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">// in which case we have not actually done a write.
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">h</span>.<span style="color:#a6e22e">flags</span> ^= <span style="color:#a6e22e">hashWriting</span>
+
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">h</span>.<span style="color:#a6e22e">buckets</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> {
+		<span style="color:#a6e22e">h</span>.<span style="color:#a6e22e">buckets</span> = <span style="color:#a6e22e">newobject</span>(<span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">bucket</span>) <span style="color:#75715e">// newarray(t.bucket, 1)
+</span><span style="color:#75715e"></span>	}
+
+<span style="color:#a6e22e">again</span>:
+	<span style="color:#a6e22e">bucket</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">hash</span> <span style="color:#f92672">&amp;</span> <span style="color:#a6e22e">bucketMask</span>(<span style="color:#a6e22e">h</span>.<span style="color:#a6e22e">B</span>)
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">h</span>.<span style="color:#a6e22e">growing</span>() {
+		<span style="color:#a6e22e">growWork</span>(<span style="color:#a6e22e">t</span>, <span style="color:#a6e22e">h</span>, <span style="color:#a6e22e">bucket</span>)
+	}
+	<span style="color:#a6e22e">b</span> <span style="color:#f92672">:=</span> (<span style="color:#f92672">*</span><span style="color:#a6e22e">bmap</span>)(<span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span>(uintptr(<span style="color:#a6e22e">h</span>.<span style="color:#a6e22e">buckets</span>) <span style="color:#f92672">+</span> <span style="color:#a6e22e">bucket</span><span style="color:#f92672">*</span>uintptr(<span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">bucketsize</span>)))
+	<span style="color:#a6e22e">top</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">tophash</span>(<span style="color:#a6e22e">hash</span>) <span style="color:#75715e">// 获取在tophash 中存储的值，tophash 是一个缓存，缓存了该bucket中的所有key 的，，因此在查找的过程中可以先从tophash中查找，如果存在的话，那么这个内容就是存在的，如果不在这个里面，那么就是不存在的
+</span><span style="color:#75715e"></span>
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">inserti</span> <span style="color:#f92672">*</span><span style="color:#66d9ef">uint8</span>
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">insertk</span> <span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span>
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">elem</span> <span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span>
+<span style="color:#a6e22e">bucketloop</span>:
+	<span style="color:#66d9ef">for</span> {
+		<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> uintptr(<span style="color:#ae81ff">0</span>); <span style="color:#a6e22e">i</span> &lt; <span style="color:#a6e22e">bucketCnt</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+			<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">tophash</span>[<span style="color:#a6e22e">i</span>] <span style="color:#f92672">!=</span> <span style="color:#a6e22e">top</span> {
+				<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">isEmpty</span>(<span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">tophash</span>[<span style="color:#a6e22e">i</span>]) <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">inserti</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> {
+					<span style="color:#a6e22e">inserti</span> = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">tophash</span>[<span style="color:#a6e22e">i</span>]
+					<span style="color:#a6e22e">insertk</span> = <span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span>(<span style="color:#a6e22e">b</span>), <span style="color:#a6e22e">dataOffset</span><span style="color:#f92672">+</span><span style="color:#a6e22e">i</span><span style="color:#f92672">*</span>uintptr(<span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">keysize</span>))
+					<span style="color:#a6e22e">elem</span> = <span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span>(<span style="color:#a6e22e">b</span>), <span style="color:#a6e22e">dataOffset</span><span style="color:#f92672">+</span><span style="color:#a6e22e">bucketCnt</span><span style="color:#f92672">*</span>uintptr(<span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">keysize</span>)<span style="color:#f92672">+</span><span style="color:#a6e22e">i</span><span style="color:#f92672">*</span>uintptr(<span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">elemsize</span>))
+				}
+				<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">tophash</span>[<span style="color:#a6e22e">i</span>] <span style="color:#f92672">==</span> <span style="color:#a6e22e">emptyRest</span> {
+					<span style="color:#66d9ef">break</span> <span style="color:#a6e22e">bucketloop</span>
+				}
+				<span style="color:#66d9ef">continue</span>
+			}
+			<span style="color:#a6e22e">k</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span>(<span style="color:#a6e22e">b</span>), <span style="color:#a6e22e">dataOffset</span><span style="color:#f92672">+</span><span style="color:#a6e22e">i</span><span style="color:#f92672">*</span>uintptr(<span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">keysize</span>))
+			<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">indirectkey</span>() {
+				<span style="color:#a6e22e">k</span> = <span style="color:#f92672">*</span>((<span style="color:#f92672">*</span><span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span>)(<span style="color:#a6e22e">k</span>))
+			}
+			<span style="color:#66d9ef">if</span> !<span style="color:#a6e22e">alg</span>.<span style="color:#a6e22e">equal</span>(<span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">k</span>) {
+				<span style="color:#66d9ef">continue</span>
+			}
+			<span style="color:#75715e">// already have a mapping for key. Update it.
+</span><span style="color:#75715e"></span>			<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">needkeyupdate</span>() {
+				<span style="color:#a6e22e">typedmemmove</span>(<span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">k</span>, <span style="color:#a6e22e">key</span>)
+			}
+			<span style="color:#a6e22e">elem</span> = <span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span>(<span style="color:#a6e22e">b</span>), <span style="color:#a6e22e">dataOffset</span><span style="color:#f92672">+</span><span style="color:#a6e22e">bucketCnt</span><span style="color:#f92672">*</span>uintptr(<span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">keysize</span>)<span style="color:#f92672">+</span><span style="color:#a6e22e">i</span><span style="color:#f92672">*</span>uintptr(<span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">elemsize</span>))
+			<span style="color:#66d9ef">goto</span> <span style="color:#a6e22e">done</span>
+		}
+		<span style="color:#a6e22e">ovf</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">overflow</span>(<span style="color:#a6e22e">t</span>)
+		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">ovf</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> {
+			<span style="color:#66d9ef">break</span>
+		}
+		<span style="color:#a6e22e">b</span> = <span style="color:#a6e22e">ovf</span>
+	}
+
+	<span style="color:#75715e">// Did not find mapping for key. Allocate new cell &amp; add entry.
+</span><span style="color:#75715e"></span>
+	<span style="color:#75715e">// If we hit the max load factor or we have too many overflow buckets,
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">// and we&#39;re not already in the middle of growing, start growing.
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> !<span style="color:#a6e22e">h</span>.<span style="color:#a6e22e">growing</span>() <span style="color:#f92672">&amp;&amp;</span> (<span style="color:#a6e22e">overLoadFactor</span>(<span style="color:#a6e22e">h</span>.<span style="color:#a6e22e">count</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">h</span>.<span style="color:#a6e22e">B</span>) <span style="color:#f92672">||</span> <span style="color:#a6e22e">tooManyOverflowBuckets</span>(<span style="color:#a6e22e">h</span>.<span style="color:#a6e22e">noverflow</span>, <span style="color:#a6e22e">h</span>.<span style="color:#a6e22e">B</span>)) {
+		<span style="color:#a6e22e">hashGrow</span>(<span style="color:#a6e22e">t</span>, <span style="color:#a6e22e">h</span>)
+		<span style="color:#66d9ef">goto</span> <span style="color:#a6e22e">again</span> <span style="color:#75715e">// Growing the table invalidates everything, so try again
+</span><span style="color:#75715e"></span>	}
+
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">inserti</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> {
+		<span style="color:#75715e">// all current buckets are full, allocate a new one.
+</span><span style="color:#75715e"></span>		<span style="color:#a6e22e">newb</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">h</span>.<span style="color:#a6e22e">newoverflow</span>(<span style="color:#a6e22e">t</span>, <span style="color:#a6e22e">b</span>)
+		<span style="color:#a6e22e">inserti</span> = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">newb</span>.<span style="color:#a6e22e">tophash</span>[<span style="color:#ae81ff">0</span>]
+		<span style="color:#a6e22e">insertk</span> = <span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span>(<span style="color:#a6e22e">newb</span>), <span style="color:#a6e22e">dataOffset</span>)
+		<span style="color:#a6e22e">elem</span> = <span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">insertk</span>, <span style="color:#a6e22e">bucketCnt</span><span style="color:#f92672">*</span>uintptr(<span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">keysize</span>))
+	}
+
+	<span style="color:#75715e">// store new key/elem at insert position
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">indirectkey</span>() {
+		<span style="color:#a6e22e">kmem</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">newobject</span>(<span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">key</span>)
+		<span style="color:#f92672">*</span>(<span style="color:#f92672">*</span><span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span>)(<span style="color:#a6e22e">insertk</span>) = <span style="color:#a6e22e">kmem</span>
+		<span style="color:#a6e22e">insertk</span> = <span style="color:#a6e22e">kmem</span>
+	}
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">indirectelem</span>() {
+		<span style="color:#a6e22e">vmem</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">newobject</span>(<span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">elem</span>)
+		<span style="color:#f92672">*</span>(<span style="color:#f92672">*</span><span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span>)(<span style="color:#a6e22e">elem</span>) = <span style="color:#a6e22e">vmem</span>
+	}
+	<span style="color:#a6e22e">typedmemmove</span>(<span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">insertk</span>, <span style="color:#a6e22e">key</span>)
+	<span style="color:#f92672">*</span><span style="color:#a6e22e">inserti</span> = <span style="color:#a6e22e">top</span>
+	<span style="color:#a6e22e">h</span>.<span style="color:#a6e22e">count</span><span style="color:#f92672">++</span>
+
+<span style="color:#a6e22e">done</span>:
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">h</span>.<span style="color:#a6e22e">flags</span><span style="color:#f92672">&amp;</span><span style="color:#a6e22e">hashWriting</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+		<span style="color:#a6e22e">throw</span>(<span style="color:#e6db74">&#34;concurrent map writes&#34;</span>)
+	}
+	<span style="color:#a6e22e">h</span>.<span style="color:#a6e22e">flags</span> <span style="color:#f92672">&amp;^=</span> <span style="color:#a6e22e">hashWriting</span>
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">indirectelem</span>() {
+		<span style="color:#a6e22e">elem</span> = <span style="color:#f92672">*</span>((<span style="color:#f92672">*</span><span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span>)(<span style="color:#a6e22e">elem</span>))
+	}
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">elem</span>
+}
+
+
+</code></pre></div><p>. 字典 get   :  mapassign</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">mapaccess1</span>(<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">maptype</span>, <span style="color:#a6e22e">h</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">hmap</span>, <span style="color:#a6e22e">key</span> <span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span>) <span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span> {
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">raceenabled</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">h</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+		<span style="color:#a6e22e">callerpc</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">getcallerpc</span>()
+		<span style="color:#a6e22e">pc</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">funcPC</span>(<span style="color:#a6e22e">mapaccess1</span>)
+		<span style="color:#a6e22e">racereadpc</span>(<span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span>(<span style="color:#a6e22e">h</span>), <span style="color:#a6e22e">callerpc</span>, <span style="color:#a6e22e">pc</span>)
+		<span style="color:#a6e22e">raceReadObjectPC</span>(<span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">callerpc</span>, <span style="color:#a6e22e">pc</span>)
+	}
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">msanenabled</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">h</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+		<span style="color:#a6e22e">msanread</span>(<span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">key</span>.<span style="color:#a6e22e">size</span>)
+	}
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">h</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">h</span>.<span style="color:#a6e22e">count</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">hashMightPanic</span>() {
+			<span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">key</span>.<span style="color:#a6e22e">alg</span>.<span style="color:#a6e22e">hash</span>(<span style="color:#a6e22e">key</span>, <span style="color:#ae81ff">0</span>) <span style="color:#75715e">// see issue 23734
+</span><span style="color:#75715e"></span>		}
+		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">zeroVal</span>[<span style="color:#ae81ff">0</span>])
+	}
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">h</span>.<span style="color:#a6e22e">flags</span><span style="color:#f92672">&amp;</span><span style="color:#a6e22e">hashWriting</span> <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> {
+		<span style="color:#a6e22e">throw</span>(<span style="color:#e6db74">&#34;concurrent map read and map write&#34;</span>)
+	}
+	<span style="color:#a6e22e">alg</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">key</span>.<span style="color:#a6e22e">alg</span>
+	<span style="color:#a6e22e">hash</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">alg</span>.<span style="color:#a6e22e">hash</span>(<span style="color:#a6e22e">key</span>, uintptr(<span style="color:#a6e22e">h</span>.<span style="color:#a6e22e">hash0</span>))
+	<span style="color:#a6e22e">m</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">bucketMask</span>(<span style="color:#a6e22e">h</span>.<span style="color:#a6e22e">B</span>)
+	<span style="color:#a6e22e">b</span> <span style="color:#f92672">:=</span> (<span style="color:#f92672">*</span><span style="color:#a6e22e">bmap</span>)(<span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">h</span>.<span style="color:#a6e22e">buckets</span>, (<span style="color:#a6e22e">hash</span><span style="color:#f92672">&amp;</span><span style="color:#a6e22e">m</span>)<span style="color:#f92672">*</span>uintptr(<span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">bucketsize</span>)))
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">c</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">h</span>.<span style="color:#a6e22e">oldbuckets</span>; <span style="color:#a6e22e">c</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+		<span style="color:#66d9ef">if</span> !<span style="color:#a6e22e">h</span>.<span style="color:#a6e22e">sameSizeGrow</span>() {
+			<span style="color:#75715e">// There used to be half as many buckets; mask down one more power of two.
+</span><span style="color:#75715e"></span>			<span style="color:#a6e22e">m</span> <span style="color:#f92672">&gt;&gt;=</span> <span style="color:#ae81ff">1</span>
+		}
+		<span style="color:#a6e22e">oldb</span> <span style="color:#f92672">:=</span> (<span style="color:#f92672">*</span><span style="color:#a6e22e">bmap</span>)(<span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">c</span>, (<span style="color:#a6e22e">hash</span><span style="color:#f92672">&amp;</span><span style="color:#a6e22e">m</span>)<span style="color:#f92672">*</span>uintptr(<span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">bucketsize</span>)))
+		<span style="color:#66d9ef">if</span> !<span style="color:#a6e22e">evacuated</span>(<span style="color:#a6e22e">oldb</span>) {
+			<span style="color:#a6e22e">b</span> = <span style="color:#a6e22e">oldb</span>
+		}
+	}
+	<span style="color:#a6e22e">top</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">tophash</span>(<span style="color:#a6e22e">hash</span>)
+<span style="color:#a6e22e">bucketloop</span>:
+	<span style="color:#66d9ef">for</span> ; <span style="color:#a6e22e">b</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span>; <span style="color:#a6e22e">b</span> = <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">overflow</span>(<span style="color:#a6e22e">t</span>) {
+		<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> uintptr(<span style="color:#ae81ff">0</span>); <span style="color:#a6e22e">i</span> &lt; <span style="color:#a6e22e">bucketCnt</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+			<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">tophash</span>[<span style="color:#a6e22e">i</span>] <span style="color:#f92672">!=</span> <span style="color:#a6e22e">top</span> {
+				<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">tophash</span>[<span style="color:#a6e22e">i</span>] <span style="color:#f92672">==</span> <span style="color:#a6e22e">emptyRest</span> {
+					<span style="color:#66d9ef">break</span> <span style="color:#a6e22e">bucketloop</span>
+				}
+				<span style="color:#66d9ef">continue</span>
+			}
+			<span style="color:#a6e22e">k</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span>(<span style="color:#a6e22e">b</span>), <span style="color:#a6e22e">dataOffset</span><span style="color:#f92672">+</span><span style="color:#a6e22e">i</span><span style="color:#f92672">*</span>uintptr(<span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">keysize</span>))
+			<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">indirectkey</span>() {
+				<span style="color:#a6e22e">k</span> = <span style="color:#f92672">*</span>((<span style="color:#f92672">*</span><span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span>)(<span style="color:#a6e22e">k</span>))
+			}
+			<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">alg</span>.<span style="color:#a6e22e">equal</span>(<span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">k</span>) {
+				<span style="color:#a6e22e">e</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span>(<span style="color:#a6e22e">b</span>), <span style="color:#a6e22e">dataOffset</span><span style="color:#f92672">+</span><span style="color:#a6e22e">bucketCnt</span><span style="color:#f92672">*</span>uintptr(<span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">keysize</span>)<span style="color:#f92672">+</span><span style="color:#a6e22e">i</span><span style="color:#f92672">*</span>uintptr(<span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">elemsize</span>))
+				<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">indirectelem</span>() {
+					<span style="color:#a6e22e">e</span> = <span style="color:#f92672">*</span>((<span style="color:#f92672">*</span><span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span>)(<span style="color:#a6e22e">e</span>))
+				}
+				<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">e</span>
+			}
+		}
+	}
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">zeroVal</span>[<span style="color:#ae81ff">0</span>])
+}
+
+
+</code></pre></div><p>.  字典的扩容</p>
+<p>扩容触发的函数：</p>
+<ol>
+<li>字典的写入</li>
+</ol>
+<p>在以上2个情况下都会触发grow,具体决定是否要扩容。
+具体的执行判断</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">
+	<span style="color:#75715e">// If we hit the max load factor or we have too many overflow buckets,
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">// and we&#39;re not already in the middle of growing, start growing.
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> !<span style="color:#a6e22e">h</span>.<span style="color:#a6e22e">growing</span>() <span style="color:#f92672">&amp;&amp;</span> (<span style="color:#a6e22e">overLoadFactor</span>(<span style="color:#a6e22e">h</span>.<span style="color:#a6e22e">count</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">h</span>.<span style="color:#a6e22e">B</span>) <span style="color:#f92672">||</span> <span style="color:#a6e22e">tooManyOverflowBuckets</span>(<span style="color:#a6e22e">h</span>.<span style="color:#a6e22e">noverflow</span>, <span style="color:#a6e22e">h</span>.<span style="color:#a6e22e">B</span>)) {
+		<span style="color:#a6e22e">hashGrow</span>(<span style="color:#a6e22e">t</span>, <span style="color:#a6e22e">h</span>)
+		<span style="color:#66d9ef">goto</span> <span style="color:#a6e22e">again</span> <span style="color:#75715e">// Growing the table invalidates everything, so try again
+</span><span style="color:#75715e"></span>	}
+
+</code></pre></div><p>runtime.mapassign 函数会在以下两种情况发生时触发哈希的扩容：</p>
+<ol>
+<li>装载因子已经超过 6.5；</li>
+<li>哈希使用了太多溢出桶；</li>
+</ol>
+<p>根据触发的条件不同扩容的方式分成两种，如果这次扩容是溢出的桶太多导致的，那么这次扩容就是等量扩容 sameSizeGrow，sameSizeGrow 是一种特殊情况下发生的扩容，当我们持续向哈希中插入数据并将它们全部删除时，如果哈希表中的数据量没有超过阈值，就会不断积累溢出桶造成缓慢的内存泄漏4。runtime: limit the number of map overflow buckets 引入了 sameSizeGrow 通过重用已有的哈希扩容机制，一旦哈希中出现了过多的溢出桶，它就会创建新桶保存数据，垃圾回收会清理老的溢出桶并释放内存</p>
+<h6 id="heading-5">引用</h6>
+<p><a href="https://draveness.me/golang/docs/part2-foundation/ch03-datastructure/golang-hashmap/#heading-8">https://draveness.me/golang/docs/part2-foundation/ch03-datastructure/golang-hashmap/#heading-8</a></p>
+<ul class="pa0">
+  
+   <li class="list">
+     <a href="/tags/golang" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">golang</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Related</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/golang/golang_sleep-deadlock/">asleep-deadlock!</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/golang/grpc-server/">grpc-server</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/golang/grpc-proto/">grpc 编码格式分析-ProtoBuffer</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/golang/defer/">golang defer 的一些总结</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/golang/golang-concurrency/">Go中并发控制</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/golang/golang-errors/">golang-errors</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/golang/gitlab-deploy-md/">gitlab-deploy.md</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/golang/go-benchmark/">go-Benchmark</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/golang/golang_sync_map/">go-sync-map</a>
+        </li>
+	    
+    </ul>
+</div>
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://dtest11.github.io/" >
+    &copy; 
+  </a>
+    <div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>
