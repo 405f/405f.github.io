@@ -3,7 +3,7 @@ name: GitHub Page Deploy
 on:
   push:
     branches:
-      - develop
+      - master
 jobs:
   build-deploy:
     runs-on: ubuntu-18.04
