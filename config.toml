@@ -28,4 +28,4 @@ theme = "vitae"
   [[menu.main]]
     identifier = "posts"
     name       = "posts"
-    url        = "https://github.com/dtest11/posts/"
+    url        = "https://dtest11.github.io/posts/"
