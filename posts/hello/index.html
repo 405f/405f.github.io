@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	
+	<meta name="generator" content="Hugo 0.61.0" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	
+	<meta property="og:title" content="hello">
+	
+	
+	<meta name="keywords" content="opentracing"><meta property="og:title" content="hello" />
+<meta property="og:description" content="主要特性  支持“标准”Markdown / CommonMark和Github风格的语法，也可变身为代码编辑器； 支持实时预览、图片（跨域）上传、预格式文本/代码/表格插入、代码折叠、搜索替换、只读模式、自定义样式主题和多语言语法高亮等功能； 支持ToC（Table of Contents）、Emoji表情、Task lists、@链接等Markdown扩展语法； 支持TeX科学公式（基于KaTeX）、流程图 Flowchart 和 时序图 Sequence Diagram; 支持识别和解析HTML标签，并且支持自定义过滤标签解析，具有可靠的安全性和几乎无限的扩展性； 支持 AMD / CMD 模块化加载（支持 Require.js &amp; Sea.js），并且支持自定义扩展插件； 兼容主流的浏览器（IE8&#43;）和Zepto.js，且支持iPad等平板设备； 支持自定义主题样式；  Editor.md 目录 (Table of Contents)
+[TOCM]
+[TOC]
+Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Heading 6 Heading 1 link Heading link Heading 2 link Heading link Heading 3 link Heading link Heading 4 link Heading link Heading link Heading link Heading 5 link Heading link Heading 6 link Heading link 标题（用底线的形式）Heading (underline) This is an H1 This is an H2 字符效果和横线等  删除线 删除线（开启识别HTML标签时）斜体字 斜体字 粗体 粗体 粗斜体 粗斜体" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://dtest11.github.io/posts/hello/" />
+<meta property="article:published_time" content="2020-03-01T11:59:55+00:00" />
+<meta property="article:modified_time" content="2020-03-01T11:59:55+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="hello"/>
+<meta name="twitter:description" content="主要特性  支持“标准”Markdown / CommonMark和Github风格的语法，也可变身为代码编辑器； 支持实时预览、图片（跨域）上传、预格式文本/代码/表格插入、代码折叠、搜索替换、只读模式、自定义样式主题和多语言语法高亮等功能； 支持ToC（Table of Contents）、Emoji表情、Task lists、@链接等Markdown扩展语法； 支持TeX科学公式（基于KaTeX）、流程图 Flowchart 和 时序图 Sequence Diagram; 支持识别和解析HTML标签，并且支持自定义过滤标签解析，具有可靠的安全性和几乎无限的扩展性； 支持 AMD / CMD 模块化加载（支持 Require.js &amp; Sea.js），并且支持自定义扩展插件； 兼容主流的浏览器（IE8&#43;）和Zepto.js，且支持iPad等平板设备； 支持自定义主题样式；  Editor.md 目录 (Table of Contents)
+[TOCM]
+[TOC]
+Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Heading 6 Heading 1 link Heading link Heading 2 link Heading link Heading 3 link Heading link Heading 4 link Heading link Heading link Heading link Heading 5 link Heading link Heading 6 link Heading link 标题（用底线的形式）Heading (underline) This is an H1 This is an H2 字符效果和横线等  删除线 删除线（开启识别HTML标签时）斜体字 斜体字 粗体 粗体 粗斜体 粗斜体"/>
+
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/all.css" />
+	<title>hello | hello</title>
+
+
+</head>
+<body><header>
+	
+	<div id="titletext"><h2 id="title"><a href="https://dtest11.github.io/">hello</a></h2></div>
+	<div id="title-description"><div id="social">
+			<nav>
+				<ul></ul>
+			</nav>
+		</div>
+	</div>
+	
+	<div id="mainmenu">
+		<nav>
+			<ul>
+				
+				<li><a href="https://github.com/dtest11/dtest11.github.io/">Check on github</a></li>
+				
+				<li><a href="https://dtest11.github.io/golang/">GO</a></li>
+				
+				<li><a href="https://dtest11.github.io/k8s/">k8s</a></li>
+				
+				<li><a href="https://dtest11.github.io/mysql/">mysql</a></li>
+				
+				<li><a href="https://dtest11.github.io/posts/">posts</a></li>
+				
+				<li><a href="https://dtest11.github.io/redis/">redis</a></li>
+				
+			</ul>
+		</nav>
+	</div>
+	
+</header>
+<main><div class="post">
+	
+	<div class="author">
+	
+	</div>
+	<div class="post-header">
+	
+		<div class="meta">
+			
+			<div class="date">
+				<span class="day">01</span>
+				<span class="rest">Mar 2020</span>
+			</div>
+			
+		</div>
+		
+		<div class="matter">
+			<h1 class="title">hello</h1>
+		</div>
+	</div>
+	<div class="markdown">
+		<h3 id="heading">主要特性</h3>
+<ul>
+<li>支持“标准”Markdown / CommonMark和Github风格的语法，也可变身为代码编辑器；</li>
+<li>支持实时预览、图片（跨域）上传、预格式文本/代码/表格插入、代码折叠、搜索替换、只读模式、自定义样式主题和多语言语法高亮等功能；</li>
+<li>支持ToC（Table of Contents）、Emoji表情、Task lists、@链接等Markdown扩展语法；</li>
+<li>支持TeX科学公式（基于KaTeX）、流程图 Flowchart 和 时序图 Sequence Diagram;</li>
+<li>支持识别和解析HTML标签，并且支持自定义过滤标签解析，具有可靠的安全性和几乎无限的扩展性；</li>
+<li>支持 AMD / CMD 模块化加载（支持 Require.js &amp; Sea.js），并且支持自定义扩展插件；</li>
+<li>兼容主流的浏览器（IE8+）和Zepto.js，且支持iPad等平板设备；</li>
+<li>支持自定义主题样式；</li>
+</ul>
+<h1 id="editormd">Editor.md</h1>
+<p><img src="https://pandao.github.io/editor.md/images/logos/editormd-logo-180x180.png" alt=""></p>
+<p><img src="https://img.shields.io/github/stars/pandao/editor.md.svg" alt=""> <img src="https://img.shields.io/github/forks/pandao/editor.md.svg" alt=""> <img src="https://img.shields.io/github/tag/pandao/editor.md.svg" alt=""> <img src="https://img.shields.io/github/release/pandao/editor.md.svg" alt=""> <img src="https://img.shields.io/github/issues/pandao/editor.md.svg" alt=""> <img src="https://img.shields.io/bower/v/editor.md.svg" alt=""></p>
+<p><strong>目录 (Table of Contents)</strong></p>
+<p>[TOCM]</p>
+<p>[TOC]</p>
+<h1 id="heading-1">Heading 1</h1>
+<h2 id="heading-2">Heading 2</h2>
+<h3 id="heading-3">Heading 3</h3>
+<h4 id="heading-4">Heading 4</h4>
+<h5 id="heading-5">Heading 5</h5>
+<h6 id="heading-6">Heading 6</h6>
+<h1 id="heading-1-link-heading-linkhttpsgithubcompandaoeditormd-heading-link">Heading 1 link <a href="https://github.com/pandao/editor.md" title="Heading link">Heading link</a></h1>
+<h2 id="heading-2-link-heading-linkhttpsgithubcompandaoeditormd-heading-link">Heading 2 link <a href="https://github.com/pandao/editor.md" title="Heading link">Heading link</a></h2>
+<h3 id="heading-3-link-heading-linkhttpsgithubcompandaoeditormd-heading-link">Heading 3 link <a href="https://github.com/pandao/editor.md" title="Heading link">Heading link</a></h3>
+<h4 id="heading-4-link-heading-linkhttpsgithubcompandaoeditormd-heading-link-heading-link-heading-linkhttpsgithubcompandaoeditormd-heading-link">Heading 4 link <a href="https://github.com/pandao/editor.md" title="Heading link">Heading link</a> Heading link <a href="https://github.com/pandao/editor.md" title="Heading link">Heading link</a></h4>
+<h5 id="heading-5-link-heading-linkhttpsgithubcompandaoeditormd-heading-link">Heading 5 link <a href="https://github.com/pandao/editor.md" title="Heading link">Heading link</a></h5>
+<h6 id="heading-6-link-heading-linkhttpsgithubcompandaoeditormd-heading-link">Heading 6 link <a href="https://github.com/pandao/editor.md" title="Heading link">Heading link</a></h6>
+<h4 id="heading-underline">标题（用底线的形式）Heading (underline)</h4>
+<h1 id="this-is-an-h1">This is an H1</h1>
+<h2 id="this-is-an-h2">This is an H2</h2>
+<h3 id="heading-7">字符效果和横线等</h3>
+<hr>
+<p><del>删除线</del> <!-- raw HTML omitted -->删除线（开启识别HTML标签时）<!-- raw HTML omitted -->
+<em>斜体字</em>      <em>斜体字</em>
+<strong>粗体</strong>  <strong>粗体</strong>
+<em><strong>粗斜体</strong></em> <em><strong>粗斜体</strong></em></p>
+<p>上标：X<!-- raw HTML omitted -->2<!-- raw HTML omitted -->，下标：O<!-- raw HTML omitted -->2<!-- raw HTML omitted --></p>
+<p><strong>缩写(同HTML的abbr标签)</strong></p>
+<blockquote>
+<p>即更长的单词或短语的缩写形式，前提是开启识别HTML标签时，已默认开启</p>
+</blockquote>
+<p>The <!-- raw HTML omitted -->HTML<!-- raw HTML omitted --> specification is maintained by the <!-- raw HTML omitted -->W3C<!-- raw HTML omitted -->.</p>
+<h3 id="-blockquotes">引用 Blockquotes</h3>
+<blockquote>
+<p>引用文本 Blockquotes</p>
+</blockquote>
+<p>引用的行内混合 Blockquotes</p>
+<blockquote>
+<p>引用：如果想要插入空白换行<code>即&lt;br /&gt;标签</code>，在插入处先键入两个以上的空格然后回车即可，<a href="http://localhost/">普通链接</a>。</p>
+</blockquote>
+<h3 id="-links">锚点与链接 Links</h3>
+<p><a href="http://localhost/">普通链接</a></p>
+<p><a href="http://localhost/" title="普通链接带标题">普通链接带标题</a></p>
+<p>直接链接：<a href="https://github.com">https://github.com</a></p>
+<p><a href="http://www.this-anchor-link.com/">锚点链接</a></p>
+<p>GFM a-tail link @pandao</p>
+<blockquote>
+<p>@pandao</p>
+</blockquote>
+<h3 id="-codes">多语言代码高亮 Codes</h3>
+<h4 id="-inline-code">行内代码 Inline code</h4>
+<p>执行命令：<code>npm install marked</code></p>
+<h4 id="heading-8">缩进风格</h4>
+<p>即缩进四个空格，也做为实现类似<code>&lt;pre&gt;</code>预格式化文本(Preformatted Text)的功能。</p>
+<pre><code>&lt;?php
+    echo &quot;Hello world!&quot;;
+?&gt;
+</code></pre>
+<p>预格式化文本：</p>
+<pre><code>| First Header  | Second Header |
+| ------------- | ------------- |
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |
+</code></pre>
+<h4 id="js">JS代码　</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">test</span>(){
+	<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Hello world!&#34;</span>);
+}
+ 
+(<span style="color:#66d9ef">function</span>(){
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">box</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(){
+        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">box</span>.<span style="color:#a6e22e">fn</span>.<span style="color:#a6e22e">init</span>();
+    };
+
+    <span style="color:#a6e22e">box</span>.<span style="color:#a6e22e">prototype</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">box</span>.<span style="color:#a6e22e">fn</span> <span style="color:#f92672">=</span> {
+        <span style="color:#a6e22e">init</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(){
+            <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;box.init()&#39;</span>);
+
+			<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>;
+        },
+
+		<span style="color:#a6e22e">add</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">str</span>){
+			<span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#34;add&#34;</span>, <span style="color:#a6e22e">str</span>);
+
+			<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>;
+		},
+
+		<span style="color:#a6e22e">remove</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">str</span>){
+			<span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#34;remove&#34;</span>, <span style="color:#a6e22e">str</span>);
+
+			<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>;
+		}
+    };
+    
+    <span style="color:#a6e22e">box</span>.<span style="color:#a6e22e">fn</span>.<span style="color:#a6e22e">init</span>.<span style="color:#a6e22e">prototype</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">box</span>.<span style="color:#a6e22e">fn</span>;
+    
+    window.<span style="color:#a6e22e">box</span> <span style="color:#f92672">=</span><span style="color:#a6e22e">box</span>;
+})();
+
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">testBox</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">box</span>();
+<span style="color:#a6e22e">testBox</span>.<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#34;jQuery&#34;</span>).<span style="color:#a6e22e">remove</span>(<span style="color:#e6db74">&#34;jQuery&#34;</span>);
+</code></pre></div><h4 id="html-html-codes">HTML代码 HTML codes</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+&lt;<span style="color:#f92672">html</span>&gt;
+    &lt;<span style="color:#f92672">head</span>&gt;
+        &lt;<span style="color:#f92672">mate</span> <span style="color:#a6e22e">charest</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;utf-8&#34;</span> /&gt;
+        &lt;<span style="color:#f92672">title</span>&gt;Hello world!&lt;/<span style="color:#f92672">title</span>&gt;
+    &lt;/<span style="color:#f92672">head</span>&gt;
+    &lt;<span style="color:#f92672">body</span>&gt;
+        &lt;<span style="color:#f92672">h1</span>&gt;Hello world!&lt;/<span style="color:#f92672">h1</span>&gt;
+    &lt;/<span style="color:#f92672">body</span>&gt;
+&lt;/<span style="color:#f92672">html</span>&gt;
+</code></pre></div><h3 id="-images">图片 Images</h3>
+<p>Image:</p>
+<p><img src="https://pandao.github.io/editor.md/examples/images/4.jpg" alt=""></p>
+<blockquote>
+<p>Follow your heart.</p>
+</blockquote>
+<p><img src="https://pandao.github.io/editor.md/examples/images/8.jpg" alt=""></p>
+<blockquote>
+<p>图为：厦门白城沙滩</p>
+</blockquote>
+<p>图片加链接 (Image + Link)：</p>
+<p><a href="https://pandao.github.io/editor.md/examples/images/7.jpg" title="李健首张专辑《似水流年》封面"><img src="https://pandao.github.io/editor.md/examples/images/7.jpg" alt=""></a></p>
+<blockquote>
+<p>图为：李健首张专辑《似水流年》封面</p>
+</blockquote>
+<hr>
+<h3 id="-lists">列表 Lists</h3>
+<h4 id="unordered-lists--">无序列表（减号）Unordered Lists (-)</h4>
+<ul>
+<li>列表一</li>
+<li>列表二</li>
+<li>列表三</li>
+</ul>
+<h4 id="unordered-lists-">无序列表（星号）Unordered Lists (*)</h4>
+<ul>
+<li>列表一</li>
+<li>列表二</li>
+<li>列表三</li>
+</ul>
+<h4 id="unordered-lists--1">无序列表（加号和嵌套）Unordered Lists (+)</h4>
+<ul>
+<li>列表一</li>
+<li>列表二
+<ul>
+<li>列表二-1</li>
+<li>列表二-2</li>
+<li>列表二-3</li>
+</ul>
+</li>
+<li>列表三
+<ul>
+<li>列表一</li>
+<li>列表二</li>
+<li>列表三</li>
+</ul>
+</li>
+</ul>
+<h4 id="-ordered-lists--">有序列表 Ordered Lists (-)</h4>
+<ol>
+<li>第一行</li>
+<li>第二行</li>
+<li>第三行</li>
+</ol>
+<h4 id="gfm-task-list">GFM task list</h4>
+<ul>
+<li><input checked="" disabled="" type="checkbox">GFM task list 1</li>
+<li><input checked="" disabled="" type="checkbox">GFM task list 2</li>
+<li><input disabled="" type="checkbox">GFM task list 3
+<ul>
+<li><input disabled="" type="checkbox">GFM task list 3-1</li>
+<li><input disabled="" type="checkbox">GFM task list 3-2</li>
+<li><input disabled="" type="checkbox">GFM task list 3-3</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox">GFM task list 4
+<ul>
+<li><input disabled="" type="checkbox">GFM task list 4-1</li>
+<li><input disabled="" type="checkbox">GFM task list 4-2</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="-tables">绘制表格 Tables</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th align="right">价格</th>
+<th align="center">数量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>计算机</td>
+<td align="right">$1600</td>
+<td align="center">5</td>
+</tr>
+<tr>
+<td>手机</td>
+<td align="right">$12</td>
+<td align="center">12</td>
+</tr>
+<tr>
+<td>管线</td>
+<td align="right">$1</td>
+<td align="center">234</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>First Header</th>
+<th>Second Header</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Content Cell</td>
+<td>Content Cell</td>
+</tr>
+<tr>
+<td>Content Cell</td>
+<td>Content Cell</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>First Header</th>
+<th>Second Header</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Content Cell</td>
+<td>Content Cell</td>
+</tr>
+<tr>
+<td>Content Cell</td>
+<td>Content Cell</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Function name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>help()</code></td>
+<td>Display the help window.</td>
+</tr>
+<tr>
+<td><code>destroy()</code></td>
+<td><strong>Destroy your computer!</strong></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th align="left">Left-Aligned</th>
+<th align="center">Center Aligned</th>
+<th align="right">Right Aligned</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">col 3 is</td>
+<td align="center">some wordy text</td>
+<td align="right">$1600</td>
+</tr>
+<tr>
+<td align="left">col 2 is</td>
+<td align="center">centered</td>
+<td align="right">$12</td>
+</tr>
+<tr>
+<td align="left">zebra stripes</td>
+<td align="center">are neat</td>
+<td align="right">$1</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th align="right">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Computer</td>
+<td align="right">$1600</td>
+</tr>
+<tr>
+<td>Phone</td>
+<td align="right">$12</td>
+</tr>
+<tr>
+<td>Pipe</td>
+<td align="right">$1</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h4 id="-html-entities-codes">特殊符号 HTML Entities Codes</h4>
+<p>© &amp;  ¨ ™ ¡ £
+&amp; &lt; &gt; ¥ € ® ± ¶ § ¦ ¯ « ·</p>
+<p>X² Y³ ¾ ¼  ×  ÷   »</p>
+<p>18ºC  &quot;  '</p>
+<h3 id="emoji-smiley">Emoji表情 :smiley:</h3>
+<blockquote>
+<p>Blockquotes :star:</p>
+</blockquote>
+<h4 id="gfm-task-lists--emoji--fontawesome-icon-emoji--editormd-logo-emoji-editormd-logo-5x">GFM task lists &amp; Emoji &amp; fontAwesome icon emoji &amp; editormd logo emoji :editormd-logo-5x:</h4>
+<ul>
+<li><input checked="" disabled="" type="checkbox">:smiley: @mentions, :smiley: #refs, <a href="">links</a>, <strong>formatting</strong>, and <!-- raw HTML omitted -->tags<!-- raw HTML omitted --> supported :editormd-logo:;</li>
+<li><input checked="" disabled="" type="checkbox">list syntax required (any unordered or ordered list supported) :editormd-logo-3x:;</li>
+<li><input checked="" disabled="" type="checkbox"><input disabled="" type="checkbox">:smiley: this is a complete item :smiley:;</li>
+<li><input disabled="" type="checkbox">[]this is an incomplete item <a href="#">test link</a> :fa-star: @pandao;</li>
+<li><input disabled="" type="checkbox"><input disabled="" type="checkbox">this is an incomplete item :fa-star: :fa-gear:;
+<ul>
+<li><input disabled="" type="checkbox">:smiley: this is an incomplete item <a href="#">test link</a> :fa-star: :fa-gear:;</li>
+<li><input disabled="" type="checkbox">:smiley: this is  :fa-star: :fa-gear: an incomplete item <a href="#">test link</a>;</li>
+</ul>
+</li>
+</ul>
+<h4 id="-escape">反斜杠 Escape</h4>
+<p>*literal asterisks*</p>
+<h3 id="-texkatex">科学公式 TeX(KaTeX)</h3>
+<p>$$E=mc^2$$</p>
+<p>行内的公式$$E=mc^2$$行内的公式，行内的$$E=mc^2$$公式。</p>
+<p>$$(\sqrt{3x-1}+(1+x)^2)$$</p>
+<p>$$\sin(\alpha)^{\theta}=\sum_{i=0}^{n}(x^i + \cos(f))$$</p>
+<p>多行公式：</p>
+<pre><code class="language-math" data-lang="math">\displaystyle
+\left( \sum\_{k=1}^n a\_k b\_k \right)^2
+\leq
+\left( \sum\_{k=1}^n a\_k^2 \right)
+\left( \sum\_{k=1}^n b\_k^2 \right)
+</code></pre><pre><code class="language-katex" data-lang="katex">\displaystyle 
+    \frac{1}{
+        \Bigl(\sqrt{\phi \sqrt{5}}-\phi\Bigr) e^{
+        \frac25 \pi}} = 1+\frac{e^{-2\pi}} {1+\frac{e^{-4\pi}} {
+        1+\frac{e^{-6\pi}}
+        {1+\frac{e^{-8\pi}}
+         {1+\cdots} }
+        } 
+    }
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-latex" data-lang="latex">f(x) = <span style="color:#66d9ef">\int</span>_{-<span style="color:#66d9ef">\infty</span>}^<span style="color:#66d9ef">\infty</span>
+    <span style="color:#66d9ef">\hat</span> f(<span style="color:#66d9ef">\xi</span>)<span style="color:#66d9ef">\,</span>e^{2 <span style="color:#66d9ef">\pi</span> i <span style="color:#66d9ef">\xi</span> x}
+    <span style="color:#66d9ef">\,</span>d<span style="color:#66d9ef">\xi</span>
+</code></pre></div><h3 id="-flowchart">绘制流程图 Flowchart</h3>
+<pre><code class="language-flow" data-lang="flow">st=&gt;start: 用户登陆
+op=&gt;operation: 登陆操作
+cond=&gt;condition: 登陆成功 Yes or No?
+e=&gt;end: 进入后台
+
+st-&gt;op-&gt;cond
+cond(yes)-&gt;e
+cond(no)-&gt;op
+</code></pre><h3 id="-sequence-diagram">绘制序列图 Sequence Diagram</h3>
+<pre><code class="language-seq" data-lang="seq">Andrew-&gt;China: Says Hello 
+Note right of China: China thinks\nabout it 
+China--&gt;Andrew: How are you? 
+Andrew-&gt;&gt;China: I am good thanks!
+</code></pre><h3 id="end">End</h3>
+
+	</div>
+	
+	
+	
+	
+	
+		
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Tags</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="/tags/opentracing/"> opentracing </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+		
+	</div></div>
+
+  </main>
+
+
+
+
+
+</body>
+</html>

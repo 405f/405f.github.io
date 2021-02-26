@@ -53,6 +53,11 @@
   </url>
   
   <url>
+    <loc>https://dtest11.github.io/posts/hello/</loc>
+    <lastmod>2020-03-01T11:59:55+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://dtest11.github.io/tags/opentracing/</loc>
     <lastmod>2020-03-01T11:59:55+00:00</lastmod>
   </url>
