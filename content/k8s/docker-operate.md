@@ -25,3 +25,15 @@ docker rm $(docker ps -a -q)
 ```
 docker volume prune
 ```
+
+## without sudo
+```bash
+   newgrp docker  
+   sudo groupadd docker
+   docker run hello-world
+   sudo usermod -aG docker ${USER}
+   docker run hello-world
+   sudo systemctl restart docker
+   docker run hello-world
+
+```
