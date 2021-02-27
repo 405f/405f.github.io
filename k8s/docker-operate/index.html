@@ -10,14 +10,14 @@
 	
 	
 	<meta name="keywords" content="k8s"><meta property="og:title" content="docker-operate" />
-<meta property="og:description" content="停止所有的container docker stop $(docker ps -q) 清除 所有的docker container docker rm $(docker ps -a -q) 清除 所有的磁盘挂载 docker volume prune " />
+<meta property="og:description" content="停止所有的container docker stop $(docker ps -q) 清除 所有的docker container docker rm $(docker ps -a -q) 清除 所有的磁盘挂载 docker volume prune without sudo newgrp docker sudo groupadd docker docker run hello-world sudo usermod -aG docker ${USER} docker run hello-world sudo systemctl restart docker docker run hello-world " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://dtest11.github.io/k8s/docker-operate/" />
 <meta property="article:published_time" content="2020-01-04T14:53:27+00:00" />
 <meta property="article:modified_time" content="2020-01-04T14:53:27+00:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="docker-operate"/>
-<meta name="twitter:description" content="停止所有的container docker stop $(docker ps -q) 清除 所有的docker container docker rm $(docker ps -a -q) 清除 所有的磁盘挂载 docker volume prune "/>
+<meta name="twitter:description" content="停止所有的container docker stop $(docker ps -q) 清除 所有的docker container docker rm $(docker ps -a -q) 清除 所有的磁盘挂载 docker volume prune without sudo newgrp docker sudo groupadd docker docker run hello-world sudo usermod -aG docker ${USER} docker run hello-world sudo systemctl restart docker docker run hello-world "/>
 
 	<link rel="stylesheet" type="text/css" media="screen" href="/css/normalize.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
@@ -86,7 +86,16 @@
 
 </code></pre><h2 id="-">清除 所有的磁盘挂载</h2>
 <pre><code>docker volume prune
-</code></pre>
+</code></pre><h2 id="without-sudo">without sudo</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">   newgrp docker  
+   sudo groupadd docker
+   docker run hello-world
+   sudo usermod -aG docker <span style="color:#e6db74">${</span>USER<span style="color:#e6db74">}</span>
+   docker run hello-world
+   sudo systemctl restart docker
+   docker run hello-world
+
+</code></pre></div>
 	</div>
 	
 	
