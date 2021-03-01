@@ -7,19 +7,19 @@ theme = "vitae"
   [[menu.main]]
     identifier = "go"
     name       = "GO"
-    url        = "https://dtest11.github.io/golang/"
+    url        = "/golang/"
   [[menu.main]]
     identifier = "k8s"
     name       = "k8s"
-    url        = "https://dtest11.github.io/k8s/"
+    url        = "/k8s/"
   [[menu.main]]
     identifier = "mysql"
     name       = "mysql"
-    url        = "https://dtest11.github.io/mysql/"
+    url        = "/mysql/"
   [[menu.main]]
     identifier = "redis"
     name       = "redis"
-    url        = "https://dtest11.github.io/redis/"
+    url        = "/redis/"
   [[menu.main]]
     identifier = "git"
     name       = "Check on github"
@@ -28,4 +28,4 @@ theme = "vitae"
   [[menu.main]]
     identifier = "posts"
     name       = "posts"
-    url        = "https://dtest11.github.io/posts/"
+    url        = "/posts/"
