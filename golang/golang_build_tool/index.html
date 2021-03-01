@@ -13,7 +13,7 @@
 <meta property="og:description" content="Build   compile packages and dependencies 定义
   src/cmd/go/main.go 直接引入work 包 import by 
   这个包暴露了 基本的内置命令
-func init() { base.Go.Commands = []*base.Command{ bug.CmdBug, work.CmdBuild, clean.CmdClean, doc.CmdDoc, envcmd.CmdEnv, fix.CmdFix, fmtcmd.CmdFmt, generate.CmdGenerate, modget.CmdGet, work.CmdInstall, list.CmdList, modcmd.CmdMod, run.CmdRun, test.CmdTest, tool.CmdTool, version.CmdVersion, vet.CmdVet, help.HelpBuildConstraint, help.HelpBuildmode, help.HelpC, help.HelpCache, help.HelpEnvironment, help.HelpFileType, modload.HelpGoMod, help.HelpGopath, get.HelpGopathGet, modfetch.HelpGoproxy, help.HelpImportPath, modload.HelpModules, modget.HelpModuleGet, modfetch.HelpModuleAuth, help.HelpPackages, modfetch.HelpPrivate, test.HelpTestflag, test.HelpTestfunc, modget.HelpVCS, } } " />
+func init() { base.Go.Commands = []*base.Command{ bug.CmdBug, work.CmdBuild, clean.CmdClean, doc.CmdDoc, envcmd.CmdEnv, fix.CmdFix, fmtcmd.CmdFmt, generate.CmdGenerate, modget.CmdGet, work.CmdInstall, list.CmdList, modcmd.CmdMod, run.CmdRun, test.CmdTest, tool.CmdTool, version.CmdVersion, vet.CmdVet, help.HelpBuildConstraint, help.HelpBuildmode, help.HelpC, help.HelpCache, help.HelpEnvironment, help.HelpFileType, modload.HelpGoMod, help.HelpGopath, get.HelpGopathGet, modfetch.HelpGoproxy, help.HelpImportPath, modload.HelpModules, modget.HelpModuleGet, modfetch.HelpModuleAuth, help.HelpPackages, modfetch.HelpPrivate, test.HelpTestflag, test.HelpTestfunc, modget.HelpVCS, } } 具体实现  runBuild  func runBuild(ctx context." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://dtest11.github.io/golang/golang_build_tool/" />
 <meta property="article:published_time" content="2021-03-01T14:11:18+08:00" />
@@ -23,7 +23,7 @@ func init() { base.Go.Commands = []*base.Command{ bug.CmdBug, work.CmdBuild, cle
 <meta name="twitter:description" content="Build   compile packages and dependencies 定义
   src/cmd/go/main.go 直接引入work 包 import by 
   这个包暴露了 基本的内置命令
-func init() { base.Go.Commands = []*base.Command{ bug.CmdBug, work.CmdBuild, clean.CmdClean, doc.CmdDoc, envcmd.CmdEnv, fix.CmdFix, fmtcmd.CmdFmt, generate.CmdGenerate, modget.CmdGet, work.CmdInstall, list.CmdList, modcmd.CmdMod, run.CmdRun, test.CmdTest, tool.CmdTool, version.CmdVersion, vet.CmdVet, help.HelpBuildConstraint, help.HelpBuildmode, help.HelpC, help.HelpCache, help.HelpEnvironment, help.HelpFileType, modload.HelpGoMod, help.HelpGopath, get.HelpGopathGet, modfetch.HelpGoproxy, help.HelpImportPath, modload.HelpModules, modget.HelpModuleGet, modfetch.HelpModuleAuth, help.HelpPackages, modfetch.HelpPrivate, test.HelpTestflag, test.HelpTestfunc, modget.HelpVCS, } } "/>
+func init() { base.Go.Commands = []*base.Command{ bug.CmdBug, work.CmdBuild, clean.CmdClean, doc.CmdDoc, envcmd.CmdEnv, fix.CmdFix, fmtcmd.CmdFmt, generate.CmdGenerate, modget.CmdGet, work.CmdInstall, list.CmdList, modcmd.CmdMod, run.CmdRun, test.CmdTest, tool.CmdTool, version.CmdVersion, vet.CmdVet, help.HelpBuildConstraint, help.HelpBuildmode, help.HelpC, help.HelpCache, help.HelpEnvironment, help.HelpFileType, modload.HelpGoMod, help.HelpGopath, get.HelpGopathGet, modfetch.HelpGoproxy, help.HelpImportPath, modload.HelpModules, modget.HelpModuleGet, modfetch.HelpModuleAuth, help.HelpPackages, modfetch.HelpPrivate, test.HelpTestflag, test.HelpTestfunc, modget.HelpVCS, } } 具体实现  runBuild  func runBuild(ctx context."/>
 
 	<link rel="stylesheet" type="text/css" media="screen" href="/css/normalize.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
@@ -137,6 +137,108 @@ func init() { base.Go.Commands = []*base.Command{ bug.CmdBug, work.CmdBuild, cle
 		<span style="color:#a6e22e">modget</span>.<span style="color:#a6e22e">HelpVCS</span>,
 	}
 }
+
+</code></pre></div><h2 id="heading">具体实现</h2>
+<ul>
+<li>runBuild</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">runBuild</span>(<span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>, <span style="color:#a6e22e">cmd</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">base</span>.<span style="color:#a6e22e">Command</span>, <span style="color:#a6e22e">args</span> []<span style="color:#66d9ef">string</span>) {
+	<span style="color:#a6e22e">BuildInit</span>() <span style="color:#75715e">// 检查go mod 是否激活, 设置输出的模式 可执行文件,还是共享库,检查go env, CC, CXX 是否设置
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">b</span> <span style="color:#a6e22e">Builder</span>
+	<span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">Init</span>()
+
+	<span style="color:#a6e22e">pkgs</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">load</span>.<span style="color:#a6e22e">PackagesAndErrors</span>(<span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">args</span>) <span style="color:#75715e">// 根据参数 加载Package, 返回Package 列表
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">load</span>.<span style="color:#a6e22e">CheckPackageErrors</span>(<span style="color:#a6e22e">pkgs</span>)
+
+	<span style="color:#a6e22e">explicitO</span> <span style="color:#f92672">:=</span> len(<span style="color:#a6e22e">cfg</span>.<span style="color:#a6e22e">BuildO</span>) &gt; <span style="color:#ae81ff">0</span>
+
+	<span style="color:#66d9ef">if</span> len(<span style="color:#a6e22e">pkgs</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">pkgs</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">Name</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;main&#34;</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">cfg</span>.<span style="color:#a6e22e">BuildO</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;&#34;</span> {
+		<span style="color:#a6e22e">cfg</span>.<span style="color:#a6e22e">BuildO</span> = <span style="color:#a6e22e">pkgs</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">DefaultExecName</span>()
+		<span style="color:#a6e22e">cfg</span>.<span style="color:#a6e22e">BuildO</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">cfg</span>.<span style="color:#a6e22e">ExeSuffix</span>
+	}
+
+	<span style="color:#75715e">// sanity check some often mis-used options
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">switch</span> <span style="color:#a6e22e">cfg</span>.<span style="color:#a6e22e">BuildContext</span>.<span style="color:#a6e22e">Compiler</span> {
+	<span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;gccgo&#34;</span>:
+		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">load</span>.<span style="color:#a6e22e">BuildGcflags</span>.<span style="color:#a6e22e">Present</span>() {
+			<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;go build: when using gccgo toolchain, please pass compiler flags using -gccgoflags, not -gcflags&#34;</span>)
+		}
+		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">load</span>.<span style="color:#a6e22e">BuildLdflags</span>.<span style="color:#a6e22e">Present</span>() {
+			<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;go build: when using gccgo toolchain, please pass linker flags using -gccgoflags, not -ldflags&#34;</span>)
+		}
+	<span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;gc&#34;</span>:
+		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">load</span>.<span style="color:#a6e22e">BuildGccgoflags</span>.<span style="color:#a6e22e">Present</span>() {
+			<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;go build: when using gc toolchain, please pass compile flags using -gcflags, and linker flags using -ldflags&#34;</span>)
+		}
+	}
+
+	<span style="color:#a6e22e">depMode</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">ModeBuild</span>
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">cfg</span>.<span style="color:#a6e22e">BuildI</span> {
+		<span style="color:#a6e22e">depMode</span> = <span style="color:#a6e22e">ModeInstall</span>
+		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Fprint</span>(<span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Stderr</span>, <span style="color:#e6db74">&#34;go build: -i flag is deprecated\n&#34;</span>)
+	}
+
+	<span style="color:#a6e22e">pkgs</span> = <span style="color:#a6e22e">omitTestOnly</span>(<span style="color:#a6e22e">pkgsFilter</span>(<span style="color:#a6e22e">pkgs</span>))
+
+	<span style="color:#75715e">// Special case -o /dev/null by not writing at all.
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">cfg</span>.<span style="color:#a6e22e">BuildO</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">DevNull</span> {
+		<span style="color:#a6e22e">cfg</span>.<span style="color:#a6e22e">BuildO</span> = <span style="color:#e6db74">&#34;&#34;</span>
+	}
+
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">cfg</span>.<span style="color:#a6e22e">BuildO</span> <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#34;&#34;</span> {
+		<span style="color:#75715e">// If the -o name exists and is a directory or
+</span><span style="color:#75715e"></span>		<span style="color:#75715e">// ends with a slash or backslash, then
+</span><span style="color:#75715e"></span>		<span style="color:#75715e">// write all main packages to that directory.
+</span><span style="color:#75715e"></span>		<span style="color:#75715e">// Otherwise require only a single package be built.
+</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">fi</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Stat</span>(<span style="color:#a6e22e">cfg</span>.<span style="color:#a6e22e">BuildO</span>); (<span style="color:#a6e22e">err</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">fi</span>.<span style="color:#a6e22e">IsDir</span>()) <span style="color:#f92672">||</span>
+			<span style="color:#a6e22e">strings</span>.<span style="color:#a6e22e">HasSuffix</span>(<span style="color:#a6e22e">cfg</span>.<span style="color:#a6e22e">BuildO</span>, <span style="color:#e6db74">&#34;/&#34;</span>) <span style="color:#f92672">||</span>
+			<span style="color:#a6e22e">strings</span>.<span style="color:#a6e22e">HasSuffix</span>(<span style="color:#a6e22e">cfg</span>.<span style="color:#a6e22e">BuildO</span>, string(<span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">PathSeparator</span>)) {
+			<span style="color:#66d9ef">if</span> !<span style="color:#a6e22e">explicitO</span> {
+				<span style="color:#a6e22e">base</span>.<span style="color:#a6e22e">Fatalf</span>(<span style="color:#e6db74">&#34;go build: build output %q already exists and is a directory&#34;</span>, <span style="color:#a6e22e">cfg</span>.<span style="color:#a6e22e">BuildO</span>)
+			}
+			<span style="color:#a6e22e">a</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">Action</span>{<span style="color:#a6e22e">Mode</span>: <span style="color:#e6db74">&#34;go build&#34;</span>}
+			<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">p</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">pkgs</span> {
+				<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">Name</span> <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#34;main&#34;</span> {
+					<span style="color:#66d9ef">continue</span>
+				}
+
+				<span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">Target</span> = <span style="color:#a6e22e">filepath</span>.<span style="color:#a6e22e">Join</span>(<span style="color:#a6e22e">cfg</span>.<span style="color:#a6e22e">BuildO</span>, <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">DefaultExecName</span>())
+				<span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">Target</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">cfg</span>.<span style="color:#a6e22e">ExeSuffix</span>
+				<span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">Stale</span> = <span style="color:#66d9ef">true</span>
+				<span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">StaleReason</span> = <span style="color:#e6db74">&#34;build -o flag in use&#34;</span>
+				<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">Deps</span> = append(<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">Deps</span>, <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">AutoAction</span>(<span style="color:#a6e22e">ModeInstall</span>, <span style="color:#a6e22e">depMode</span>, <span style="color:#a6e22e">p</span>))
+			}
+			<span style="color:#66d9ef">if</span> len(<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">Deps</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+				<span style="color:#a6e22e">base</span>.<span style="color:#a6e22e">Fatalf</span>(<span style="color:#e6db74">&#34;go build: no main packages to build&#34;</span>)
+			}
+			<span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">Do</span>(<span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">a</span>)
+			<span style="color:#66d9ef">return</span>
+		}
+		<span style="color:#66d9ef">if</span> len(<span style="color:#a6e22e">pkgs</span>) &gt; <span style="color:#ae81ff">1</span> {
+			<span style="color:#a6e22e">base</span>.<span style="color:#a6e22e">Fatalf</span>(<span style="color:#e6db74">&#34;go build: cannot write multiple packages to non-directory %s&#34;</span>, <span style="color:#a6e22e">cfg</span>.<span style="color:#a6e22e">BuildO</span>)
+		} <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> len(<span style="color:#a6e22e">pkgs</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+			<span style="color:#a6e22e">base</span>.<span style="color:#a6e22e">Fatalf</span>(<span style="color:#e6db74">&#34;no packages to build&#34;</span>)
+		}
+		<span style="color:#a6e22e">p</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">pkgs</span>[<span style="color:#ae81ff">0</span>]
+		<span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">Target</span> = <span style="color:#a6e22e">cfg</span>.<span style="color:#a6e22e">BuildO</span>
+		<span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">Stale</span> = <span style="color:#66d9ef">true</span> <span style="color:#75715e">// must build - not up to date
+</span><span style="color:#75715e"></span>		<span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">StaleReason</span> = <span style="color:#e6db74">&#34;build -o flag in use&#34;</span>
+		<span style="color:#a6e22e">a</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">AutoAction</span>(<span style="color:#a6e22e">ModeInstall</span>, <span style="color:#a6e22e">depMode</span>, <span style="color:#a6e22e">p</span>)
+		<span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">Do</span>(<span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">a</span>)
+		<span style="color:#66d9ef">return</span>
+	}
+
+	<span style="color:#a6e22e">a</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">Action</span>{<span style="color:#a6e22e">Mode</span>: <span style="color:#e6db74">&#34;go build&#34;</span>}
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">p</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">pkgs</span> {
+		<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">Deps</span> = append(<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">Deps</span>, <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">AutoAction</span>(<span style="color:#a6e22e">ModeBuild</span>, <span style="color:#a6e22e">depMode</span>, <span style="color:#a6e22e">p</span>))
+	}
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">cfg</span>.<span style="color:#a6e22e">BuildBuildmode</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;shared&#34;</span> {
+		<span style="color:#a6e22e">a</span> = <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">buildmodeShared</span>(<span style="color:#a6e22e">ModeBuild</span>, <span style="color:#a6e22e">depMode</span>, <span style="color:#a6e22e">args</span>, <span style="color:#a6e22e">pkgs</span>, <span style="color:#a6e22e">a</span>)
+	}
+	<span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">Do</span>(<span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">a</span>)
+}
+
 
 </code></pre></div>
 	</div>
