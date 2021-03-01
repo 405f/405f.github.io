@@ -6,10 +6,25 @@
 		<description>Recent content in golang on dtest11.github.io</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
-		<lastBuildDate>Fri, 28 Feb 2020 10:42:55 +0000</lastBuildDate>
+		<lastBuildDate>Mon, 01 Mar 2021 14:11:18 +0800</lastBuildDate>
 		
 		<atom:link href="https://dtest11.github.io/tags/golang/index.xml" rel="self" type="application/rss+xml" />
 		
+		<item>
+			<title>Golang_build_tool</title>
+			<link>https://dtest11.github.io/golang/golang_build_tool/</link>
+			<pubDate>Mon, 01 Mar 2021 14:11:18 +0800</pubDate>
+			
+			<guid>https://dtest11.github.io/golang/golang_build_tool/</guid>
+			<description>
+			
+				Build   compile packages and dependencies 定义
+  src/cmd/go/main.go 直接引入work 包 import by 
+  这个包暴露了 基本的内置命令
+func init() { base.Go.Commands = …
+			
+			</description>
+		</item>
 		<item>
 			<title>go-1.14-release-note</title>
 			<link>https://dtest11.github.io/golang/go-1-14-release-not/</link>
@@ -54,10 +69,10 @@ fatal error: all goroutines are asleep - deadlock! deaklock 的定义 A deadlock
 		</item>
 		<item>
 			<title>grpc-server</title>
-			<link>https://dtest11.github.io/golang/grpc-server/</link>
+			<link>https://dtest11.github.io/grpc/grpc-server/</link>
 			<pubDate>Sat, 08 Feb 2020 16:40:52 +0000</pubDate>
 			
-			<guid>https://dtest11.github.io/golang/grpc-server/</guid>
+			<guid>https://dtest11.github.io/grpc/grpc-server/</guid>
 			<description>
 			
 				grpc server 的源码分析 grpc 的server 是处理http 链接的入口， client 传递的数据最终都是被传递到了server 端
@@ -67,10 +82,10 @@ func main() { lis, err := net.Listen("tcp", port) if err != nil …
 		</item>
 		<item>
 			<title>grpc 编码格式分析-ProtoBuffer</title>
-			<link>https://dtest11.github.io/golang/grpc-proto/</link>
+			<link>https://dtest11.github.io/grpc/grpc-proto/</link>
 			<pubDate>Fri, 07 Feb 2020 16:16:25 +0000</pubDate>
 			
-			<guid>https://dtest11.github.io/golang/grpc-proto/</guid>
+			<guid>https://dtest11.github.io/grpc/grpc-proto/</guid>
 			<description>
 			
 				grpc ProtoBuffer 性能高的原因 代码里的对象基本分两类，一类的长度是固定的，比如 int32 占用 32 比特，double 占用 64 比特；另一类的长度是变化的，比如字符串。所以，在设计编码的时候， 首先就得区分这两种情况。最简单的办法就是用一个字节表示类型， …

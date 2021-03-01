@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Grpcs on hello</title>
+		<link>https://dtest11.github.io/grpc/</link>
+		<description>Recent content in Grpcs on dtest11.github.io</description>
+		<generator>Hugo -- gohugo.io</generator>
+		<language>en-us</language>
+		<lastBuildDate>Sat, 08 Feb 2020 16:40:52 +0000</lastBuildDate>
+		
+		<atom:link href="https://dtest11.github.io/grpc/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>grpc-server</title>
+			<link>https://dtest11.github.io/grpc/grpc-server/</link>
+			<pubDate>Sat, 08 Feb 2020 16:40:52 +0000</pubDate>
+			
+			<guid>https://dtest11.github.io/grpc/grpc-server/</guid>
+			<description>
+			
+				grpc server 的源码分析 grpc 的server 是处理http 链接的入口， client 传递的数据最终都是被传递到了server 端
+func main() { lis, err := net.Listen("tcp", port) if err != nil …
+			
+			</description>
+		</item>
+		<item>
+			<title>grpc 编码格式分析-ProtoBuffer</title>
+			<link>https://dtest11.github.io/grpc/grpc-proto/</link>
+			<pubDate>Fri, 07 Feb 2020 16:16:25 +0000</pubDate>
+			
+			<guid>https://dtest11.github.io/grpc/grpc-proto/</guid>
+			<description>
+			
+				grpc ProtoBuffer 性能高的原因 代码里的对象基本分两类，一类的长度是固定的，比如 int32 占用 32 比特，double 占用 64 比特；另一类的长度是变化的，比如字符串。所以，在设计编码的时候， 首先就得区分这两种情况。最简单的办法就是用一个字节表示类型， …
+			
+			</description>
+		</item>
+		
+	</channel>
+</rss>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	
+	<meta name="generator" content="Hugo 0.61.0" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	
+	<meta property="og:title" content="Golang_build_tool">
+	
+	
+	<meta name="keywords" content="golang"><meta property="og:title" content="Golang_build_tool" />
+<meta property="og:description" content="Build   compile packages and dependencies 定义
+  src/cmd/go/main.go 直接引入work 包 import by 
+  这个包暴露了 基本的内置命令
+func init() { base.Go.Commands = []*base.Command{ bug.CmdBug, work.CmdBuild, clean.CmdClean, doc.CmdDoc, envcmd.CmdEnv, fix.CmdFix, fmtcmd.CmdFmt, generate.CmdGenerate, modget.CmdGet, work.CmdInstall, list.CmdList, modcmd.CmdMod, run.CmdRun, test.CmdTest, tool.CmdTool, version.CmdVersion, vet.CmdVet, help.HelpBuildConstraint, help.HelpBuildmode, help.HelpC, help.HelpCache, help.HelpEnvironment, help.HelpFileType, modload.HelpGoMod, help.HelpGopath, get.HelpGopathGet, modfetch.HelpGoproxy, help.HelpImportPath, modload.HelpModules, modget.HelpModuleGet, modfetch.HelpModuleAuth, help.HelpPackages, modfetch.HelpPrivate, test.HelpTestflag, test.HelpTestfunc, modget.HelpVCS, } } " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://dtest11.github.io/golang/golang_build_tool/" />
+<meta property="article:published_time" content="2021-03-01T14:11:18+08:00" />
+<meta property="article:modified_time" content="2021-03-01T14:11:18+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Golang_build_tool"/>
+<meta name="twitter:description" content="Build   compile packages and dependencies 定义
+  src/cmd/go/main.go 直接引入work 包 import by 
+  这个包暴露了 基本的内置命令
+func init() { base.Go.Commands = []*base.Command{ bug.CmdBug, work.CmdBuild, clean.CmdClean, doc.CmdDoc, envcmd.CmdEnv, fix.CmdFix, fmtcmd.CmdFmt, generate.CmdGenerate, modget.CmdGet, work.CmdInstall, list.CmdList, modcmd.CmdMod, run.CmdRun, test.CmdTest, tool.CmdTool, version.CmdVersion, vet.CmdVet, help.HelpBuildConstraint, help.HelpBuildmode, help.HelpC, help.HelpCache, help.HelpEnvironment, help.HelpFileType, modload.HelpGoMod, help.HelpGopath, get.HelpGopathGet, modfetch.HelpGoproxy, help.HelpImportPath, modload.HelpModules, modget.HelpModuleGet, modfetch.HelpModuleAuth, help.HelpPackages, modfetch.HelpPrivate, test.HelpTestflag, test.HelpTestfunc, modget.HelpVCS, } } "/>
+
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/all.css" />
+	<title>Golang_build_tool | hello</title>
+
+
+</head>
+<body><header>
+	
+	<div id="titletext"><h2 id="title"><a href="https://dtest11.github.io/">hello</a></h2></div>
+	<div id="title-description"><div id="social">
+			<nav>
+				<ul></ul>
+			</nav>
+		</div>
+	</div>
+	
+	<div id="mainmenu">
+		<nav>
+			<ul>
+				
+				<li><a href="https://github.com/dtest11/dtest11.github.io/">Check on github</a></li>
+				
+				<li><a href="/golang/">GO</a></li>
+				
+				<li><a href="/k8s/">k8s</a></li>
+				
+				<li><a href="/mysql/">mysql</a></li>
+				
+				<li><a href="/posts/">posts</a></li>
+				
+				<li><a href="/redis/">redis</a></li>
+				
+			</ul>
+		</nav>
+	</div>
+	
+</header>
+<main><div class="post">
+	
+	<div class="author">
+	
+	</div>
+	<div class="post-header">
+	
+		<div class="meta">
+			
+			<div class="date">
+				<span class="day">01</span>
+				<span class="rest">Mar 2021</span>
+			</div>
+			
+		</div>
+		
+		<div class="matter">
+			<h1 class="title">Golang_build_tool</h1>
+		</div>
+	</div>
+	<div class="markdown">
+		<h2 id="build">Build</h2>
+<ul>
+<li>
+<p>compile packages and dependencies
+<a href="https://github.com/golang/go/blob/5ff7ec98b7727b3641df25200345b1aa50b6ff35/src/cmd/go/internal/work/build.go#L33">定义</a></p>
+</li>
+<li>
+<p>src/cmd/go/main.go 直接引入work 包
+<a href="https://github.com/golang/go/blob/5ff7ec98b7727b3641df25200345b1aa50b6ff35/src/cmd/go/main.go">import by </a></p>
+</li>
+</ul>
+<p>这个包暴露了 基本的内置命令</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">init</span>() {
+	<span style="color:#a6e22e">base</span>.<span style="color:#a6e22e">Go</span>.<span style="color:#a6e22e">Commands</span> = []<span style="color:#f92672">*</span><span style="color:#a6e22e">base</span>.<span style="color:#a6e22e">Command</span>{
+		<span style="color:#a6e22e">bug</span>.<span style="color:#a6e22e">CmdBug</span>,
+		<span style="color:#a6e22e">work</span>.<span style="color:#a6e22e">CmdBuild</span>,
+		<span style="color:#a6e22e">clean</span>.<span style="color:#a6e22e">CmdClean</span>,
+		<span style="color:#a6e22e">doc</span>.<span style="color:#a6e22e">CmdDoc</span>,
+		<span style="color:#a6e22e">envcmd</span>.<span style="color:#a6e22e">CmdEnv</span>,
+		<span style="color:#a6e22e">fix</span>.<span style="color:#a6e22e">CmdFix</span>,
+		<span style="color:#a6e22e">fmtcmd</span>.<span style="color:#a6e22e">CmdFmt</span>,
+		<span style="color:#a6e22e">generate</span>.<span style="color:#a6e22e">CmdGenerate</span>,
+		<span style="color:#a6e22e">modget</span>.<span style="color:#a6e22e">CmdGet</span>,
+		<span style="color:#a6e22e">work</span>.<span style="color:#a6e22e">CmdInstall</span>,
+		<span style="color:#a6e22e">list</span>.<span style="color:#a6e22e">CmdList</span>,
+		<span style="color:#a6e22e">modcmd</span>.<span style="color:#a6e22e">CmdMod</span>,
+		<span style="color:#a6e22e">run</span>.<span style="color:#a6e22e">CmdRun</span>,
+		<span style="color:#a6e22e">test</span>.<span style="color:#a6e22e">CmdTest</span>,
+		<span style="color:#a6e22e">tool</span>.<span style="color:#a6e22e">CmdTool</span>,
+		<span style="color:#a6e22e">version</span>.<span style="color:#a6e22e">CmdVersion</span>,
+		<span style="color:#a6e22e">vet</span>.<span style="color:#a6e22e">CmdVet</span>,
+
+		<span style="color:#a6e22e">help</span>.<span style="color:#a6e22e">HelpBuildConstraint</span>,
+		<span style="color:#a6e22e">help</span>.<span style="color:#a6e22e">HelpBuildmode</span>,
+		<span style="color:#a6e22e">help</span>.<span style="color:#a6e22e">HelpC</span>,
+		<span style="color:#a6e22e">help</span>.<span style="color:#a6e22e">HelpCache</span>,
+		<span style="color:#a6e22e">help</span>.<span style="color:#a6e22e">HelpEnvironment</span>,
+		<span style="color:#a6e22e">help</span>.<span style="color:#a6e22e">HelpFileType</span>,
+		<span style="color:#a6e22e">modload</span>.<span style="color:#a6e22e">HelpGoMod</span>,
+		<span style="color:#a6e22e">help</span>.<span style="color:#a6e22e">HelpGopath</span>,
+		<span style="color:#a6e22e">get</span>.<span style="color:#a6e22e">HelpGopathGet</span>,
+		<span style="color:#a6e22e">modfetch</span>.<span style="color:#a6e22e">HelpGoproxy</span>,
+		<span style="color:#a6e22e">help</span>.<span style="color:#a6e22e">HelpImportPath</span>,
+		<span style="color:#a6e22e">modload</span>.<span style="color:#a6e22e">HelpModules</span>,
+		<span style="color:#a6e22e">modget</span>.<span style="color:#a6e22e">HelpModuleGet</span>,
+		<span style="color:#a6e22e">modfetch</span>.<span style="color:#a6e22e">HelpModuleAuth</span>,
+		<span style="color:#a6e22e">help</span>.<span style="color:#a6e22e">HelpPackages</span>,
+		<span style="color:#a6e22e">modfetch</span>.<span style="color:#a6e22e">HelpPrivate</span>,
+		<span style="color:#a6e22e">test</span>.<span style="color:#a6e22e">HelpTestflag</span>,
+		<span style="color:#a6e22e">test</span>.<span style="color:#a6e22e">HelpTestfunc</span>,
+		<span style="color:#a6e22e">modget</span>.<span style="color:#a6e22e">HelpVCS</span>,
+	}
+}
+
+</code></pre></div>
+	</div>
+	
+	
+	
+	
+	
+		
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Tags</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			
+			
+			
+			
+			<a href="/tags/golang/"> golang </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+		
+	</div></div>
+
+  </main>
+
+
+
+
+
+</body>
+</html>

@@ -6,22 +6,22 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	
-	<meta property="og:title" content="three">
+	<meta property="og:title" content="Grpcs">
 	
 	
-	<meta property="og:title" content="three" />
+	<meta property="og:title" content="Grpcs" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://dtest11.github.io/tags/three/" />
-<meta property="og:updated_time" content="2020-03-09T12:42:40+00:00" />
+<meta property="og:url" content="https://dtest11.github.io/grpc/" />
+<meta property="og:updated_time" content="2020-02-08T16:40:52+00:00" />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="three"/>
+<meta name="twitter:title" content="Grpcs"/>
 <meta name="twitter:description" content=""/>
-<link rel="alternate" type="application/rss+xml" href="https://dtest11.github.io/tags/three/index.xml" title="hello">
+<link rel="alternate" type="application/rss+xml" href="https://dtest11.github.io/grpc/index.xml" title="hello">
 	<link rel="stylesheet" type="text/css" media="screen" href="/css/normalize.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="/css/all.css" />
-	<title>three | hello</title>
+	<title>Grpcs | hello</title>
 
 
 </head>
@@ -57,25 +57,46 @@
 	
 </header>
 <main>
-<h1 class="page-title">Three</h1>
+<h1 class="page-title">Grpcs</h1>
 
 
 <ul class="posts flat"><li class="post">
 		<div class="post-header">
 			<div class="meta">
 				<div class="date">
-					<span class="day">09</span>
-					<span class="rest">Mar 2020</span>
+					<span class="day">08</span>
+					<span class="rest">Feb 2020</span>
 				</div>
 			</div>
 			<div class="matter">
-				<h3 class="title small"><a href="/posts/cri/">cri-Container Runtime Interface</a></h3>
+				<h3 class="title small"><a href="/grpc/grpc-server/">grpc-server</a></h3>
 				<div class="author">
 				
 				</div>
 				<span class="description">
 				
-					引用： [https://kubernetes.io/blog/2016/12/container-runtime-interface-cri-in-kubernetes/](Introducing Container Runtime Interface (CRI) in …
+					grpc server 的源码分析 grpc 的server 是处理http 链接的入口， client 传递的数据最终都是被传递到了server 端
+func main() { lis, err := net.Listen("tcp", port) if err != nil …
+				
+				</span>
+			</div>
+		</div>
+	</li><li class="post">
+		<div class="post-header">
+			<div class="meta">
+				<div class="date">
+					<span class="day">07</span>
+					<span class="rest">Feb 2020</span>
+				</div>
+			</div>
+			<div class="matter">
+				<h3 class="title small"><a href="/grpc/grpc-proto/">grpc 编码格式分析-ProtoBuffer</a></h3>
+				<div class="author">
+				
+				</div>
+				<span class="description">
+				
+					grpc ProtoBuffer 性能高的原因 代码里的对象基本分两类，一类的长度是固定的，比如 int32 占用 32 比特，double 占用 64 比特；另一类的长度是变化的，比如字符串。所以，在设计编码的时候， 首先就得区分这两种情况。最简单的办法就是用一个字节表示类型， …
 				
 				</span>
 			</div>
