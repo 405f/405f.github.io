@@ -70,3 +70,24 @@ $1
 
 1. [loadDataFromDisk](https://github.com/redis/redis/blob/fd052d2a86b1a9ace29abf2868785f0b4621b715/src/server.c#L5719)
 2. 检查aof 是否打开,优先加载aof, 负责加载rdb文件[loadAppendOnlyFile](https://github.com/redis/redis/blob/fd052d2a86b1a9ace29abf2868785f0b4621b715/src/aof.c#L739) 
+
+```c
+int loadAppendOnlyFile(char *filename) {
+     // open file
+    server.aof_state = AOF_OFF;
+
+    fakeClient = createFakeClient(); // create 
+   /* Read the actual AOF file, in REPL format, command by command. */
+    while(1) {
+        // read file line by line
+        /* Run the command in the context of a fake client */
+        fakeClient->cmd = cmd;
+        if (fakeClient->flags & CLIENT_MULTI &&
+            fakeClient->cmd->proc != execCommand)
+        {
+            queueMultiCommand(fakeClient);
+        } else {
+            cmd->proc(fakeClient); // 执行命令
+        }
+}
+```
