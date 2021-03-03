@@ -12,7 +12,7 @@
 	<meta name="keywords" content="redis"><meta property="og:title" content="Redis_aof_rdb" />
 <meta property="og:description" content="run redis    docker run --name redis -v ~/test:/data/ -p 6379:6379 -d redis redis-server --appendonly yes docker run -p 6379:6379 --name redis -v /home/lbq/Documents/dtest11.github.io/content/redis/redis.conf:/usr/local/etc/redis/redis.conf -v /home/lbq/Documents/dtest11.github.io/data:/data -d redis  redis.conf 添加  appendonly yes aof  append write file sync  命令追加 当AOF 打开的时候,服务器执行的命令,都会以协议的格式写到aof_buf 缓冲区的末尾
 rewrite flushAppendOnlyFile 检查配置的, aof的刷盘机制, 是
-configEnum aof_fsync_enum[] = { {&quot;everysec&quot;, AOF_FSYNC_EVERYSEC}, {&quot;always&quot;, AOF_FSYNC_ALWAYS}, {&quot;no&quot;, AOF_FSYNC_NO}, {NULL, 0} };  always 直接call fsync() 刷盘 everysec 通过比较server." />
+configEnum aof_fsync_enum[] = { {&#34;everysec&#34;, AOF_FSYNC_EVERYSEC}, {&#34;always&#34;, AOF_FSYNC_ALWAYS}, {&#34;no&#34;, AOF_FSYNC_NO}, {NULL, 0} };  always 直接call fsync() 刷盘 everysec 通过比较server." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://dtest11.github.io/redis/redis_aof/" />
 <meta property="article:published_time" content="2021-02-27T11:30:24+08:00" />
@@ -21,7 +21,7 @@ configEnum aof_fsync_enum[] = { {&quot;everysec&quot;, AOF_FSYNC_EVERYSEC}, {&qu
 <meta name="twitter:title" content="Redis_aof_rdb"/>
 <meta name="twitter:description" content="run redis    docker run --name redis -v ~/test:/data/ -p 6379:6379 -d redis redis-server --appendonly yes docker run -p 6379:6379 --name redis -v /home/lbq/Documents/dtest11.github.io/content/redis/redis.conf:/usr/local/etc/redis/redis.conf -v /home/lbq/Documents/dtest11.github.io/data:/data -d redis  redis.conf 添加  appendonly yes aof  append write file sync  命令追加 当AOF 打开的时候,服务器执行的命令,都会以协议的格式写到aof_buf 缓冲区的末尾
 rewrite flushAppendOnlyFile 检查配置的, aof的刷盘机制, 是
-configEnum aof_fsync_enum[] = { {&quot;everysec&quot;, AOF_FSYNC_EVERYSEC}, {&quot;always&quot;, AOF_FSYNC_ALWAYS}, {&quot;no&quot;, AOF_FSYNC_NO}, {NULL, 0} };  always 直接call fsync() 刷盘 everysec 通过比较server."/>
+configEnum aof_fsync_enum[] = { {&#34;everysec&#34;, AOF_FSYNC_EVERYSEC}, {&#34;always&#34;, AOF_FSYNC_ALWAYS}, {&#34;no&#34;, AOF_FSYNC_NO}, {NULL, 0} };  always 直接call fsync() 刷盘 everysec 通过比较server."/>
 
 	<link rel="stylesheet" type="text/css" media="screen" href="/css/normalize.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
@@ -109,16 +109,41 @@ docker run -p 6379:6379 --name redis -v /home/lbq/Documents/dtest11.github.io/co
 <h2 id="rewrite">rewrite</h2>
 <h2 id="flushappendonlyfile">flushAppendOnlyFile</h2>
 <p>检查配置的, aof的刷盘机制, 是</p>
-<pre><code>configEnum aof_fsync_enum[] = {
-    {&quot;everysec&quot;, AOF_FSYNC_EVERYSEC},
-    {&quot;always&quot;, AOF_FSYNC_ALWAYS},
-    {&quot;no&quot;, AOF_FSYNC_NO},
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt">
+configEnum aof_fsync_enum[] = {
+    {&#34;everysec&#34;, AOF_FSYNC_EVERYSEC},
+    {&#34;always&#34;, AOF_FSYNC_ALWAYS},
+    {&#34;no&#34;, AOF_FSYNC_NO},
     {NULL, 0}
 };
-</code></pre><ul>
+</code></pre></div><ul>
 <li>always 直接call fsync() 刷盘</li>
 <li>everysec 通过比较server.unixtime &gt; aof_last_fsync   开启后台任务,flush disk</li>
 </ul>
+<h2 id="load-aof-file">load aof file</h2>
+<ul>
+<li>redis 会启动一个fake client 来读去appendonly.aof,</li>
+<li>aof content</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt">$6
+SELECT
+$1
+0
+*3
+$3
+set
+$1
+0
+$1
+0
+*3
+$3
+set
+$1
+</code></pre></div><ol>
+<li><a href="https://github.com/redis/redis/blob/fd052d2a86b1a9ace29abf2868785f0b4621b715/src/server.c#L5719">loadDataFromDisk</a></li>
+<li>检查aof 是否打开,优先加载aof, 负责加载rdb文件<a href="https://github.com/redis/redis/blob/fd052d2a86b1a9ace29abf2868785f0b4621b715/src/aof.c#L739">loadAppendOnlyFile</a></li>
+</ol>
 
 	</div>
 	
