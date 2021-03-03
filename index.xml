@@ -26,6 +26,18 @@ func init() { base.Go.Commands = …
 			</description>
 		</item>
 		<item>
+			<title>Redis_aof_rdb</title>
+			<link>https://dtest11.github.io/redis/redis_aof/</link>
+			<pubDate>Sat, 27 Feb 2021 11:30:24 +0800</pubDate>
+			
+			<guid>https://dtest11.github.io/redis/redis_aof/</guid>
+			<description>
+			
+				run redis    docker run --name redis -v ~/test:/data/ -p 6379:6379 -d redis redis-server --appendonly yes docker run -p 6379:6379 --name …
+			
+			</description>
+		</item>
+		<item>
 			<title>堆排序</title>
 			<link>https://dtest11.github.io/redis/sort-heap/</link>
 			<pubDate>Tue, 02 Jun 2020 21:25:54 +0000</pubDate>

@@ -6,10 +6,22 @@
 		<description>Recent content in Redis on dtest11.github.io</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
-		<lastBuildDate>Tue, 02 Jun 2020 21:25:54 +0000</lastBuildDate>
+		<lastBuildDate>Sat, 27 Feb 2021 11:30:24 +0800</lastBuildDate>
 		
 		<atom:link href="https://dtest11.github.io/redis/index.xml" rel="self" type="application/rss+xml" />
 		
+		<item>
+			<title>Redis_aof_rdb</title>
+			<link>https://dtest11.github.io/redis/redis_aof/</link>
+			<pubDate>Sat, 27 Feb 2021 11:30:24 +0800</pubDate>
+			
+			<guid>https://dtest11.github.io/redis/redis_aof/</guid>
+			<description>
+			
+				run redis    docker run --name redis -v ~/test:/data/ -p 6379:6379 -d redis redis-server --appendonly yes docker run -p 6379:6379 --name …
+			
+			</description>
+		</item>
 		<item>
 			<title>堆排序</title>
 			<link>https://dtest11.github.io/redis/sort-heap/</link>
