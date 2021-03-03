@@ -34,7 +34,8 @@ appendonly yes
 
 ## flushAppendOnlyFile 
 检查配置的, aof的刷盘机制, 是
-```
+```txt
+
 configEnum aof_fsync_enum[] = {
     {"everysec", AOF_FSYNC_EVERYSEC},
     {"always", AOF_FSYNC_ALWAYS},
@@ -44,3 +45,28 @@ configEnum aof_fsync_enum[] = {
 ```
 - always 直接call fsync() 刷盘
 - everysec 通过比较server.unixtime > aof_last_fsync   开启后台任务,flush disk
+
+
+## load aof file
+- redis 会启动一个fake client 来读去appendonly.aof, 
+- aof content 
+```txt
+$6
+SELECT
+$1
+0
+*3
+$3
+set
+$1
+0
+$1
+0
+*3
+$3
+set
+$1
+```
+
+1. [loadDataFromDisk](https://github.com/redis/redis/blob/fd052d2a86b1a9ace29abf2868785f0b4621b715/src/server.c#L5719)
+2. 检查aof 是否打开,优先加载aof, 负责加载rdb文件[loadAppendOnlyFile](https://github.com/redis/redis/blob/fd052d2a86b1a9ace29abf2868785f0b4621b715/src/aof.c#L739) 
