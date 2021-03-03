@@ -144,7 +144,25 @@ $1
 <li><a href="https://github.com/redis/redis/blob/fd052d2a86b1a9ace29abf2868785f0b4621b715/src/server.c#L5719">loadDataFromDisk</a></li>
 <li>检查aof 是否打开,优先加载aof, 负责加载rdb文件<a href="https://github.com/redis/redis/blob/fd052d2a86b1a9ace29abf2868785f0b4621b715/src/aof.c#L739">loadAppendOnlyFile</a></li>
 </ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">loadAppendOnlyFile</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>filename) {
+     <span style="color:#75715e">// open file
+</span><span style="color:#75715e"></span>    server.aof_state <span style="color:#f92672">=</span> AOF_OFF;
 
+    fakeClient <span style="color:#f92672">=</span> createFakeClient(); <span style="color:#75715e">// create 
+</span><span style="color:#75715e"></span>   <span style="color:#75715e">/* Read the actual AOF file, in REPL format, command by command. */</span>
+    <span style="color:#66d9ef">while</span>(<span style="color:#ae81ff">1</span>) {
+        <span style="color:#75715e">// read file line by line
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/* Run the command in the context of a fake client */</span>
+        fakeClient<span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span>cmd <span style="color:#f92672">=</span> cmd;
+        <span style="color:#66d9ef">if</span> (fakeClient<span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span>flags <span style="color:#f92672">&amp;</span> CLIENT_MULTI <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span>
+            fakeClient<span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span>cmd<span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span>proc <span style="color:#f92672">!</span><span style="color:#f92672">=</span> execCommand)
+        {
+            queueMultiCommand(fakeClient);
+        } <span style="color:#66d9ef">else</span> {
+            cmd<span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span>proc(fakeClient); <span style="color:#75715e">// 执行命令
+</span><span style="color:#75715e"></span>        }
+}
+</code></pre></div>
 	</div>
 	
 	
