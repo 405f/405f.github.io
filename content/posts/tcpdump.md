@@ -116,23 +116,20 @@ wget www.baidu.com
 ```txt
 
 ➜  network sudo tcpdump  host www.baidu.com
-tcpdump: data link type PKTAP
-tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
-listening on pktap, link-type PKTAP (Apple DLT_PKTAP), capture size 262144 bytes
-
-
-14:20:53.205520 IP 192.168.1.181.50558 > 103.235.46.39.http: Flags [S], seq 4067295181, win 65535, options [mss 1460,nop,wscale 6,nop,nop,TS val 570353196 ecr 0,sackOK,eol], length 0
-14:20:53.242841 IP 103.235.46.39.http > 192.168.1.181.50558: Flags [S.], seq 3344635496, ack 4067295182, win 8192, options [mss 1452,nop,wscale 5,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,sackOK,eol], length 0
-14:20:53.242912 IP 192.168.1.181.50558 > 103.235.46.39.http: Flags [.], ack 1, win 4096, length 0
-14:20:53.243241 IP 192.168.1.181.50558 > 103.235.46.39.http: Flags [P.], seq 1:143, ack 1, win 4096, length 142: HTTP: GET / HTTP/1.1
-14:20:53.280833 IP 103.235.46.39.http > 192.168.1.181.50558: Flags [.], ack 143, win 812, length 0
-14:20:53.282870 IP 103.235.46.39.http > 192.168.1.181.50558: Flags [.], seq 1:1461, ack 143, win 812, length 1460: HTTP: HTTP/1.1 200 OK
-14:20:53.282872 IP 103.235.46.39.http > 192.168.1.181.50558: Flags [P.], seq 1461:2498, ack 143, win 812, length 1037: HTTP
-14:20:53.282904 IP 192.168.1.181.50558 > 103.235.46.39.http: Flags [.], ack 2498, win 4056, length 0
-14:20:53.285349 IP 192.168.1.181.50558 > 103.235.46.39.http: Flags [F.], seq 143, ack 2498, win 4096, length 0
-14:20:53.321942 IP 103.235.46.39.http > 192.168.1.181.50558: Flags [.], ack 144, win 812, length 0
-14:20:53.321944 IP 103.235.46.39.http > 192.168.1.181.50558: Flags [F.], seq 2498, ack 144, win 812, length 0
-14:20:53.322012 IP 192.168.1.181.50558 > 103.235.46.39.http: Flags [.], ack 2499, win 4096, length 0
-
-
 ```
+通过执行这个命令可以得到[tcp.log](https://github.com/dtest11/dtest11.github.io/blob/master/playground/network/tcp.log#L1)
+通过这个文件我们可以分析下tcp的三次握手
+- Flags 参数
+1. [S]：SYN同步标识
+2. [.]：.表示ACK确认标识
+3. [S.]：SYN同步标识，以及确认[S]的ACK
+4. [P.]：PSH,push推送，数据传输
+5. [R.]：RST,连接重置
+6. [F.]：FIN结束连接
+7. [DF]：Don't Fragment（不要碎裂），当DF=0时，表示允许分片，一般-v时才有这个标识
+8. [FP.]：标记FIN、PUSH、ACK组合，这样做是为了提升网络效率，减少数据来回确认等
+
+- seq为序列号
+- ack为确认码
+- win为滑动窗口大小
+- length为承载的数据(payload)长度length，如果没有数据则为0
