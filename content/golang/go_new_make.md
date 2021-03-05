@@ -20,3 +20,11 @@ make([]int, 50, 100)
 new(T)
 type S struct { a int; b float64 }
 new(S) 
+```
+
+### why map need use make first
+
+- var a map[string]int
+这个语句只是 声明了map的数据类型， 并没有为map分配底层的数组，此时a = nil
+- var a = make(map[string]int)
+此时会为a 创建底层的数组， 设定hash种子，等一些列的数据初始化的操作
