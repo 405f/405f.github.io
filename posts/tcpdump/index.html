@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	
+	<meta name="generator" content="Hugo 0.61.0" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	
+	<meta property="og:title" content="Tcpdump">
+	
+	
+	<meta property="og:title" content="Tcpdump" />
+<meta property="og:description" content="tcpdump的使用方法
+ifconfig 查看主机的网卡 output example lo0: flags=8049&lt;UP,LOOPBACK,RUNNING,MULTICAST&gt; mtu 16384 options=1203&lt;RXCSUM,TXCSUM,TXSTATUS,SW_TIMESTAMP&gt; inet 127.0.0.1 netmask 0xff000000 inet6 ::1 prefixlen 128 inet6 fe80::1%lo0 prefixlen 64 scopeid 0x1 nd6 options=201&lt;PERFORMNUD,DAD&gt; gif0: flags=8010&lt;POINTOPOINT,MULTICAST&gt; mtu 1280 stf0: flags=0&lt;&gt; mtu 1280 en5: flags=8863&lt;UP,BROADCAST,SMART,RUNNING,SIMPLEX,MULTICAST&gt; mtu 1500 ether ac:de:48:00:11:22 inet6 fe80::aede:48ff:fe00:1122%en5 prefixlen 64 scopeid 0x4 nd6 options=201&lt;PERFORMNUD,DAD&gt; media: autoselect (100baseTX &lt;full-duplex&gt;) status: active ap1: flags=8802&lt;BROADCAST,SIMPLEX,MULTICAST&gt; mtu 1500 options=400&lt;CHANNEL_IO&gt; ether 3e:22:fb:51:2e:dd media: autoselect status: inactive en0: flags=8863&lt;UP,BROADCAST,SMART,RUNNING,SIMPLEX,MULTICAST&gt; mtu 1500 options=400&lt;CHANNEL_IO&gt; ether 3c:22:fb:51:2e:dd inet6 fe80::105b:1c88:5ee6:98e2%en0 prefixlen 64 secured scopeid 0x6 inet 192." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://dtest11.github.io/posts/tcpdump/" />
+<meta property="article:published_time" content="2021-03-05T12:47:38+08:00" />
+<meta property="article:modified_time" content="2021-03-05T12:47:38+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Tcpdump"/>
+<meta name="twitter:description" content="tcpdump的使用方法
+ifconfig 查看主机的网卡 output example lo0: flags=8049&lt;UP,LOOPBACK,RUNNING,MULTICAST&gt; mtu 16384 options=1203&lt;RXCSUM,TXCSUM,TXSTATUS,SW_TIMESTAMP&gt; inet 127.0.0.1 netmask 0xff000000 inet6 ::1 prefixlen 128 inet6 fe80::1%lo0 prefixlen 64 scopeid 0x1 nd6 options=201&lt;PERFORMNUD,DAD&gt; gif0: flags=8010&lt;POINTOPOINT,MULTICAST&gt; mtu 1280 stf0: flags=0&lt;&gt; mtu 1280 en5: flags=8863&lt;UP,BROADCAST,SMART,RUNNING,SIMPLEX,MULTICAST&gt; mtu 1500 ether ac:de:48:00:11:22 inet6 fe80::aede:48ff:fe00:1122%en5 prefixlen 64 scopeid 0x4 nd6 options=201&lt;PERFORMNUD,DAD&gt; media: autoselect (100baseTX &lt;full-duplex&gt;) status: active ap1: flags=8802&lt;BROADCAST,SIMPLEX,MULTICAST&gt; mtu 1500 options=400&lt;CHANNEL_IO&gt; ether 3e:22:fb:51:2e:dd media: autoselect status: inactive en0: flags=8863&lt;UP,BROADCAST,SMART,RUNNING,SIMPLEX,MULTICAST&gt; mtu 1500 options=400&lt;CHANNEL_IO&gt; ether 3c:22:fb:51:2e:dd inet6 fe80::105b:1c88:5ee6:98e2%en0 prefixlen 64 secured scopeid 0x6 inet 192."/>
+
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/all.css" />
+	<title>Tcpdump | hello</title>
+
+
+</head>
+<body><header>
+	
+	<div id="titletext"><h2 id="title"><a href="https://dtest11.github.io/">hello</a></h2></div>
+	<div id="title-description"><div id="social">
+			<nav>
+				<ul></ul>
+			</nav>
+		</div>
+	</div>
+	
+	<div id="mainmenu">
+		<nav>
+			<ul>
+				
+				<li><a href="https://github.com/dtest11/dtest11.github.io/">Check on github</a></li>
+				
+				<li><a href="/golang/">GO</a></li>
+				
+				<li><a href="/k8s/">k8s</a></li>
+				
+				<li><a href="/mysql/">mysql</a></li>
+				
+				<li><a href="/posts/">posts</a></li>
+				
+				<li><a href="/redis/">redis</a></li>
+				
+			</ul>
+		</nav>
+	</div>
+	
+</header>
+<main><div class="post">
+	
+	<div class="author">
+	
+	</div>
+	<div class="post-header">
+	
+		<div class="meta">
+			
+			<div class="date">
+				<span class="day">05</span>
+				<span class="rest">Mar 2021</span>
+			</div>
+			
+		</div>
+		
+		<div class="matter">
+			<h1 class="title">Tcpdump</h1>
+		</div>
+	</div>
+	<div class="markdown">
+		<p>tcpdump的使用方法</p>
+<h3 id="ifconfig-">ifconfig 查看主机的网卡</h3>
+<h6 id="output-example">output example</h6>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">lo0: flags=8049&lt;UP,LOOPBACK,RUNNING,MULTICAST&gt; mtu 16384
+	options=1203&lt;RXCSUM,TXCSUM,TXSTATUS,SW_TIMESTAMP&gt;
+	inet 127.0.0.1 netmask 0xff000000
+	inet6 ::1 prefixlen 128
+	inet6 fe80::1%lo0 prefixlen 64 scopeid 0x1
+	nd6 options=201&lt;PERFORMNUD,DAD&gt;
+gif0: flags=8010&lt;POINTOPOINT,MULTICAST&gt; mtu 1280
+stf0: flags=0&lt;&gt; mtu 1280
+en5: flags=8863&lt;UP,BROADCAST,SMART,RUNNING,SIMPLEX,MULTICAST&gt; mtu 1500
+	ether ac:de:48:00:11:22
+	inet6 fe80::aede:48ff:fe00:1122%en5 prefixlen 64 scopeid 0x4
+	nd6 options=201&lt;PERFORMNUD,DAD&gt;
+	media: autoselect (100baseTX &lt;full-duplex&gt;)
+	status: active
+ap1: flags=8802&lt;BROADCAST,SIMPLEX,MULTICAST&gt; mtu 1500
+	options=400&lt;CHANNEL_IO&gt;
+	ether 3e:22:fb:51:2e:dd
+	media: autoselect
+	status: inactive
+en0: flags=8863&lt;UP,BROADCAST,SMART,RUNNING,SIMPLEX,MULTICAST&gt; mtu 1500
+	options=400&lt;CHANNEL_IO&gt;
+	ether 3c:22:fb:51:2e:dd
+	inet6 fe80::105b:1c88:5ee6:98e2%en0 prefixlen 64 secured scopeid 0x6
+	inet 192.168.1.181 netmask 0xfffffe00 broadcast 192.168.1.255
+	nd6 options=201&lt;PERFORMNUD,DAD&gt;
+	media: autoselect
+	status: active
+awdl0: flags=8943&lt;UP,BROADCAST,RUNNING,PROMISC,SIMPLEX,MULTICAST&gt; mtu 1500
+	options=400&lt;CHANNEL_IO&gt;
+	ether 5e:58:54:9f:ee:ce
+	inet6 fe80::5c58:54ff:fe9f:eece%awdl0 prefixlen 64 scopeid 0x7
+	nd6 options=201&lt;PERFORMNUD,DAD&gt;
+	media: autoselect
+	status: active
+llw0: flags=8863&lt;UP,BROADCAST,SMART,RUNNING,SIMPLEX,MULTICAST&gt; mtu 1500
+	options=400&lt;CHANNEL_IO&gt;
+	ether 5e:58:54:9f:ee:ce
+	inet6 fe80::5c58:54ff:fe9f:eece%llw0 prefixlen 64 scopeid 0x8
+	nd6 options=201&lt;PERFORMNUD,DAD&gt;
+	media: autoselect
+	status: active
+en3: flags=8963&lt;UP,BROADCAST,SMART,RUNNING,PROMISC,SIMPLEX,MULTICAST&gt; mtu 1500
+	options=460&lt;TSO4,TSO6,CHANNEL_IO&gt;
+	ether 82:f4:80:27:64:05
+	media: autoselect &lt;full-duplex&gt;
+	status: inactive
+en4: flags=8963&lt;UP,BROADCAST,SMART,RUNNING,PROMISC,SIMPLEX,MULTICAST&gt; mtu 1500
+	options=460&lt;TSO4,TSO6,CHANNEL_IO&gt;
+	ether 82:f4:80:27:64:04
+	media: autoselect &lt;full-duplex&gt;
+	status: inactive
+en1: flags=8963&lt;UP,BROADCAST,SMART,RUNNING,PROMISC,SIMPLEX,MULTICAST&gt; mtu 1500
+	options=460&lt;TSO4,TSO6,CHANNEL_IO&gt;
+	ether 82:f4:80:27:64:01
+	media: autoselect &lt;full-duplex&gt;
+	status: inactive
+en2: flags=8963&lt;UP,BROADCAST,SMART,RUNNING,PROMISC,SIMPLEX,MULTICAST&gt; mtu 1500
+	options=460&lt;TSO4,TSO6,CHANNEL_IO&gt;
+	ether 82:f4:80:27:64:00
+	media: autoselect &lt;full-duplex&gt;
+	status: inactive
+bridge0: flags=8863&lt;UP,BROADCAST,SMART,RUNNING,SIMPLEX,MULTICAST&gt; mtu 1500
+	options=63&lt;RXCSUM,TXCSUM,TSO4,TSO6&gt;
+	ether 82:f4:80:27:64:01
+	Configuration:
+		id 0:0:0:0:0:0 priority 0 hellotime 0 fwddelay 0
+		maxage 0 holdcnt 0 proto stp maxaddr 100 timeout 1200
+		root id 0:0:0:0:0:0 priority 0 ifcost 0 port 0
+		ipfilter disabled flags 0x0
+	member: en1 flags=3&lt;LEARNING,DISCOVER&gt;
+	        ifmaxaddr 0 port 11 priority 0 path cost 0
+	member: en2 flags=3&lt;LEARNING,DISCOVER&gt;
+	        ifmaxaddr 0 port 12 priority 0 path cost 0
+	member: en3 flags=3&lt;LEARNING,DISCOVER&gt;
+	        ifmaxaddr 0 port 9 priority 0 path cost 0
+	member: en4 flags=3&lt;LEARNING,DISCOVER&gt;
+	        ifmaxaddr 0 port 10 priority 0 path cost 0
+	nd6 options=201&lt;PERFORMNUD,DAD&gt;
+	media: &lt;unknown type&gt;
+	status: inactive
+utun0: flags=8051&lt;UP,POINTOPOINT,RUNNING,MULTICAST&gt; mtu 1380
+	inet6 fe80::fdfa:d397:31b3:da80%utun0 prefixlen 64 scopeid 0xe
+	nd6 options=201&lt;PERFORMNUD,DAD&gt;
+utun1: flags=8051&lt;UP,POINTOPOINT,RUNNING,MULTICAST&gt; mtu 2000
+	inet6 fe80::df55:bfea:de7e:9001%utun1 prefixlen 64 scopeid 0xf
+	nd6 options=201&lt;PERFORMNUD,DAD&gt;
+
+</code></pre></div><p>en0: 表示第一块网卡
+mut: 最大传输单元
+status: 网卡的使用状态</p>
+<h3 id="tcpdump-example">tcpdump example</h3>
+<ul>
+<li></li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt">sudo tcpdump host baidu.com -i en0
+</code></pre></div><h4 id="wwwbaiducom"><a href="http://www.baidu.com">www.baidu.com</a></h4>
+<p>sudo tcpdump host <a href="http://www.baidu.com">www.baidu.com</a></p>
+<p>wget <a href="http://www.baidu.com">www.baidu.com</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt">
+➜  network sudo tcpdump  host www.baidu.com
+tcpdump: data link type PKTAP
+tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+listening on pktap, link-type PKTAP (Apple DLT_PKTAP), capture size 262144 bytes
+
+
+14:20:53.205520 IP 192.168.1.181.50558 &gt; 103.235.46.39.http: Flags [S], seq 4067295181, win 65535, options [mss 1460,nop,wscale 6,nop,nop,TS val 570353196 ecr 0,sackOK,eol], length 0
+14:20:53.242841 IP 103.235.46.39.http &gt; 192.168.1.181.50558: Flags [S.], seq 3344635496, ack 4067295182, win 8192, options [mss 1452,nop,wscale 5,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,sackOK,eol], length 0
+14:20:53.242912 IP 192.168.1.181.50558 &gt; 103.235.46.39.http: Flags [.], ack 1, win 4096, length 0
+14:20:53.243241 IP 192.168.1.181.50558 &gt; 103.235.46.39.http: Flags [P.], seq 1:143, ack 1, win 4096, length 142: HTTP: GET / HTTP/1.1
+14:20:53.280833 IP 103.235.46.39.http &gt; 192.168.1.181.50558: Flags [.], ack 143, win 812, length 0
+14:20:53.282870 IP 103.235.46.39.http &gt; 192.168.1.181.50558: Flags [.], seq 1:1461, ack 143, win 812, length 1460: HTTP: HTTP/1.1 200 OK
+14:20:53.282872 IP 103.235.46.39.http &gt; 192.168.1.181.50558: Flags [P.], seq 1461:2498, ack 143, win 812, length 1037: HTTP
+14:20:53.282904 IP 192.168.1.181.50558 &gt; 103.235.46.39.http: Flags [.], ack 2498, win 4056, length 0
+14:20:53.285349 IP 192.168.1.181.50558 &gt; 103.235.46.39.http: Flags [F.], seq 143, ack 2498, win 4096, length 0
+14:20:53.321942 IP 103.235.46.39.http &gt; 192.168.1.181.50558: Flags [.], ack 144, win 812, length 0
+14:20:53.321944 IP 103.235.46.39.http &gt; 192.168.1.181.50558: Flags [F.], seq 2498, ack 144, win 812, length 0
+14:20:53.322012 IP 192.168.1.181.50558 &gt; 103.235.46.39.http: Flags [.], ack 2499, win 4096, length 0
+
+
+</code></pre></div>
+	</div>
+	
+	
+	
+	
+	
+		
+	
+		
+		
+	</div></div>
+
+  </main>
+
+
+
+
+
+</body>
+</html>
