@@ -2,6 +2,7 @@
 title: "Golang_gc"
 date: 2021-03-09T00:43:56+08:00
 draft: true
+tags: [golang]
 ---
 ###  三色标记法
 - 标记. 清除 mark ,sweep
