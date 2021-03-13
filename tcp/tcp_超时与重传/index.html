@@ -10,14 +10,28 @@
 	
 	
 	<meta name="keywords" content="tcp"><meta property="og:title" content="TCP_超时与重传" />
-<meta property="og:description" content="计时器 tcp在发送数据的时候会启动一个计数器,若到时间还没有收到回复,那么会触发相应的超时或者重传" />
+<meta property="og:description" content="1.计时器 tcp在发送数据的时候会启动一个计数器,若到时间还没有收到回复,那么会触发相应的超时或者重传
+2.重传二义性 假如一个包出现超时,那么就会触发重传,过一段时间会收到一个包的确认,那么此时的这个包是对于第一次发送的确认,还是对与重传包的确认,这个确认就会存在二义性.
+2.1.karn 算法 对于重传的包, 不纳入RTT 时间测量的数据中
+2.2.带时间戳的测量 发送的报文中包含一个时间戳,来测量
+2.3.linux 采用的方法 TODO
+3.基于超时的重传  基于拥塞控制机制 减少发送窗口的大小 增大RTO的退避因子(todo)  4.快速重传 基于接受端反馈的信息来出发重传机制, 他能比超时重传能更快,即使的修复 当失去顺序的数据到达的时候,接受端需要立即返回ACK来通知重传
+5.带选择确认的重传 6.伪超时与重传 过早的判定超时
+7.丢包与重复 " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://dtest11.github.io/tcp/tcp_%E8%B6%85%E6%97%B6%E4%B8%8E%E9%87%8D%E4%BC%A0/" />
 <meta property="article:published_time" content="2021-03-13T23:26:46+08:00" />
 <meta property="article:modified_time" content="2021-03-13T23:26:46+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="TCP_超时与重传"/>
-<meta name="twitter:description" content="计时器 tcp在发送数据的时候会启动一个计数器,若到时间还没有收到回复,那么会触发相应的超时或者重传"/>
+<meta name="twitter:description" content="1.计时器 tcp在发送数据的时候会启动一个计数器,若到时间还没有收到回复,那么会触发相应的超时或者重传
+2.重传二义性 假如一个包出现超时,那么就会触发重传,过一段时间会收到一个包的确认,那么此时的这个包是对于第一次发送的确认,还是对与重传包的确认,这个确认就会存在二义性.
+2.1.karn 算法 对于重传的包, 不纳入RTT 时间测量的数据中
+2.2.带时间戳的测量 发送的报文中包含一个时间戳,来测量
+2.3.linux 采用的方法 TODO
+3.基于超时的重传  基于拥塞控制机制 减少发送窗口的大小 增大RTO的退避因子(todo)  4.快速重传 基于接受端反馈的信息来出发重传机制, 他能比超时重传能更快,即使的修复 当失去顺序的数据到达的时候,接受端需要立即返回ACK来通知重传
+5.带选择确认的重传 6.伪超时与重传 过早的判定超时
+7.丢包与重复 "/>
 
 	<link rel="stylesheet" type="text/css" media="screen" href="/css/normalize.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
@@ -78,8 +92,28 @@
 		</div>
 	</div>
 	<div class="markdown">
-		<h3 id="heading">计时器</h3>
+		<h3 id="1">1.计时器</h3>
 <p>tcp在发送数据的时候会启动一个计数器,若到时间还没有收到回复,那么会触发相应的超时或者重传</p>
+<h3 id="2">2.重传二义性</h3>
+<p>假如一个包出现超时,那么就会触发重传,过一段时间会收到一个包的确认,那么此时的这个包是对于第一次发送的确认,还是对与重传包的确认,这个确认就会存在二义性.</p>
+<h4 id="21karn--">2.1.karn  算法</h4>
+<p>对于重传的包, 不纳入RTT 时间测量的数据中</p>
+<h4 id="22">2.2.带时间戳的测量</h4>
+<p>发送的报文中包含一个时间戳,来测量</p>
+<h4 id="23linux-">2.3.linux 采用的方法</h4>
+<p>TODO</p>
+<h3 id="3">3.基于超时的重传</h3>
+<ol>
+<li>基于拥塞控制机制 减少发送窗口的大小</li>
+<li>增大RTO的退避因子(todo)</li>
+</ol>
+<h3 id="4">4.快速重传</h3>
+<p>基于<em>接受端反馈</em>的信息来出发重传机制, 他能比超时重传能更快,即使的修复
+当失去顺序的数据到达的时候,接受端需要立即返回ACK来通知重传</p>
+<h3 id="5">5.带选择确认的重传</h3>
+<h3 id="6">6.伪超时与重传</h3>
+<p>过早的判定超时</p>
+<h3 id="7">7.丢包与重复</h3>
 
 	</div>
 	
