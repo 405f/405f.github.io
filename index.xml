@@ -6,10 +6,23 @@
 		<description>Recent content on dtest11.github.io</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
-		<lastBuildDate>Fri, 05 Mar 2021 12:47:38 +0800</lastBuildDate>
+		<lastBuildDate>Sat, 13 Mar 2021 23:26:46 +0800</lastBuildDate>
 		
 		<atom:link href="https://dtest11.github.io/index.xml" rel="self" type="application/rss+xml" />
 		
+		<item>
+			<title>TCP_超时与重传</title>
+			<link>https://dtest11.github.io/tcp/tcp_%E8%B6%85%E6%97%B6%E4%B8%8E%E9%87%8D%E4%BC%A0/</link>
+			<pubDate>Sat, 13 Mar 2021 23:26:46 +0800</pubDate>
+			
+			<guid>https://dtest11.github.io/tcp/tcp_%E8%B6%85%E6%97%B6%E4%B8%8E%E9%87%8D%E4%BC%A0/</guid>
+			<description>
+			
+				计时器 tcp在发送数据的时候会启动一个计数器,若到时间还没有收到回复,那么会触发相应的超时或者重传
+
+			
+			</description>
+		</item>
 		<item>
 			<title>Tcpdump</title>
 			<link>https://dtest11.github.io/posts/tcpdump/</link>

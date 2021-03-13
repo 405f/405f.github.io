@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>tcp on hello</title>
+		<link>https://dtest11.github.io/tags/tcp/</link>
+		<description>Recent content in tcp on dtest11.github.io</description>
+		<generator>Hugo -- gohugo.io</generator>
+		<language>en-us</language>
+		<lastBuildDate>Sat, 13 Mar 2021 23:26:46 +0800</lastBuildDate>
+		
+		<atom:link href="https://dtest11.github.io/tags/tcp/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>TCP_超时与重传</title>
+			<link>https://dtest11.github.io/tcp/tcp_%E8%B6%85%E6%97%B6%E4%B8%8E%E9%87%8D%E4%BC%A0/</link>
+			<pubDate>Sat, 13 Mar 2021 23:26:46 +0800</pubDate>
+			
+			<guid>https://dtest11.github.io/tcp/tcp_%E8%B6%85%E6%97%B6%E4%B8%8E%E9%87%8D%E4%BC%A0/</guid>
+			<description>
+			
+				计时器 tcp在发送数据的时候会启动一个计数器,若到时间还没有收到回复,那么会触发相应的超时或者重传
+
+			
+			</description>
+		</item>
+		
+	</channel>
+</rss>

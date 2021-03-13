@@ -6,25 +6,23 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	
-	<meta property="og:title" content="rancher-k8s-deploy">
+	<meta property="og:title" content="TCP_超时与重传">
 	
 	
-	<meta name="keywords" content="k8s"><meta property="og:title" content="rancher-k8s-deploy" />
-<meta property="og:description" content="Rancher install 如果之前安装过,需要清理 /opt/rancher 文件夹
- docker run -d -p 80:80 -p 443:443 \ --restart=unless-stopped \ -v /opt/rancher:/var/lib/rancher \ rancher/rancher:latest 选择 " />
+	<meta name="keywords" content="tcp"><meta property="og:title" content="TCP_超时与重传" />
+<meta property="og:description" content="计时器 tcp在发送数据的时候会启动一个计数器,若到时间还没有收到回复,那么会触发相应的超时或者重传" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://dtest11.github.io/k8s/rancher-k8s-deploy/" />
-<meta property="article:published_time" content="2020-01-03T23:01:27+00:00" />
-<meta property="article:modified_time" content="2020-01-03T23:01:27+00:00" />
+<meta property="og:url" content="https://dtest11.github.io/tcp/tcp_%E8%B6%85%E6%97%B6%E4%B8%8E%E9%87%8D%E4%BC%A0/" />
+<meta property="article:published_time" content="2021-03-13T23:26:46+08:00" />
+<meta property="article:modified_time" content="2021-03-13T23:26:46+08:00" />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="rancher-k8s-deploy"/>
-<meta name="twitter:description" content="Rancher install 如果之前安装过,需要清理 /opt/rancher 文件夹
- docker run -d -p 80:80 -p 443:443 \ --restart=unless-stopped \ -v /opt/rancher:/var/lib/rancher \ rancher/rancher:latest 选择 "/>
+<meta name="twitter:title" content="TCP_超时与重传"/>
+<meta name="twitter:description" content="计时器 tcp在发送数据的时候会启动一个计数器,若到时间还没有收到回复,那么会触发相应的超时或者重传"/>
 
 	<link rel="stylesheet" type="text/css" media="screen" href="/css/normalize.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="/css/all.css" />
-	<title>rancher-k8s-deploy | hello</title>
+	<title>TCP_超时与重传 | hello</title>
 
 
 </head>
@@ -69,28 +67,19 @@
 		<div class="meta">
 			
 			<div class="date">
-				<span class="day">03</span>
-				<span class="rest">Jan 2020</span>
+				<span class="day">13</span>
+				<span class="rest">Mar 2021</span>
 			</div>
 			
 		</div>
 		
 		<div class="matter">
-			<h1 class="title">rancher-k8s-deploy</h1>
+			<h1 class="title">TCP_超时与重传</h1>
 		</div>
 	</div>
 	<div class="markdown">
-		<p><!-- raw HTML omitted --></p>
-<h2 id="rancher-install">Rancher install</h2>
-<p>如果之前安装过,需要清理 /opt/rancher 文件夹</p>
-<pre><code>
-docker run -d -p 80:80 -p 443:443 \
-  --restart=unless-stopped \
-  -v /opt/rancher:/var/lib/rancher \
-  rancher/rancher:latest
-
-</code></pre><h2 id="heading">选择</h2>
-<p><!-- raw HTML omitted --></p>
+		<h3 id="heading">计时器</h3>
+<p>tcp在发送数据的时候会启动一个计数器,若到时间还没有收到回复,那么会触发相应的超时或者重传</p>
 
 	</div>
 	
@@ -147,7 +136,6 @@ docker run -d -p 80:80 -p 443:443 \
 			
 			
 			
-			<a href="/tags/k8s/"> k8s </a>
 			
 			
 			
@@ -176,6 +164,7 @@ docker run -d -p 80:80 -p 443:443 \
 			
 			
 			
+			<a href="/tags/tcp/"> tcp </a>
 			
 			
 			

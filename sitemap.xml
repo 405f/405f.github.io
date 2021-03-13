@@ -4,7 +4,27 @@
   
   <url>
     <loc>https://dtest11.github.io/</loc>
-    <lastmod>2021-03-05T12:47:38+08:00</lastmod>
+    <lastmod>2021-03-13T23:26:46+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dtest11.github.io/tags/</loc>
+    <lastmod>2021-03-13T23:26:46+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dtest11.github.io/tags/tcp/</loc>
+    <lastmod>2021-03-13T23:26:46+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dtest11.github.io/tcp/tcp_%E8%B6%85%E6%97%B6%E4%B8%8E%E9%87%8D%E4%BC%A0/</loc>
+    <lastmod>2021-03-13T23:26:46+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dtest11.github.io/tcp/</loc>
+    <lastmod>2021-03-13T23:26:46+08:00</lastmod>
   </url>
   
   <url>
@@ -29,11 +49,6 @@
   
   <url>
     <loc>https://dtest11.github.io/golang/</loc>
-    <lastmod>2021-03-01T14:11:18+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://dtest11.github.io/tags/</loc>
     <lastmod>2021-03-01T14:11:18+08:00</lastmod>
   </url>
   
